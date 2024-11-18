@@ -12,7 +12,7 @@ return [
     | you want to customize your views to better match your application.
     |
     */
-
+"virifyOtp"=>"التحقق من ال OTP",
     'dashboard' => 'لوحة التحكم',
     'languages' => 'اللغات',
     "location distance filter"=>"فلتره المسافة",

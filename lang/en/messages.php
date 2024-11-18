@@ -14,6 +14,8 @@ return [
     */
 
     'login_error' => 'Data connection error',
+    'successfully_loggedout' => "Successfully logged out",
+
     'added_successfully' => 'Added successfully',
     'updateed_successfully' => 'Updateed successfully',
     'deleted_successfully' => 'Deleted successfully',

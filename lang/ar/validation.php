@@ -116,6 +116,7 @@ return [
     */
 
     'attributes' => [
+        "g-recaptcha-response"=>'تحق من انك لست انسان الي',
         'f_name' => 'الاسم الأول',
         'l_name' => 'اسم الاخير',
         "category_id" => "القسم",

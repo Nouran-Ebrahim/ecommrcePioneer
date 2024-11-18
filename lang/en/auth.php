@@ -15,6 +15,7 @@ return [
 
     'failed' => 'These credentials do not match our records.',
     'password' => 'The provided password is incorrect.',
+    "Forgot Your Password?" => "Forgot Your Password?",
     "The user not active"=>"The user not active",
     "Verified successfully"=>"Verified successfully",
     "Password Updated successfully"=>"Password Updated successfully",

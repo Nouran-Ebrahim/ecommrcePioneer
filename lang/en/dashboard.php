@@ -14,6 +14,7 @@ return [
     */
 
     'dashboard' => 'Dashboard',
+    "virifyOtp"=>"Virify OTP",
     "list_attributes" => "List Attributes",
     "add_attributes" => "Add Attributes",
     "edit_attributes" => "Edit Attributes",

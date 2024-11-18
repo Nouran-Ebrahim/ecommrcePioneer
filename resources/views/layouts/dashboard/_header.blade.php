@@ -210,7 +210,7 @@
                     <li class="dropdown dropdown-user nav-item">
                         <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                             <span class="mr-1">Hello,
-                                <span class="user-name text-bold-700">John Doe</span>
+                                <span class="user-name text-bold-700">{{ auth('admin')->user()->name }}</span>
                             </span>
                             <span class="avatar avatar-online">
                                 <img src="{{ asset('assets/dashboard') }}/images/portrait/small/avatar-s-19.png"
@@ -221,15 +221,21 @@
                             <a class="dropdown-item" href="#"><i class="ft-mail"></i> My Inbox</a>
                             <a class="dropdown-item" href="#"><i class="ft-check-square"></i> Task</a>
                             <a class="dropdown-item" href="#"><i class="ft-message-square"></i> Chats</a>
-                            <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i
-                                    class="ft-power"></i> Logout</a>
+
+                            <div class="dropdown-divider"></div>
+                            <form method="POST" action="{{ route('dashboard.login.logout') }}">
+                                @csrf
+                                <button type="submit" class="dropdown-item"><i class="ft-power"></i>
+                                    @lang('dashboard.logout')</button>
+                            </form>
                         </div>
                     </li>
                     {{-- selector language --}}
 
                     <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link"
                             id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"><i class="flag-icon flag-icon-{{app()->getLocale()=="ar"?'eg':'gb'}}"></i><span
+                            aria-expanded="false"><i
+                                class="flag-icon flag-icon-{{ app()->getLocale() == 'ar' ? 'eg' : 'gb' }}"></i><span
                                 class="selected-language"></span></a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-flag">
 
@@ -237,7 +243,7 @@
                                 <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}"
                                     href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
                                     @php
-                                        if ($localeCode == "ar") {
+                                        if ($localeCode == 'ar') {
                                             $icon = 'eg';
                                         } else {
                                             $icon = 'gb';

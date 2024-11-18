@@ -8,4 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class ProductTag extends Model
 {
     use HasFactory;
-}
+    protected $guarded = [];}
