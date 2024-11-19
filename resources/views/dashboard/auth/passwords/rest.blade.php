@@ -66,19 +66,19 @@
                                                 <div class="help-block font-small-3"></div>
                                             </fieldset>
 
+                                            <div class="form-group row">
 
+                                                <div class="col-md-6 col-12 text-center text-md-right"><a
+                                                        href="{{ route('dashboard.login.showLoginForm') }}"
+                                                        class="card-link">@lang('dashboard.login')</a>
+                                                </div>
+                                            </div>
                                             <button type="submit" class="btn btn-danger btn-block btn-lg"><i
                                                     class="ft-unlock"></i> @lang('dashboard.reset')</button>
                                         </form>
                                     </div>
                                 </div>
-                                {{-- <div class="card-footer border-0">
-                                    <p class="card-subtitle line-on-side text-muted text-center font-small-3 mx-2 my-1">
-                                        <span>New to Modern ?</span>
-                                    </p>
-                                    <a href="register-advanced.html" class="btn btn-info btn-block btn-lg mt-3"><i
-                                            class="ft-user"></i> Register</a>
-                                </div> --}}
+
                             </div>
                         </div>
                     </div>

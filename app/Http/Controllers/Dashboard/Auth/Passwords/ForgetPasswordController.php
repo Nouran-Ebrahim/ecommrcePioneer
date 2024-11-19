@@ -25,7 +25,7 @@ class ForgetPasswordController extends Controller
         ]);
         $admin = Admin::where('email', $request->email)->first();
         if (!$admin) {
-            return redirect()->back()->withErrors(['email' => 'try again later!']);
+            return redirect()->back()->withErrors(['email' => trans('messages.try agian later')]);
         }
         $admin->notify(new SendOtpNotify());
         return redirect()->route('dashboard.password.showConfirmForm', ['email' => $admin->email]);
@@ -45,7 +45,7 @@ class ForgetPasswordController extends Controller
         ]);
         $otp = (new Otp)->validate($request->email, $request->token);
         if ($otp->status == false) {
-            return redirect()->back()->withErrors(['token' => $otp->message]);
+            return redirect()->back()->withErrors(['token' => trans('messages.OTP does not exist') ]);
 
         }
         return redirect()->route('dashboard.password.showRestForm', ['email' => $request->email]);

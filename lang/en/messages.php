@@ -15,7 +15,8 @@ return [
 
     'login_error' => 'Data connection error',
     'successfully_loggedout' => "Successfully logged out",
-
+"try agian later"=>"try agian later",
+"OTP does not exist"=>"OTP does not exist",
     'added_successfully' => 'Added successfully',
     'updateed_successfully' => 'Updateed successfully',
     'deleted_successfully' => 'Deleted successfully',

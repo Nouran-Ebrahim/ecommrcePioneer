@@ -40,10 +40,12 @@ return [
     'a_new_order_has_been_added' => 'تمت إضافة طلب جديد',
 
     // api
+    "OTP does not exist"=>"رمز التحقق غير موجود",
     'successfully_loggedout' => "تم تسجيل الخروج بنجاح",
     'dataSuccess' => 'لقد تم جلب البيانات بنجاح',
     'dataError' => 'هناك خطأ ما',
     'emptyDataMsg' => 'لم يتم العثور على البيانات',
+    "try agian later"=>"حاول مره اخره في وقت لاحق",
     'Service Added To Provider Successfully' => 'تمت إضافة الخدمة إلى السائق بنجاح',
     'Service Removed From Provider Successfully' => 'تمت إزالة الخدمة من السائق بنجاح',
     'success_register' => 'تم التسجيل برجاء الرجوع إلى رسالة التأكيد الإلكترونية',

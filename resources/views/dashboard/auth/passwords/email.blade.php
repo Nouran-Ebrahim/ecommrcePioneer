@@ -39,7 +39,13 @@
                                                 </div>
                                                 <div class="help-block font-small-3"></div>
                                             </fieldset>
+                                            <div class="form-group row">
 
+                                                <div class="col-md-6 col-12 text-center text-md-right"><a
+                                                        href="{{ route('dashboard.login.showLoginForm') }}"
+                                                        class="card-link">@lang('dashboard.login')</a>
+                                                </div>
+                                            </div>
                                             <button type="submit" class="btn btn-danger btn-block btn-lg"><i
                                                     class="ft-unlock"></i> @lang('dashboard.send')</button>
                                         </form>
