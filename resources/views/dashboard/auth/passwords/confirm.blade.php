@@ -23,13 +23,15 @@
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
+                                        @include('dashboard.includes.alert_danger')
+
                                         <form method="POST" action="{{ route('dashboard.password.verifyOtp') }}"
                                             class="form-horizontal" action="index.html" novalidate>
                                             @csrf
                                             <fieldset class="form-group position-relative has-icon-left">
-                                                <input type="hidden" value="{{ $email }}" name="email" type="text" class="form-control input-lg"
-                                                    id="user-name" placeholder="@lang('dashboard.email')" tabindex="1"
-                                                    {{-- required
+                                                <input type="hidden" value="{{ $email }}" name="email"
+                                                    type="text" class="form-control input-lg" id="user-name"
+                                                    placeholder="@lang('dashboard.email')" tabindex="1" {{-- required
                                                     data-validation-required-message="Please enter your username." --}}>
                                                 @error('email')
                                                     <div class="text-danger">{{ $message }}</div>
