@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard\Auth\Passwords\ForgetPasswordController;
 use App\Http\Controllers\Dashboard\Auth\Passwords\RestPasswordController;
 use App\Http\Controllers\Dashboard\Auth\AuthController;
 use App\Http\Controllers\Dashboard\HomeController;
+use App\Http\Controllers\Dashboard\RoleController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 /*
@@ -48,6 +49,11 @@ Route::group(
                     ['middleware' => ['auth:admin']],
                     function () {
                         Route::get('/home', [HomeController::class, 'index'])->name('home');
+                        
+                        Route::group(['middleware' => 'can:roles'], function () {
+                            Route::resource('roles', RoleController::class);
+
+                        });
                     }
 
                 );

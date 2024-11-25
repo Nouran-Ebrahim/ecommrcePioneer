@@ -116,6 +116,9 @@ return [
     */
 
     'attributes' => [
+        "permessions"=>"الصلاحيات",
+        "role.en"=>"الدور بالانجليزي",
+        "role.ar"=>"الدور بالعربي",
         "g-recaptcha-response"=>'تحق من انك لست انسان الي',
         'f_name' => 'الاسم الأول',
         'l_name' => 'اسم الاخير',

@@ -18,5 +18,20 @@ class Admin extends Authenticatable
         'email_verified_at' => 'datetime',
         // 'password' => 'hashed' // to autmaticly has the password
     ];
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+    public function hasAccess($config_permession)
+    {
+        $role = $this->role;
+
+        foreach ($role->permessions as $permessionAdmin) {
+            if ($config_permession == $permessionAdmin ?? false) {
+                return true;
+            }
+            //$config_permession == $permessionAdmin ?? false this condtion to countinue looping if the permession is not found
+        }
+    }
 
 }

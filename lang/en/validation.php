@@ -159,6 +159,9 @@ return [
     */
 
     'attributes' => [
+        "permessions"=>"Permessions",
+        "role.en"=>"Role in English",
+        "role.ar"=>"Role in Arabic",
         "g-recaptcha-response"=>"Virfy you are not robot",
         'f_name'=>"First Name",
         "phone"=>"Phone",

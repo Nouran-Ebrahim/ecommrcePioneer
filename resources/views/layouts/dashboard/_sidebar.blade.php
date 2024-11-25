@@ -14,39 +14,19 @@
                     </li>
                 </ul>
             </li>
-            <li class=" nav-item"><a href="#"><i class="la la-television"></i><span class="menu-title"
-                        data-i18n="nav.templates.main">Templates</span></a>
-                <ul class="menu-content">
-                    <li><a class="menu-item" href="#" data-i18n="nav.templates.vert.main">Vertical</a>
-                        <ul class="menu-content">
-                            <li><a class="menu-item" href="../vertical-menu-template"
-                                    data-i18n="nav.templates.vert.classic_menu">Classic Menu</a>
-                            </li>
-                            <li><a class="menu-item" href="../vertical-modern-menu-template">Modern Menu</a>
-                            </li>
-                            <li><a class="menu-item" href="../vertical-compact-menu-template"
-                                    data-i18n="nav.templates.vert.compact_menu">Compact Menu</a>
-                            </li>
-                            <li><a class="menu-item" href="../vertical-content-menu-template"
-                                    data-i18n="nav.templates.vert.content_menu">Content Menu</a>
-                            </li>
-                            <li><a class="menu-item" href="../vertical-overlay-menu-template"
-                                    data-i18n="nav.templates.vert.overlay_menu">Overlay Menu</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="menu-item" href="#" data-i18n="nav.templates.horz.main">Horizontal</a>
-                        <ul class="menu-content">
-                            <li><a class="menu-item" href="../horizontal-menu-template"
-                                    data-i18n="nav.templates.horz.classic">Classic</a>
-                            </li>
-                            <li><a class="menu-item" href="../horizontal-menu-template-nav"
-                                    data-i18n="nav.templates.horz.top_icon">Full Width</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
+            @can('roles')
+                <li class=" nav-item"><a href="#"><i class="la la-television"></i><span class="menu-title"
+                            data-i18n="nav.templates.main">@lang('dashboard.roles')</span></a>
+                    <ul class="menu-content">
+                        <li>
+                            <a class="menu-item" href="{{ route('dashboard.roles.create') }}" data-i18n="">@lang('dashboard.add_roles')</a>
+                        </li>
+                        <li>
+                            <a class="menu-item" href="{{ route('dashboard.roles.index') }}" data-i18n="">@lang('dashboard.roles')</a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
             <li class=" navigation-header">
                 <span data-i18n="nav.category.layouts">Layouts</span><i class="la la-ellipsis-h ft-minus"
                     data-toggle="tooltip" data-placement="right" data-original-title="Layouts"></i>
@@ -80,8 +60,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a class="menu-item" href="#"
-                            data-i18n="nav.page_layouts.3_columns_detached.main">Content Det. Sidebar</a>
+                    <li><a class="menu-item" href="#" data-i18n="nav.page_layouts.3_columns_detached.main">Content
+                            Det. Sidebar</a>
                         <ul class="menu-content">
                             <li><a class="menu-item" href="layout-content-detached-left-sidebar.html"
                                     data-i18n="nav.page_layouts.3_columns_detached.detached_left_sidebar">Detached
@@ -115,21 +95,21 @@
                             data-i18n="nav.page_layouts.fixed_navbar_footer">Fixed navbar &amp; footer</a>
                     </li>
                     <li class="navigation-divider"></li>
-                    <li><a class="menu-item" href="layout-fixed.html"
-                            data-i18n="nav.page_layouts.fixed_layout">Fixed layout</a>
+                    <li><a class="menu-item" href="layout-fixed.html" data-i18n="nav.page_layouts.fixed_layout">Fixed
+                            layout</a>
                     </li>
-                    <li><a class="menu-item" href="layout-boxed.html"
-                            data-i18n="nav.page_layouts.boxed_layout">Boxed layout</a>
+                    <li><a class="menu-item" href="layout-boxed.html" data-i18n="nav.page_layouts.boxed_layout">Boxed
+                            layout</a>
                     </li>
                     <li><a class="menu-item" href="layout-static.html"
                             data-i18n="nav.page_layouts.static_layout">Static layout</a>
                     </li>
                     <li class="navigation-divider"></li>
-                    <li><a class="menu-item" href="layout-light.html"
-                            data-i18n="nav.page_layouts.light_layout">Light layout</a>
+                    <li><a class="menu-item" href="layout-light.html" data-i18n="nav.page_layouts.light_layout">Light
+                            layout</a>
                     </li>
-                    <li><a class="menu-item" href="layout-dark.html"
-                            data-i18n="nav.page_layouts.dark_layout">Dark layout</a>
+                    <li><a class="menu-item" href="layout-dark.html" data-i18n="nav.page_layouts.dark_layout">Dark
+                            layout</a>
                     </li>
                     <li><a class="menu-item" href="layout-semi-dark.html"
                             data-i18n="nav.page_layouts.semi_dark_layout">Semi dark layout</a>
@@ -151,8 +131,8 @@
                     <li><a class="menu-item" href="navbar-brand-center.html"
                             data-i18n="nav.navbars.nav_brand_center">Brand Center</a>
                     </li>
-                    <li><a class="menu-item" href="navbar-fixed-top.html"
-                            data-i18n="nav.navbars.nav_fixed_top">Fixed Top</a>
+                    <li><a class="menu-item" href="navbar-fixed-top.html" data-i18n="nav.navbars.nav_fixed_top">Fixed
+                            Top</a>
                     </li>
                     <li><a class="menu-item" href="#" data-i18n="nav.navbars.nav_hide_on_scroll.main">Hide
                             on Scroll</a>
@@ -170,8 +150,8 @@
                     <li><a class="menu-item" href="navbar-components.html"
                             data-i18n="nav.navbars.nav_components">Navbar Components</a>
                     </li>
-                    <li><a class="menu-item" href="navbar-styling.html"
-                            data-i18n="nav.navbars.nav_styling">Navbar Styling</a>
+                    <li><a class="menu-item" href="navbar-styling.html" data-i18n="nav.navbars.nav_styling">Navbar
+                            Styling</a>
                     </li>
                 </ul>
             </li>
@@ -461,8 +441,8 @@
                         data-i18n="nav.changelog.main">Changelog</span><span
                         class="badge badge badge-pill badge-warning float-right">1.0</span></a>
             </li>
-            <li class="disabled nav-item"><a href="#"><i class="la la-eye-slash"></i><span
-                        class="menu-title" data-i18n="nav.disabled_menu.main">Disabled Menu</span></a>
+            <li class="disabled nav-item"><a href="#"><i class="la la-eye-slash"></i><span class="menu-title"
+                        data-i18n="nav.disabled_menu.main">Disabled Menu</span></a>
             </li>
             <li class=" nav-item"><a href="#"><i class="la la-android"></i><span class="menu-title"
                         data-i18n="nav.menu_levels.main">Menu levels</span></a>
@@ -510,11 +490,11 @@
                     <li><a class="menu-item" href="project-summary.html"
                             data-i18n="nav.project.project_summary">Project Summary</a>
                     </li>
-                    <li><a class="menu-item" href="project-tasks.html"
-                            data-i18n="nav.project.project_tasks">Project Task</a>
+                    <li><a class="menu-item" href="project-tasks.html" data-i18n="nav.project.project_tasks">Project
+                            Task</a>
                     </li>
-                    <li><a class="menu-item" href="project-bugs.html"
-                            data-i18n="nav.project.project_bugs">Project Bugs</a>
+                    <li><a class="menu-item" href="project-bugs.html" data-i18n="nav.project.project_bugs">Project
+                            Bugs</a>
                     </li>
                 </ul>
             </li>
@@ -531,8 +511,8 @@
                     <li><a class="menu-item" href="invoice-template.html"
                             data-i18n="nav.invoice.invoice_template">Invoice Template</a>
                     </li>
-                    <li><a class="menu-item" href="invoice-list.html"
-                            data-i18n="nav.invoice.invoice_list">Invoice List</a>
+                    <li><a class="menu-item" href="invoice-list.html" data-i18n="nav.invoice.invoice_list">Invoice
+                            List</a>
                     </li>
                 </ul>
             </li>
@@ -562,8 +542,8 @@
                     <li><a class="menu-item" href="user-cards.html" data-i18n="nav.users.user_cards">Users
                             Cards</a>
                     </li>
-                    <li><a class="menu-item" href="users-contacts.html"
-                            data-i18n="nav.users.users_contacts">Users List</a>
+                    <li><a class="menu-item" href="users-contacts.html" data-i18n="nav.users.users_contacts">Users
+                            List</a>
                     </li>
                 </ul>
             </li>
@@ -590,8 +570,8 @@
             <li class=" nav-item"><a href="#"><i class="la la-search"></i><span class="menu-title"
                         data-i18n="nav.search_pages.main">Search</span></a>
                 <ul class="menu-content">
-                    <li><a class="menu-item" href="search-page.html"
-                            data-i18n="nav.search_pages.search_page">Search Page</a>
+                    <li><a class="menu-item" href="search-page.html" data-i18n="nav.search_pages.search_page">Search
+                            Page</a>
                     </li>
                     <li><a class="menu-item" href="search-website.html"
                             data-i18n="nav.search_pages.search_website">Search Website</a>
@@ -716,11 +696,9 @@
                     <li><a class="menu-item" href="card-headings.html"
                             data-i18n="nav.cards.card_headings">Headings</a>
                     </li>
-                    <li><a class="menu-item" href="card-options.html"
-                            data-i18n="nav.cards.card_options">Options</a>
+                    <li><a class="menu-item" href="card-options.html" data-i18n="nav.cards.card_options">Options</a>
                     </li>
-                    <li><a class="menu-item" href="card-actions.html"
-                            data-i18n="nav.cards.card_actions">Action</a>
+                    <li><a class="menu-item" href="card-actions.html" data-i18n="nav.cards.card_actions">Action</a>
                     </li>
                     <li><a class="menu-item" href="card-draggable.html"
                             data-i18n="nav.cards.card_draggable">Draggable</a>
@@ -733,8 +711,7 @@
                     <li><a class="menu-item" href="card-statistics.html"
                             data-i18n="nav.cards.card_statistics">Statistics</a>
                     </li>
-                    <li><a class="menu-item" href="card-weather.html"
-                            data-i18n="nav.cards.card_weather">Weather</a>
+                    <li><a class="menu-item" href="card-weather.html" data-i18n="nav.cards.card_weather">Weather</a>
                     </li>
                     <li><a class="menu-item" href="card-charts.html" data-i18n="nav.cards.card_charts">Charts</a>
                     </li>
@@ -753,8 +730,7 @@
             <li class=" nav-item"><a href="#"><i class="la la-compass"></i><span class="menu-title"
                         data-i18n="nav.content.main">Content</span></a>
                 <ul class="menu-content">
-                    <li><a class="menu-item" href="content-grid.html"
-                            data-i18n="nav.content.content_grid">Grid</a>
+                    <li><a class="menu-item" href="content-grid.html" data-i18n="nav.content.content_grid">Grid</a>
                     </li>
                     <li><a class="menu-item" href="content-typography.html"
                             data-i18n="nav.content.content_typography">Typography</a>
@@ -912,8 +888,8 @@
             <li class=" nav-item"><a href="#"><i class="la la-terminal"></i><span class="menu-title"
                         data-i18n="nav.form_elements.main">Form Elements</span></a>
                 <ul class="menu-content">
-                    <li><a class="menu-item" href="form-inputs.html"
-                            data-i18n="nav.form_elements.form_inputs">Form Inputs</a>
+                    <li><a class="menu-item" href="form-inputs.html" data-i18n="nav.form_elements.form_inputs">Form
+                            Inputs</a>
                     </li>
                     <li><a class="menu-item" href="form-input-groups.html"
                             data-i18n="nav.form_elements.form_input_groups">Input Groups</a>
@@ -930,8 +906,7 @@
                     <li><a class="menu-item" href="form-switch.html"
                             data-i18n="nav.form_elements.form_switch">Switch</a>
                     </li>
-                    <li><a class="menu-item" href="#"
-                            data-i18n="nav.form_elements.form_select.main">Select</a>
+                    <li><a class="menu-item" href="#" data-i18n="nav.form_elements.form_select.main">Select</a>
                         <ul class="menu-content">
                             <li><a class="menu-item" href="form-select2.html"
                                     data-i18n="nav.form_elements.form_select.form_select2">Select2</a>
@@ -998,8 +973,8 @@
                     </li>
                 </ul>
             </li>
-            <li class=" nav-item"><a href="form-repeater.html"><i class="la la-repeat"></i><span
-                        class="menu-title" data-i18n="nav.form_repeater.main">Form Repeater</span></a>
+            <li class=" nav-item"><a href="form-repeater.html"><i class="la la-repeat"></i><span class="menu-title"
+                        data-i18n="nav.form_repeater.main">Form Repeater</span></a>
             </li>
             <li class=" navigation-header">
                 <span data-i18n="nav.category.tables">Tables</span><i class="la la-ellipsis-h ft-minus"
@@ -1217,8 +1192,8 @@
             <li class=" nav-item"><a href="add-on-drag-drop.html"><i class="la la-mouse-pointer"></i><span
                         class="menu-title" data-i18n="nav.add_on_drag_drop.main">Drag &amp; Drop</span></a>
             </li>
-            <li class=" nav-item"><a href="#"><i class="la la-cloud-upload"></i><span
-                        class="menu-title" data-i18n="nav.file_uploaders.main">File Uploader</span></a>
+            <li class=" nav-item"><a href="#"><i class="la la-cloud-upload"></i><span class="menu-title"
+                        data-i18n="nav.file_uploaders.main">File Uploader</span></a>
                 <ul class="menu-content">
                     <li><a class="menu-item" href="file-uploader-dropzone.html"
                             data-i18n="nav.file_uploaders.file_uploader_dropzone">Dropzone</a>
@@ -1301,8 +1276,8 @@
                     </li>
                 </ul>
             </li>
-            <li class=" nav-item"><a href="#"><i class="la la-file-photo-o"></i><span
-                        class="menu-title" data-i18n="nav.echarts.main">Echarts</span></a>
+            <li class=" nav-item"><a href="#"><i class="la la-file-photo-o"></i><span class="menu-title"
+                        data-i18n="nav.echarts.main">Echarts</span></a>
                 <ul class="menu-content">
                     <li><a class="menu-item" href="echarts-line-area-charts.html"
                             data-i18n="nav.echarts.echarts_line_area_charts">Line &amp; Area charts</a>
@@ -1359,11 +1334,11 @@
                     <li><a class="menu-item" href="d3-line-chart.html"
                             data-i18n="nav.d3_charts.d3_line_chart">Line Chart</a>
                     </li>
-                    <li><a class="menu-item" href="d3-bar-chart.html"
-                            data-i18n="nav.d3_charts.d3_bar_chart">Bar Chart</a>
+                    <li><a class="menu-item" href="d3-bar-chart.html" data-i18n="nav.d3_charts.d3_bar_chart">Bar
+                            Chart</a>
                     </li>
-                    <li><a class="menu-item" href="d3-pie-chart.html"
-                            data-i18n="nav.d3_charts.d3_pie_chart">Pie Chart</a>
+                    <li><a class="menu-item" href="d3-pie-chart.html" data-i18n="nav.d3_charts.d3_pie_chart">Pie
+                            Chart</a>
                     </li>
                     <li><a class="menu-item" href="d3-circle-diagrams.html"
                             data-i18n="nav.d3_charts.d3_circle_diagrams">Circle Diagrams</a>
@@ -1493,8 +1468,7 @@
                         class="menu-title" data-i18n="nav.support_raise_support.main">Raise Support</span></a>
             </li>
             <li class=" nav-item">
-                <a
-                    href="https://pixinvent.com/modern-admin-clean-bootstrap-4-dashboard-html-template/documentation"><i
+                <a href="https://pixinvent.com/modern-admin-clean-bootstrap-4-dashboard-html-template/documentation"><i
                         class="la la-text-height"></i>
                     <span class="menu-title" data-i18n="nav.support_documentation.main">Documentation</span>
                 </a>
