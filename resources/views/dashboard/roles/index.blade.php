@@ -12,7 +12,7 @@
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a
-                                        href="{{ route('dashboard.welcome') }}">{{ __('dashboard.dashboard') }}</a>
+                                        href="{{ route('dashboard.home') }}">{{ __('dashboard.dashboard') }}</a>
                                 </li>
                                 <li class="breadcrumb-item"><a href="{{ route('dashboard.roles.index') }}">@lang('dashboard.roles')</a>
                                 </li>
@@ -74,13 +74,13 @@
                                             <td>
 
                                                 @if (config('app.locale') == 'ar')
-                                                    @foreach ($role->permession as $perm)
+                                                    @foreach ($role->permessions as $perm)
                                                         @foreach (Config::get('permessions_ar') as $key => $value)
                                                             {{ $key == $perm ? $value . ' , ' : '' }}
                                                         @endforeach
                                                     @endforeach
                                                 @else
-                                                    @foreach ($role->permession as $perm)
+                                                    @foreach ($role->permessions as $perm)
                                                         {{ $perm }},
                                                     @endforeach
                                                 @endif

@@ -86,7 +86,7 @@ class RoleController extends Controller
        if (!$role) {
         return back()->with('error', __('messages.general_error'));
     }
-    return redirect()->back()->with('success', __('messages.added_successfully'));
+    return redirect()->back()->with('success', __('messages.deleted_successfully'));
 
     }
 }

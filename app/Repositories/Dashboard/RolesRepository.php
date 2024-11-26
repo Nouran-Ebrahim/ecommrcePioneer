@@ -27,7 +27,7 @@ class RolesRepository
 
     public function getRoles()
     {
-        $roles = Role::select('id', 'role', 'permession')->paginate(6);
+        $roles = Role::select('id', 'role', 'permessions')->paginate(6);
         return $roles;
     }
 

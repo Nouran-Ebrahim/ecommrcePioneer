@@ -12,7 +12,7 @@
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a
-                                        href="{{ route('dashboard.welcome') }}">{{ __('dashboard.dashboard') }}</a>
+                                        href="{{ route('dashboard.home') }}">{{ __('dashboard.dashboard') }}</a>
                                 </li>
                                 <li class="breadcrumb-item"><a href="{{ route('dashboard.roles.index') }}">@lang('dashboard.roles')</a>
                                 </li>
