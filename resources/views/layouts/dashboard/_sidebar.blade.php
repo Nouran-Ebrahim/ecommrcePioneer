@@ -1,7 +1,7 @@
 <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title"
+            {{-- <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title"
                         data-i18n="nav.dash.main">Dashboard</span><span
                         class="badge badge badge-info badge-pill float-right mr-2">3</span></a>
                 <ul class="menu-content">
@@ -13,16 +13,23 @@
                     <li><a class="menu-item" href="dashboard-sales.html" data-i18n="nav.dash.sales">Sales</a>
                     </li>
                 </ul>
+            </li> --}}
+            <li class=" nav-item {{ Request::is('*/home*') ? 'active' : '' }}"><a href="{{ route('dashboard.home') }}"><i
+                        class="la la-home"></i><span class="menu-title"
+                        data-i18n="nav.disabled_menu.main">@lang('dashboard.dashboard')</span></a>
             </li>
             @can('roles')
-                <li class=" nav-item"><a href="#"><i class="la la-television"></i><span class="menu-title"
+                <li class=" nav-item {{ Request::is('*/roles*') ? 'open active' : '' }}"><a href="#"><i
+                            class="la la-television"></i><span class="menu-title"
                             data-i18n="nav.templates.main">@lang('dashboard.roles')</span></a>
                     <ul class="menu-content">
-                        <li>
-                            <a class="menu-item" href="{{ route('dashboard.roles.create') }}" data-i18n="">@lang('dashboard.add_roles')</a>
+                        <li class="{{ Request::is('*/roles*') ? 'is-shown' : '' }}">
+                            <a class="menu-item" href="{{ route('dashboard.roles.create') }}"
+                                data-i18n="">@lang('dashboard.add_roles')</a>
                         </li>
-                        <li>
-                            <a class="menu-item" href="{{ route('dashboard.roles.index') }}" data-i18n="">@lang('dashboard.roles')</a>
+                        <li class="{{ Request::is('*/roles*') ? 'is-shown' : '' }}">
+                            <a class="menu-item" href="{{ route('dashboard.roles.index') }}"
+                                data-i18n="">@lang('dashboard.roles')</a>
                         </li>
                     </ul>
                 </li>
@@ -101,8 +108,8 @@
                     <li><a class="menu-item" href="layout-boxed.html" data-i18n="nav.page_layouts.boxed_layout">Boxed
                             layout</a>
                     </li>
-                    <li><a class="menu-item" href="layout-static.html"
-                            data-i18n="nav.page_layouts.static_layout">Static layout</a>
+                    <li><a class="menu-item" href="layout-static.html" data-i18n="nav.page_layouts.static_layout">Static
+                            layout</a>
                     </li>
                     <li class="navigation-divider"></li>
                     <li><a class="menu-item" href="layout-light.html" data-i18n="nav.page_layouts.light_layout">Light
