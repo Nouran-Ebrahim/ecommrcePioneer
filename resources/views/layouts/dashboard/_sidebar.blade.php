@@ -34,6 +34,22 @@
                     </ul>
                 </li>
             @endcan
+            @can('admins')
+                <li class=" nav-item {{ Request::is('*/admins*') ? 'open active' : '' }}"><a href="#"><i
+                            class="la la-television"></i><span class="menu-title"
+                            data-i18n="nav.templates.main">@lang('dashboard.admins')</span></a>
+                    <ul class="menu-content">
+                        <li class="{{ Request::is('*/admins*') ? 'is-shown' : '' }}">
+                            <a class="menu-item" href="{{ route('dashboard.admins.create') }}"
+                                data-i18n="">@lang('dashboard.add_admin')</a>
+                        </li>
+                        <li class="{{ Request::is('*/admins*') ? 'is-shown' : '' }}">
+                            <a class="menu-item" href="{{ route('dashboard.admins.index') }}"
+                                data-i18n="">@lang('dashboard.admins')</a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
             <li class=" navigation-header">
                 <span data-i18n="nav.category.layouts">Layouts</span><i class="la la-ellipsis-h ft-minus"
                     data-toggle="tooltip" data-placement="right" data-original-title="Layouts"></i>

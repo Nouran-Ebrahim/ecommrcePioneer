@@ -16,7 +16,7 @@ class Admin extends Authenticatable
     ];
     protected $casts = [
         'email_verified_at' => 'datetime',
-        // 'password' => 'hashed' // to autmaticly has the password
+        'password' => 'hashed' // to autmaticly has the password
     ];
     public function role()
     {

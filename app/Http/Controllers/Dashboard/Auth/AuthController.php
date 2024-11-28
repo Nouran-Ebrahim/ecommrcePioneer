@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateAdminRequest;
+use App\Http\Requests\LoginAdminRequest;
 use App\Providers\RouteServiceProvider;
 
 use App\Services\Auth\AuthService;
@@ -24,7 +24,7 @@ class AuthController extends Controller
     {
         return view('dashboard.auth.login');
     }
-    public function login(CreateAdminRequest $request)
+    public function login(LoginAdminRequest $request)
     {
 
         $credenstials = $request->only(['email', 'password']);

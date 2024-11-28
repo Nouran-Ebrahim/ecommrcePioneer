@@ -14,9 +14,10 @@
                                 <li class="breadcrumb-item"><a
                                         href="{{ route('dashboard.home') }}">{{ __('dashboard.dashboard') }}</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard.roles.index') }}">@lang('dashboard.roles')</a>
+                                <li class="breadcrumb-item"><a
+                                        href="{{ route('dashboard.roles.index') }}">@lang('dashboard.roles')</a>
                                 </li>
-                                
+
                             </ol>
                         </div>
                     </div>
@@ -80,7 +81,9 @@
                                                     @endforeach
                                                 @else
                                                     @foreach ($role->permessions as $perm)
-                                                        {{ $perm }},
+                                                        @foreach (Config::get('permessions_en') as $key => $value)
+                                                            {{ $key == $perm ? $value . ' , ' : '' }}
+                                                        @endforeach
                                                     @endforeach
                                                 @endif
 
@@ -107,7 +110,7 @@
 
 
                                         {{-- delete form  --}}
-                                        <form  id="delete-form-{{ $role->id }}"
+                                        <form id="delete-form-{{ $role->id }}"
                                             action="{{ route('dashboard.roles.destroy', $role->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
