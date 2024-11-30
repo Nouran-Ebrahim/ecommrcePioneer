@@ -20,7 +20,7 @@
                         </div>
                     </div>
                 </div>
-                @include('dashboard.includes.button-header')
+                {{-- @include('dashboard.includes.button-header') --}}
             </div>
             <div class="content-body">
                 <div class="card">
@@ -60,7 +60,7 @@
                                             <td>{{ $admin->name }} </td>
                                             <td>{{ $admin->email }}</td>
                                             <td>{{ $admin->role->role }}</td>
-                                            <td>{{ $admin->status }}</td>
+                                            <td>{{ $admin->status_name }}</td>
                                             <td>{{ $admin->created_at->format('Y-m-d') }}</td>
                                             <td>
                                                 <div class="dropdown float-md-left">
@@ -73,7 +73,7 @@
                                                                 class="la la-edit"></i>Edit</a>
                                                                 <a class="dropdown-item"
                                                             href="{{ route('dashboard.admins.status', $admin->id) }}"><i
-                                                                class="la @if($admin->status == 'Active') la-toggle-on @else la-toggle-off @endif"></i>@if($admin->status == 'Active') Deactivate @else Activate @endif</a>
+                                                                class="la @if($admin->status == 1) la-toggle-on @else la-toggle-off @endif"></i>{{$admin->status==1?__('dashboard.unactive'):__('dashboard.active')}}</a>
 
                                                         <div class="dropdown-divider"></div><a class="dropdown-item"
                                                             href="javascript:void(0)"

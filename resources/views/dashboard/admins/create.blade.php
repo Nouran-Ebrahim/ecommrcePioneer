@@ -22,7 +22,7 @@
                         </div>
                     </div>
                 </div>
-                @include('dashboard.includes.button-header')
+                {{-- @include('dashboard.includes.button-header') --}}
 
             </div>
             <div class="col-md-12">
@@ -45,11 +45,11 @@
                             <form class="form" action="{{ route('dashboard.admins.store') }}" method="POST">
                                 @csrf
                                 <div class="form-body">
-                                    <h4 class="form-section"><i class="la la-new"></i>Create New admin</h4>
+                                    <h4 class="form-section"><i class="la la-new"></i>@lang('dashboard.add_admin')</h4>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="userinput1"> Admin Name</label>
+                                                <label for="userinput1"> @lang('dashboard.name')</label>
                                                 <input type="text" id="userinput1" class="form-control border-primary"
                                                     placeholder="Name" name="name">
                                             </div>
@@ -57,7 +57,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="userinput1"> Admin Email</label>
+                                                <label for="userinput1">@lang('dashboard.email')</label>
                                                 <input type="text" id="userinput1" class="form-control border-primary"
                                                     placeholder="Name" name="email">
                                             </div>
@@ -67,14 +67,14 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="userinput1"> Password</label>
+                                                <label for="userinput1"> @lang('dashboard.password')</label>
                                                 <input type="passwrod" id="userinput1" class="form-control border-primary"
                                                     placeholder="Enter Password" name="password">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="userinput1"> Password Confirmation</label>
+                                                <label for="userinput1"> @lang('dashboard.password_confirmation')</label>
                                                 <input type="password" id="userinput1" class="form-control border-primary"
                                                     placeholder="Enter Password Confirmation" name="password_confirmation">
                                             </div>
@@ -84,9 +84,9 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Select Role</label>
+                                                <label>@lang('dashboard.Role name')</label>
                                                 <select class="form-control" name="role_id">
-                                                    <optgroup label="Select Role">
+                                                    <optgroup label="@lang('dashboard.Role name')">
                                                         @foreach ($roles as $role)
                                                             <option value="{{ $role->id }}">{{ $role->role }}
                                                             </option>
@@ -97,11 +97,11 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mt-1">
-                                                <label>Select Status</label>
+                                                <label>@lang('dashboard.status')</label>
                                                 <select class="form-control" name="status">
-                                                    <optgroup label="Select Role">
-                                                        <option value="1">Active</option>
-                                                        <option value="0">Inactive</option>
+                                                    <optgroup label="@lang('dashboard.status')">
+                                                        <option value="1">@lang('dashboard.active')</option>
+                                                        <option value="0">@lang('dashboard.unactive')</option>
                                                     </optgroup>
                                                 </select>
                                             </div>
@@ -109,11 +109,11 @@
                                     </div>
                                 </div>
                                 <div class="form-actions right">
-                                    {{-- <button type="reset" class="btn btn-warning mr-1">
+                                    <button type="reset" class="btn btn-warning mr-1">
                                         <i class="ft-x"></i> Cancel
-                                    </button> --}}
+                                    </button>
                                     <button type="submit" class="btn btn-primary">
-                                        <i class="la la-check-square-o"></i> Save
+                                        <i class="la la-check-square-o"></i> @lang('dashboard.save')
                                     </button>
                                 </div>
                             </form>

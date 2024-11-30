@@ -74,7 +74,7 @@ class AdminService
         if (!$admin) {
             abort(404);
         }
-        $admin->status == 'Active' ? $status = 0 : $status = 1;
+        $admin->status == 1 ? $status = 0 : $status = 1;
         $status = $this->adminRepository->changeStatus($admin, $status);
         return $status;
 

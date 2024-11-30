@@ -1,20 +1,20 @@
 @extends('layouts.dashboard.app')
 @section('title')
-    @lang('dashboard.edit_admin')
+    @lang('dashboard.add_admin')
 @endsection
 @section('content')
     <div class="app-content content">
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
+                    <h3 class="content-header-title mb-0 d-inline-block">@lang('dashboard.admins')</h3>
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a
                                         href="{{ route('dashboard.home') }}">{{ __('dashboard.dashboard') }}</a>
                                 </li>
-                                <li class="breadcrumb-item"><a
-                                        href="{{ route('dashboard.admins.index') }}">@lang('dashboard.admins')</a>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard.admins.index') }}">admins</a>
                                 </li>
                                 <li class="breadcrumb-item active">@lang('dashboard.edit_admin')
                                 </li>
@@ -22,13 +22,13 @@
                         </div>
                     </div>
                 </div>
-                @include('dashboard.includes.button-header')
+                {{-- @include('dashboard.includes.button-header') --}}
 
             </div>
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title" id="basic-layout-colored-form-control">@lang('dashboard.edit_admin')</h4>
+                        <h4 class="card-title" id="basic-layout-colored-form-control">@lang('dashboard.add_admin')</h4>
                         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                         <div class="heading-elements">
                             <ul class="list-inline mb-0">
@@ -42,24 +42,26 @@
                     <div class="card-content collapse show">
                         <div class="card-body">
                             @include('dashboard.includes.validations-errors')
-                            <form class="form" action="{{ route('dashboard.admins.store') }}" method="POST">
+                            <form class="form" action="{{ route('dashboard.admins.update', $admin->id) }}" method="POST">
                                 @csrf
+                                @method('PUT')
+                                <input name="id" type="hidden" value="{{ $admin->id }}">
                                 <div class="form-body">
-                                    <h4 class="form-section"><i class="la la-new"></i>Create New admin</h4>
+                                    <h4 class="form-section"><i class="la la-new"></i>Update  admin</h4>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="userinput1"> Admin Name</label>
+                                                <label for="userinput1"> @lang('dashboard.name')</label>
                                                 <input type="text" id="userinput1" class="form-control border-primary"
-                                                    placeholder="Name" name="name">
+                                                   value="{{ $admin->name }}"  placeholder="Name" name="name">
                                             </div>
 
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="userinput1"> Admin Email</label>
+                                                <label for="userinput1"> @lang('dashboard.email')</label>
                                                 <input type="text" id="userinput1" class="form-control border-primary"
-                                                    placeholder="Name" name="email">
+                                                value="{{ $admin->email }}" placeholder="Name" name="email">
                                             </div>
 
                                         </div>
@@ -67,28 +69,29 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="userinput1"> Password</label>
+                                                <label for="userinput1"> @lang('dashboard.password')</label>
                                                 <input type="passwrod" id="userinput1" class="form-control border-primary"
                                                     placeholder="Enter Password" name="password">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="userinput1"> Password Confirmation</label>
+                                                <label for="userinput1"> @lang('dashboard.password_confirmation')</label>
                                                 <input type="password" id="userinput1" class="form-control border-primary"
                                                     placeholder="Enter Password Confirmation" name="password_confirmation">
                                             </div>
 
                                         </div>
                                     </div>
+
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Select Role</label>
+                                                <label>@lang('dashboard.Role name')</label>
                                                 <select class="form-control" name="role_id">
-                                                    <optgroup label="Select Role">
+                                                    <optgroup label="@lang('dashboard.Role name')">
                                                         @foreach ($roles as $role)
-                                                            <option value="{{ $role->id }}">{{ $role->role }}
+                                                            <option @selected($role->id  == $admin->role_id) value="{{ $role->id }}">{{ $role->role }}
                                                             </option>
                                                         @endforeach
                                                     </optgroup>
@@ -97,11 +100,12 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mt-1">
-                                                <label>Select Status</label>
+                                                <label>@lang('dashboard.status')</label>
                                                 <select class="form-control" name="status">
-                                                    <optgroup label="Select Role">
-                                                        <option value="1">Active</option>
-                                                        <option value="0">Inactive</option>
+                                                    <optgroup label="@lang('dashboard.status')">
+
+                                                        <option  @selected( $admin->status == 1 ) value="1">Active</option>
+                                                        <option  @selected( $admin->status == 0 )  value="0">Inactive</option>
                                                     </optgroup>
                                                 </select>
                                             </div>
@@ -109,11 +113,11 @@
                                     </div>
                                 </div>
                                 <div class="form-actions right">
-                                    {{-- <button type="reset" class="btn btn-warning mr-1">
-                                        <i class="ft-x"></i> Cancel
-                                    </button> --}}
+                                    <button type="reset" class="btn btn-warning mr-1">
+                                        <i class="ft-x"></i> @lang('dashboard.cancel')
+                                    </button>
                                     <button type="submit" class="btn btn-primary">
-                                        <i class="la la-check-square-o"></i> Save
+                                        <i class="la la-check-square-o"></i> @lang('dashboard.save')
                                     </button>
                                 </div>
                             </form>

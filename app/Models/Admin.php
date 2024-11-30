@@ -14,10 +14,20 @@ class Admin extends Authenticatable
         'password',
         'remember_token',
     ];
+    protected $appends = ['status_name'];
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed' // to autmaticly has the password
     ];
+    public function getStatusNameAttribute($value)
+    {//$value is status_name
+        if ($this->status == 1) {
+            return trans('dashboard.active');
+        } else {
+            return trans('dashboard.unactive');
+        }
+
+    }
     public function role()
     {
         return $this->belongsTo(Role::class, 'role_id');
