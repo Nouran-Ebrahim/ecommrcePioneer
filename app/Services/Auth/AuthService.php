@@ -16,7 +16,7 @@ class AuthService
     }
     public function login($credenstials,$gaurd,$remmber)
     {
-        $this->authRepository->login($credenstials,$gaurd,$remmber);
+       return $this->authRepository->login($credenstials,$gaurd,$remmber);
     }
     public function logout($gaurd)
     {
