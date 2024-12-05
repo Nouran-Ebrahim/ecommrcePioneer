@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\Auth\Passwords\RestPasswordController;
 use App\Http\Controllers\Dashboard\Auth\AuthController;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\RoleController;
+use App\Http\Controllers\Dashboard\WorldController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 /*
@@ -60,6 +61,23 @@ Route::group(
                             Route::get('admins/{id}/status', [AdminController::class, 'changeStatus'])->name('admins.status');
 
 
+                        });
+                        Route::group(['middleware' => 'can:global_shipping'], function () {
+                            Route::controller(WorldController::class)->group(function () {
+
+                                Route::prefix('countries')->name('countries.')->group(function () {
+                                    Route::get('/', 'getAllCountries')->name('index');
+                                    Route::get('/{country_id}/governorates', 'getGovByCountryId')->name('governorates.index');
+                                    Route::get('/change-status/{country_id}', 'changeStatus')->name('status');
+
+                                });
+
+                                Route::prefix('governorates')->name('governorates.')->group(function () {
+                                    Route::get('/change-status/{gov_id}', 'changeGovStatus')->name('status');
+                                    Route::put('/shipping-price', 'changeShippingPrice')->name('shipping-price');
+                                });
+
+                            });
                         });
                     }
 

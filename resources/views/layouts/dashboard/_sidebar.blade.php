@@ -50,6 +50,20 @@
                     </ul>
                 </li>
             @endcan
+            @can('global_shipping')
+                <li class=" nav-item {{ Request::is('*/countries*') ? 'open active' : '' }}"><a href="#"><i
+                            class="la la-television"></i><span class="menu-title" data-i18n="nav.templates.main"> @lang('dashboard.shipping_mangement')
+                        </span></a>
+                    <ul class="menu-content">
+                        <li class="{{ Request::is('*/countries*') ? 'is-shown' : '' }}">
+                            <a class="menu-item" href="{{ route('dashboard.countries.index') }}" data-i18n=""> @lang('dashboard.shipping_mangement')  </a>
+                        </li>
+                        <li class="{{ Request::is('*/countries*') ? 'is-shown' : '' }}">
+                            <a class="menu-item" href="#" data-i18n="">انشاء سعر الشحن</a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
             <li class=" navigation-header">
                 <span data-i18n="nav.category.layouts">Layouts</span><i class="la la-ellipsis-h ft-minus"
                     data-toggle="tooltip" data-placement="right" data-original-title="Layouts"></i>
@@ -124,7 +138,8 @@
                     <li><a class="menu-item" href="layout-boxed.html" data-i18n="nav.page_layouts.boxed_layout">Boxed
                             layout</a>
                     </li>
-                    <li><a class="menu-item" href="layout-static.html" data-i18n="nav.page_layouts.static_layout">Static
+                    <li><a class="menu-item" href="layout-static.html"
+                            data-i18n="nav.page_layouts.static_layout">Static
                             layout</a>
                     </li>
                     <li class="navigation-divider"></li>
@@ -996,8 +1011,8 @@
                     </li>
                 </ul>
             </li>
-            <li class=" nav-item"><a href="form-repeater.html"><i class="la la-repeat"></i><span class="menu-title"
-                        data-i18n="nav.form_repeater.main">Form Repeater</span></a>
+            <li class=" nav-item"><a href="form-repeater.html"><i class="la la-repeat"></i><span
+                        class="menu-title" data-i18n="nav.form_repeater.main">Form Repeater</span></a>
             </li>
             <li class=" navigation-header">
                 <span data-i18n="nav.category.tables">Tables</span><i class="la la-ellipsis-h ft-minus"

@@ -24,5 +24,7 @@ return [
     'faqs'=>'Manage Faqs',
     'comments'=>'Manage Comments',
     'socials'=>'Manage Socials',
+    'global_shipping'=>'Global Shipping',
+
 
 ];

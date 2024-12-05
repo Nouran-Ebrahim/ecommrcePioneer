@@ -10,12 +10,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('governments', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->foreignId('country_id')->constrained('countries')->cascadeOnDelete();
-            $table->boolean('status')->default(1);
-            // $table->timestamps();
+        Schema::table('countries', function (Blueprint $table) {
+            $table->string('flag_code');
+
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('governments');
+        Schema::table('countries', function (Blueprint $table) {
+            //
+        });
     }
 };
