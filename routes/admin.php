@@ -4,6 +4,8 @@ use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\Auth\Passwords\ForgetPasswordController;
 use App\Http\Controllers\Dashboard\Auth\Passwords\RestPasswordController;
 use App\Http\Controllers\Dashboard\Auth\AuthController;
+use App\Http\Controllers\Dashboard\BrandController;
+use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\WorldController;
@@ -62,6 +64,18 @@ Route::group(
 
 
                         });
+                        Route::group(['middleware' => 'can:categories'], function () {
+                            Route::resource('categories', CategoryController::class);
+                            Route::get('categories-all', [CategoryController::class, 'getAll'])->name('categories.all');
+                            Route::get('categories/{id}/status', [CategoryController::class, 'changeStatus'])->name('categories.status');
+                        });
+
+                        Route::group(['middleware' => 'can:brands'], function () {
+                            Route::resource('brands', BrandController::class);
+                            Route::get('brands/{id}/status', [BrandController::class, 'changeStatus'])->name('brands.status');
+                        });
+
+
                         Route::group(['middleware' => 'can:global_shipping'], function () {
                             Route::controller(WorldController::class)->group(function () {
 

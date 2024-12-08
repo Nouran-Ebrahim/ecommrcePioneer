@@ -1,23 +1,47 @@
 <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            {{-- <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title"
-                        data-i18n="nav.dash.main">Dashboard</span><span
-                        class="badge badge badge-info badge-pill float-right mr-2">3</span></a>
-                <ul class="menu-content">
-                    <li class="active"><a class="menu-item" href="dashboard-ecommerce.html"
-                            data-i18n="nav.dash.ecommerce">eCommerce</a>
-                    </li>
-                    <li><a class="menu-item" href="dashboard-crypto.html" data-i18n="nav.dash.crypto">Crypto</a>
-                    </li>
-                    <li><a class="menu-item" href="dashboard-sales.html" data-i18n="nav.dash.sales">Sales</a>
-                    </li>
-                </ul>
-            </li> --}}
+
             <li class=" nav-item {{ Request::is('*/home*') ? 'active' : '' }}"><a href="{{ route('dashboard.home') }}"><i
                         class="la la-home"></i><span class="menu-title"
                         data-i18n="nav.disabled_menu.main">@lang('dashboard.dashboard')</span></a>
             </li>
+            @can('categories')
+                <li class=" nav-item {{ Request::is('*/categories*') ? 'open' : '' }}">
+                    <a href="index.html"><i class="la la-home">
+                        </i><span class="menu-title" data-i18n="nav.dash.main">@lang('dashboard.categories')</span><span
+                            class="badge badge badge-info badge-pill float-right mr-2">3</span></a>
+                    <ul class="menu-content">
+                        <li class="{{ Request::is('*/categories') ? 'active' : '' }}"><a class="menu-item"
+                                href="{{ route('dashboard.categories.index') }}"
+                                data-i18n="nav.dash.ecommerce">@lang('dashboard.categories')</a>
+                        </li>
+                        <li class="{{ Request::is('*/categories/create') ? 'active' : '' }}"><a class="menu-item"
+                                href="{{ route('dashboard.categories.create') }}"
+                                data-i18n="nav.dash.crypto">@lang('dashboard.add_category')</a>
+                        </li>
+
+                    </ul>
+                </li>
+            @endcan
+            @can('brands')
+                <li class=" nav-item {{ Request::is('*/brands*') ? 'open' : '' }}">
+                    <a href="index.html"><i class="la la-home">
+                        </i><span class="menu-title" data-i18n="nav.dash.main">@lang('dashboard.brands')</span><span
+                            class="badge badge badge-info badge-pill float-right mr-2">3</span></a>
+                    <ul class="menu-content">
+                        <li class="{{ Request::is('*/brands') ? 'active' : '' }}"><a class="menu-item"
+                                href="{{ route('dashboard.brands.index') }}"
+                                data-i18n="nav.dash.ecommerce">@lang('dashboard.brands')</a>
+                        </li>
+                        <li class="{{ Request::is('*/brands/create') ? 'active' : '' }}"><a class="menu-item"
+                                href="{{ route('dashboard.brands.create') }}"
+                                data-i18n="nav.dash.crypto">@lang('dashboard.add_brand')</a>
+                        </li>
+
+                    </ul>
+                </li>
+            @endcan
             @can('roles')
                 <li class=" nav-item {{ Request::is('*/roles*') ? 'open active' : '' }}"><a href="#"><i
                             class="la la-television"></i><span class="menu-title"
@@ -52,15 +76,17 @@
             @endcan
             @can('global_shipping')
                 <li class=" nav-item {{ Request::is('*/countries*') ? 'open active' : '' }}"><a href="#"><i
-                            class="la la-television"></i><span class="menu-title" data-i18n="nav.templates.main"> @lang('dashboard.shipping_mangement')
+                            class="la la-television"></i><span class="menu-title" data-i18n="nav.templates.main">
+                            @lang('dashboard.shipping_mangement')
                         </span></a>
                     <ul class="menu-content">
                         <li class="{{ Request::is('*/countries*') ? 'is-shown' : '' }}">
-                            <a class="menu-item" href="{{ route('dashboard.countries.index') }}" data-i18n=""> @lang('dashboard.shipping_mangement')  </a>
+                            <a class="menu-item" href="{{ route('dashboard.countries.index') }}" data-i18n="">
+                                @lang('dashboard.shipping_mangement') </a>
                         </li>
-                        <li class="{{ Request::is('*/countries*') ? 'is-shown' : '' }}">
+                        {{-- <li class="{{ Request::is('*/countries*') ? 'is-shown' : '' }}">
                             <a class="menu-item" href="#" data-i18n="">انشاء سعر الشحن</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
             @endcan
@@ -97,7 +123,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a class="menu-item" href="#" data-i18n="nav.page_layouts.3_columns_detached.main">Content
+                    <li><a class="menu-item" href="#"
+                            data-i18n="nav.page_layouts.3_columns_detached.main">Content
                             Det. Sidebar</a>
                         <ul class="menu-content">
                             <li><a class="menu-item" href="layout-content-detached-left-sidebar.html"

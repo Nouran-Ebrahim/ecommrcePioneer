@@ -25,6 +25,8 @@ return [
     'select_shipping_price'=>"select shipping price",
     "shipping"=>"shipping",
     "phone_code"=>"Phone Code",
+    "brands"=>"Brands",
+    "add_brand"=>"Add brand",
     "close"=>"Close",
     "num_of_governorates"=>"Num of Governorates",
     "shipping_mangement"=>"Shipping Mangement",

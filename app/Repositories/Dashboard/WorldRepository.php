@@ -19,15 +19,21 @@ class WorldRepository
     }
     public function getAllCountries()
     {
-        $countries = Country::when(!empty(request()->keyword), function ($query) {
+        $countries = Country::withCount(['govrnorates', 'users'])->when(!empty(request()->keyword), function ($query) {
             $query->where('name', 'like', '%' . request()->keyword . '%');
-        })->select('id', 'name', 'phone_code', 'status', 'flag_code')->paginate(5);
+        })->paginate(5);
 
         return $countries;
     }
     public function getAllgovernorates($country)
     {
-        $governorates = $country->govrnorates()->paginate(5);
+        $governorates = $country->govrnorates()
+            ->with(['country', 'shippingPrice'])
+            ->withCount(['cities', 'users'])
+            ->when(!empty(request()->keyword), function ($query) {
+                $query->where('name', 'like', '%' . request()->keyword . '%');
+            })
+            ->paginate(5);
         return $governorates;
     }
     public function getAllCities($governorate)
@@ -39,7 +45,7 @@ class WorldRepository
     public function changeStatus($model)
     {
         $model = $model->update([
-            'status' => $model->status == 1  ? 0 : 1,
+            'status' => $model->status == 1 ? 0 : 1,
         ]);
 
         return $model; //return true or false in update
