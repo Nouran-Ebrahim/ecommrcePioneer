@@ -4,6 +4,7 @@
 @endsection
 @push('style')
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/3.2.0/css/buttons.dataTables.min.css">
 @endpush
 @section('content')
     <div class="app-content content">
@@ -86,8 +87,15 @@
 @endsection
 @push('script')
     <script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js" type="text/javascript"></script>
-    {{-- <script src="{{ asset('assets/dashboard') }}/vendors/js/tables/datatable/dataTables.buttons.min.js" --}}
-    type="text/javascript"></script>
+
+    <script src="https://cdn.datatables.net/buttons/3.2.0/js/dataTables.buttons.min.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.colVis.min.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.html5.min.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.print.min.js" type="text/javascript"></script>
+    <script src="{{asset('vendor/dataTables/excel/jszip.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('vendor/dataTables/pdf/pdfmake.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('vendor/dataTables/pdf/vfs_fonts.js')}}" type="text/javascript"></script>
+
     <script>
         var lang = "{{ app()->getLocale() }}"
         $('#yajraTable').DataTable({
@@ -96,6 +104,11 @@
             language: lang == 'ar' ? {
                 url: '//cdn.datatables.net/plug-ins/2.1.8/i18n/ar.json',
             } : {},
+            layout: {
+                topStart: {
+                    buttons: ['colvis','copy','print','excel','pdf']
+                }
+            },
             ajax: "{{ route('dashboard.categories.all') }}",
             columns: [{
                     data: 'DT_RowIndex', // as we add addIndexColumn for ordering
