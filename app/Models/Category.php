@@ -34,7 +34,7 @@ class Category extends Model
     public function getCreatedAtAttribute($value)
     {
         //$value is created_at
-        return date('Y-m-d', strtotime($value));
+        return date('Y-m-d h:i A', strtotime($value));
     }
     public function products()
     {

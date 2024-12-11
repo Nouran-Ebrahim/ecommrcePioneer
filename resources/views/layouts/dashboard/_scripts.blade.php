@@ -18,4 +18,74 @@
  <!-- BEGIN PAGE LEVEL JS-->
  <script src="{{ asset('assets/dashboard') }}/js/scripts/pages/dashboard-ecommerce.js" type="text/javascript"></script>
  <!-- END PAGE LEVEL JS-->
+
+
+ {{-- data table cdns  --}}
+ <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js" type="text/javascript"></script>
+ <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.min.js" type="text/javascript"></script>
+ <script src="https://cdn.datatables.net/responsive/3.0.3/js/dataTables.responsive.min.js" type="text/javascript">
+ </script>
+ <script src="https://cdn.datatables.net/colreorder/2.0.4/js/dataTables.colReorder.min.js" type="text/javascript">
+ </script>
+ <script src="https://cdn.datatables.net/rowreorder/1.5.0/js/dataTables.rowReorder.min.js" type="text/javascript">
+ </script>
+
+ <script src="https://cdn.datatables.net/fixedcolumns/5.0.4/js/dataTables.fixedColumns.min.js" type="text/javascript">
+ </script>
+ <script src="https://cdn.datatables.net/fixedcolumns/5.0.4/js/fixedColumns.bootstrap5.min.js" type="text/javascript">
+ </script>
+ <script src="https://cdn.datatables.net/scroller/2.4.3/js/dataTables.scroller.min.js" type="text/javascript"></script>
+ <script src="https://cdn.datatables.net/scroller/2.4.3/js/scroller.bootstrap5.min.js" type="text/javascript"></script>
+
+ <script src="https://cdn.datatables.net/select/2.1.0/js/dataTables.select.min.js" type="text/javascript"></script>
+ <script src="https://cdn.datatables.net/buttons/3.2.0/js/dataTables.buttons.min.js" type="text/javascript"></script>
+ <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.colVis.min.js" type="text/javascript"></script>
+ <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.html5.min.js" type="text/javascript"></script>
+ <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.print.min.js" type="text/javascript"></script>
+ <script src="{{ asset('vendor/dataTables/excel/jszip.min.js') }}" type="text/javascript"></script>
+ <script src="{{ asset('vendor/dataTables/pdf/pdfmake.min.js') }}" type="text/javascript"></script>
+ <script src="{{ asset('vendor/dataTables/pdf/vfs_fonts.js') }}" type="text/javascript"></script>
+
+ {{-- sweet alert  --}}
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <script>
+     $(document).on('click', '.delete_confirm', function(e) {
+         e.preventDefault();
+         var form = $(this).closest('form');
+         const swalWithBootstrapButtons = Swal.mixin({
+             customClass: {
+                 confirmButton: "btn btn-success",
+                 cancelButton: "btn btn-danger"
+             },
+             buttonsStyling: true
+         });
+         swalWithBootstrapButtons.fire({
+             title: "@lang('dashboard.Are you sure to delete')",
+             text: "You won't be able to revert this!",
+             icon: "warning",
+             showCancelButton: true,
+             confirmButtonText: "{{ __("dashboard.Well that's it!") }}",
+             cancelButtonText: "{{ __('dashboard.No, cancel!') }}",
+             reverseButtons: true
+         }).then((result) => {
+             if (result.isConfirmed) {
+                 form.submit();
+                 swalWithBootstrapButtons.fire({
+                     title: "Deleted!",
+                     text: "Your file has been deleted.",
+                     icon: "success"
+                 });
+             } else if (
+                 /* Read more about handling dismissals below */
+                 result.dismiss === Swal.DismissReason.cancel
+             ) {
+                 swalWithBootstrapButtons.fire({
+                     title: "Cancelled",
+                     text: "Your imaginary file is safe :)",
+                     icon: "error"
+                 });
+             }
+         });
+     })
+ </script>
  @stack('script')

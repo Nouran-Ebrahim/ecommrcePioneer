@@ -63,5 +63,21 @@
 <link rel="stylesheet" type="text/css"
     href="{{ asset('assets/dashboard') }}/vendors/css/charts/chartist-plugin-tooltip.css">
 <!-- END VENDOR CSS-->
+{{-- data table cdns  --}}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/3.2.0/css/buttons.dataTables.min.css">
+<link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/responsive/3.0.3/css/responsive.dataTables.min.css">
+<link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/colreorder/2.0.4/css/colReorder.dataTables.min.css">
 
+<link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/rowreorder/1.5.0/css/rowReorder.dataTables.min.css">
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/2.1.0/css/select.dataTables.min.css">
+
+<link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/fixedcolumns/5.0.4/css/fixedColumns.bootstrap5.min.css">
+<link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/scroller/2.4.3/css/scroller.bootstrap5.min.css">
 @stack('style')
