@@ -32,4 +32,39 @@ class CategoryService
         $category = $this->categoryRepository->getCategoryById($id);
         return $category;
     }
+    public function store($data)
+    {
+        return $this->categoryRepository->store($data);
+    }
+    public function update($data)
+    {
+        $category = $this->categoryRepository->getCategoryById($data['id']);
+        return $this->categoryRepository->update($category, $data);
+    }
+    public function delete($id)
+    {
+        $category = $this->categoryRepository->getCategoryById($id);
+
+        return $this->categoryRepository->delete($category);
+
+    }
+    public function getCategoriesExceptChildren($id)
+    {
+        return $this->categoryRepository->getCategoriesExceptChildren($id);
+    }
+    public function getCategoriesParent()
+    {
+
+        return $this->categoryRepository->getCategoriesParent();
+    }
+    public function changeStatus($category_id)
+    {
+        $category = self::getCategoryById($category_id);
+        $category = $this->categoryRepository->changeStatus($category);
+
+        if(!$category){
+            return false;
+        }
+        return true;
+    }
 }

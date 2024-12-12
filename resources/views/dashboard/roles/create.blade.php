@@ -64,7 +64,7 @@
                                             <div class="form-group">
                                                 <label for="userinput1"> @lang('dashboard.name_en')</label>
                                                 <input type="text" id="userinput1" class="form-control border-primary"
-                                                    placeholder="Name" name="role[en]">
+                                                    placeholder="@lang('dashboard.name_en')" name="role[en]">
                                                 @error('role.en')
                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
@@ -75,7 +75,7 @@
                                             <div class="form-group">
                                                 <label for="userinput1"> @lang('dashboard.name_ar')</label>
                                                 <input type="text" id="userinput1" class="form-control border-primary"
-                                                    placeholder="Name" name="role[ar]">
+                                                    placeholder="@lang('dashboard.name_ar')" name="role[ar]">
                                                 @error('role.ar')
                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror

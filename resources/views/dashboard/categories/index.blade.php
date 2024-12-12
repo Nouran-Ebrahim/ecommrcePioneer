@@ -3,7 +3,6 @@
     @lang('dashboard.brands')
 @endsection
 @push('style')
-   
 @endpush
 @section('content')
     <div class="app-content content">
@@ -82,11 +81,9 @@
     </div>
 @endsection
 @push('script')
-
-
     <script>
         var lang = "{{ app()->getLocale() }}"
-        $('#yajraTable').DataTable({
+        let yajraTable = $('#yajraTable').DataTable({
             processing: true,
             serverSide: true,
             language: lang == 'ar' ? {
@@ -149,6 +146,38 @@
             ],
 
 
+        });
+    </script>
+    {{-- change status --}}
+    <script>
+        $(document).on('change', '.change_status', function() {
+
+            var id = $(this).attr('category-id');
+            var url = "{{ route('dashboard.categories.status', ':id') }}";
+            url = url.replace(':id', id);
+            $.ajax({
+                url: url,
+                type: 'GET',
+
+                success: function(response) {
+                    if (response.status == 'success') {
+
+                        $('.tostar_success').text(response.message).show();
+
+                        // change status
+                        yajraTable.ajax.reload();
+
+                    } else {
+                        $('.tostar_error').show();
+                        $('.tostar_error').text(response.message);
+                    }
+                    setTimeout(function() {
+                        $('.tostar_success').hide();
+                    }, 5000);
+
+                }
+
+            });
         });
     </script>
 @endpush

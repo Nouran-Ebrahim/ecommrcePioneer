@@ -53,7 +53,7 @@
                                             <div class="form-group">
                                                 <label for="userinput1">@lang('dashboard.name_en')</label>
                                                 <input type="text" id="userinput1" class="form-control border-primary"
-                                                value="{{$role->getTranslation('role' , 'en')}}"    placeholder="Name" name="role[en]">
+                                                value="{{$role->getTranslation('role' , 'en')}}"    placeholder="@lang('dashboard.name_en')" name="role[en]">
                                             </div>
 
                                         </div>
@@ -61,7 +61,7 @@
                                             <div class="form-group">
                                                 <label for="userinput1"> @lang('dashboard.name_ar')</label>
                                                 <input type="text" id="userinput1" class="form-control border-primary"
-                                                   value="{{$role->getTranslation('role' , 'ar')}}"  placeholder="Name" name="role[ar]">
+                                                   value="{{$role->getTranslation('role' , 'ar')}}"  placeholder="@lang('dashboard.name_ar')" name="role[ar]">
                                             </div>
 
                                         </div>

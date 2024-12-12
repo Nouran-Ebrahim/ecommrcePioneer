@@ -53,7 +53,7 @@
                                             <div class="form-group">
                                                 <label for="userinput1"> @lang('dashboard.name')</label>
                                                 <input type="text" id="userinput1" class="form-control border-primary"
-                                                   value="{{ $admin->name }}"  placeholder="Name" name="name">
+                                                   value="{{ $admin->name }}"  placeholder=" @lang('dashboard.name')" name="name">
                                             </div>
 
                                         </div>
@@ -61,7 +61,7 @@
                                             <div class="form-group">
                                                 <label for="userinput1"> @lang('dashboard.email')</label>
                                                 <input type="text" id="userinput1" class="form-control border-primary"
-                                                value="{{ $admin->email }}" placeholder="Name" name="email">
+                                                value="{{ $admin->email }}" placeholder="@lang('dashboard.email')" name="email">
                                             </div>
 
                                         </div>
@@ -71,14 +71,14 @@
                                             <div class="form-group">
                                                 <label for="userinput1"> @lang('dashboard.password')</label>
                                                 <input type="passwrod" id="userinput1" class="form-control border-primary"
-                                                    placeholder="Enter Password" name="password">
+                                                    placeholder="@lang('dashboard.password')" name="password">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="userinput1"> @lang('dashboard.password_confirmation')</label>
                                                 <input type="password" id="userinput1" class="form-control border-primary"
-                                                    placeholder="Enter Password Confirmation" name="password_confirmation">
+                                                    placeholder="@lang('dashboard.password_confirmation')" name="password_confirmation">
                                             </div>
 
                                         </div>
