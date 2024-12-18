@@ -68,8 +68,9 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
+        $category = $this->categoryService->getCategoryById($id);
         $categories = $this->categoryService->getCategoriesExceptChildren($id);
-        return view('dashboard.categories.edit', compact('categories'));
+        return view('dashboard.categories.edit', compact('categories','category'));
     }
 
     /**

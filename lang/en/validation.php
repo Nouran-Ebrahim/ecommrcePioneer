@@ -162,6 +162,8 @@ return [
         "permessions"=>"Permessions",
         "role.en"=>"Role in English",
         "role.ar"=>"Role in Arabic",
+        "name.ar"=>"Name in Arabic",
+        "name.en"=>"Name in English",
         "g-recaptcha-response"=>"Virfy you are not robot",
         'f_name'=>"First Name",
         "phone"=>"Phone",

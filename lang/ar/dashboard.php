@@ -187,6 +187,7 @@ return [
     "Are you sure to change status" => "هل انت متأكد من تغير الحالة",
     'error' => 'خطأ',
     "No, cancel!"=>"لا الغي",
+    "select_parent"=>"اختر القسم الرئيسي",
     "Not deleted" => " لم يتم حذفة",
     "Well that's it!" => 'حسنا لك ذلك!',
     "I have deleted" => "لقد قمت بالحذف ",

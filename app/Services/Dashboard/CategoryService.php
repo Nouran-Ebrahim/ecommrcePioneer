@@ -38,7 +38,11 @@ class CategoryService
     }
     public function update($data)
     {
+        // dd($data);
         $category = $this->categoryRepository->getCategoryById($data['id']);
+        if(!$category){
+            return false;
+        }
         return $this->categoryRepository->update($category, $data);
     }
     public function delete($id)

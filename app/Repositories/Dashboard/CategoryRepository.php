@@ -36,7 +36,6 @@ class CategoryRepository
     public function getCategoriesExceptChildren($id)
     {
         $categories = Category::where('id', '!=', $id)
-            ->whereDoesntHave('childern')
             ->whereNull('parent')
             ->get();
         return $categories;

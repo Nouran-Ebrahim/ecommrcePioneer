@@ -48,6 +48,7 @@
                             {{-- alert --}}
                             @include('dashboard.includes.tostar-success')
                             @include('dashboard.includes.tostar-error')
+                            <a href="{{ route('dashboard.categories.create') }}" class="btn btn-danger">{{ __('dashboard.create') }}</a><br><br>
 
                             <table id="yajraTable" class="table table-striped table-bordered language-file">
                                 <thead>

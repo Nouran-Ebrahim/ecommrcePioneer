@@ -174,6 +174,7 @@ return [
 
     "It has been modified" => "It has been modified",
     "shifts" => "Working Hours",
+    "select_parent"=>"Select main Category",
     "overlap times in this day" => "Overlap times in this day",
     "end_time" => "End Time",
     "No, cancel!"=>"No, cancel!",
