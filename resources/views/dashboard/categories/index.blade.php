@@ -56,6 +56,8 @@
                                         <th>#</th>
                                         <th>@lang('dashboard.name')</th>
                                         <th>@lang('dashboard.status')</th>
+                                        <th>{{ __('dashboard.products_count') }}</th>
+
                                         <th>@lang('dashboard.created_at')</th>
                                         <th>@lang('dashboard.actions')</th>
                                     </tr>
@@ -66,6 +68,8 @@
                                         <th>#</th>
                                         <th>@lang('dashboard.name')</th>
                                         <th>@lang('dashboard.status')</th>
+                                        <th>{{ __('dashboard.products_count') }}</th>
+
                                         <th>@lang('dashboard.created_at')</th>
                                         <th>@lang('dashboard.actions')</th>
 
@@ -132,6 +136,10 @@
                     name: 'status_name',
                     orderable: false, // make this row non-orderable
                     searchable: false // make this row non-searchable
+                },
+                {
+                    data: 'products_count',
+                    name: 'products_count',
                 },
                 {
                     data: 'created_at',

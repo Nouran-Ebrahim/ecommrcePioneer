@@ -96,4 +96,28 @@
          });
      })
  </script>
+ {{-- fileinput --}}
+ <script src="{{ asset('vendor/file-input/js/fileinput.min.js') }}"></script>
+ <script src="{{ asset('vendor/file-input/themes/fa5/theme.min.js') }}"></script>
+
+ @if (Config::get('app.locale') == 'ar')
+     <script src="{{ asset('vendor/file-input/js/locales/LANG.js') }}"></script>
+     <script src="{{ asset('vendor/file-input/js/locales/ar.js') }}"></script>
+ @endif
+ <script>
+     var lang = "{{ app()->getLocale() }}";
+     $(function() {
+         $('#single-image').fileinput({
+             theme: 'fa5',
+             language: lang,
+             allowedFileTypes: ['image'],
+             maxFileCount: 1,
+             enableResumableUpload: false,
+             showUpload: false,
+
+         });
+
+     });
+ </script>
+ {{-- end fileinput --}}
  @stack('script')

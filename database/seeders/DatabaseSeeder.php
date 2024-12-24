@@ -23,7 +23,10 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             CountrySeeder::class,
             GovernmentSeeder::class,
-            CitySeeder::class
+            CitySeeder::class,
+            CategorySeeder::class,
+            BrandSeeder::class,
+
 
         ]);
     }

@@ -8,8 +8,7 @@ class CategoryRepository
 {
     public function getAllCategories()
     {
-        $categories = Category::all();
-        return $categories;
+        $categories = Category::withCount('products')->latest()->get();        return $categories;
 
     }
     public function getCategoryById($id)

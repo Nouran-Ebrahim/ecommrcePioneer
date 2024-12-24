@@ -80,4 +80,10 @@
     href="https://cdn.datatables.net/fixedcolumns/5.0.4/css/fixedColumns.bootstrap5.min.css">
 <link rel="stylesheet" type="text/css"
     href="https://cdn.datatables.net/scroller/2.4.3/css/scroller.bootstrap5.min.css">
+
+{{-- file input --}}
+<link rel="stylesheet" href="{{ asset('vendor/file-input/css/fileinput.min.css') }}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" crossorigin="anonymous">
+
+{{-- end file input --}}
 @stack('style')

@@ -108,6 +108,8 @@ return [
     "Sent successfully" => "ارسلت بنجاح",
     "No Data" => "لا يوجد بيانات",
     'language' => 'لغة',
+    "not_found"=>"لا يوجد",
+    "products_count"=>"عدد المنتجات",
     'show_all' => 'عرض الكل',
     'add_new' => 'أضافة الأن',
     'homepage' => 'الرئيسية',

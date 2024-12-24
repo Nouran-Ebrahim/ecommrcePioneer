@@ -10,7 +10,7 @@
                 <li class=" nav-item {{ Request::is('*/categories*') ? 'open' : '' }}">
                     <a href="index.html"><i class="la la-home">
                         </i><span class="menu-title" data-i18n="nav.dash.main">@lang('dashboard.categories')</span><span
-                            class="badge badge badge-info badge-pill float-right mr-2">3</span></a>
+                            class="badge badge badge-info badge-pill float-right mr-2">{{ $categories_count }}</span></a>
                     <ul class="menu-content">
                         <li class="{{ Request::is('*/categories') ? 'active' : '' }}"><a class="menu-item"
                                 href="{{ route('dashboard.categories.index') }}"
@@ -28,16 +28,13 @@
                 <li class=" nav-item {{ Request::is('*/brands*') ? 'open' : '' }}">
                     <a href="index.html"><i class="la la-home">
                         </i><span class="menu-title" data-i18n="nav.dash.main">@lang('dashboard.brands')</span><span
-                            class="badge badge badge-info badge-pill float-right mr-2">3</span></a>
+                            class="badge badge badge-info badge-pill float-right mr-2">{{ $brands_count }}</span></a>
                     <ul class="menu-content">
                         <li class="{{ Request::is('*/brands') ? 'active' : '' }}"><a class="menu-item"
                                 href="{{ route('dashboard.brands.index') }}"
                                 data-i18n="nav.dash.ecommerce">@lang('dashboard.brands')</a>
                         </li>
-                        <li class="{{ Request::is('*/brands/create') ? 'active' : '' }}"><a class="menu-item"
-                                href="{{ route('dashboard.brands.create') }}"
-                                data-i18n="nav.dash.crypto">@lang('dashboard.add_brand')</a>
-                        </li>
+
 
                     </ul>
                 </li>

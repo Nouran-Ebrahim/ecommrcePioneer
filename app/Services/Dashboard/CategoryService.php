@@ -4,6 +4,8 @@ namespace App\Services\Dashboard;
 
 use App\Repositories\Dashboard\CategoryRepository;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Cache;
+
 class CategoryService
 {
     protected $categoryRepository;
@@ -21,6 +23,9 @@ class CategoryService
             ->addColumn('name', function ($category) {
                 return $category->getTranslation('name', app()->getLocale());
             })
+            ->addColumn('products_count', function ($category) {
+                return $category->products()->count() == 0 ? __('dashboard.not_found') : $category->products()->count();
+            })
             ->addColumn('action', function ($category) {
                 return view('dashboard.categories.actions', compact('category'));
             })
@@ -34,13 +39,14 @@ class CategoryService
     }
     public function store($data)
     {
+        $this->categoryCache();
         return $this->categoryRepository->store($data);
     }
     public function update($data)
     {
         // dd($data);
         $category = $this->categoryRepository->getCategoryById($data['id']);
-        if(!$category){
+        if (!$category) {
             return false;
         }
         return $this->categoryRepository->update($category, $data);
@@ -48,8 +54,9 @@ class CategoryService
     public function delete($id)
     {
         $category = $this->categoryRepository->getCategoryById($id);
-
-        return $this->categoryRepository->delete($category);
+        $category = $this->categoryRepository->delete($category);
+        $this->categoryCache();
+        return $category;
 
     }
     public function getCategoriesExceptChildren($id)
@@ -66,9 +73,13 @@ class CategoryService
         $category = self::getCategoryById($category_id);
         $category = $this->categoryRepository->changeStatus($category);
 
-        if(!$category){
+        if (!$category) {
             return false;
         }
         return true;
+    }
+    public function categoryCache()
+    {
+        Cache::forget('categories_count');
     }
 }
