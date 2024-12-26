@@ -87,7 +87,7 @@ class AdminController extends Controller
             return redirect()->back();
         }
 
-        Session::flash('success' , __('messages.updated_successfully'));
+        Session::flash('success' , __('messages.updateed_successfully'));
         return redirect()->route('dashboard.admins.index');
     }
 
@@ -98,7 +98,7 @@ class AdminController extends Controller
             Session::flash('erorr' , __('messages.general_error'));
             return redirect()->back();
         }
-        Session::flash('success' , __('messages.updated_successfully'));
+        Session::flash('success' , __('messages.updateed_successfully'));
         return redirect()->route('dashboard.admins.index');
     }
 

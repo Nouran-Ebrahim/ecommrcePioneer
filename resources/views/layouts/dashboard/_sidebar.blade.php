@@ -39,6 +39,21 @@
                     </ul>
                 </li>
             @endcan
+            @can('coupons')
+                <li class=" nav-item {{ Request::is('*/coupons*') ? 'open' : '' }}">
+                    <a href="index.html"><i class="la la-home">
+                        </i><span class="menu-title" data-i18n="nav.dash.main">@lang('dashboard.coupons')</span><span
+                            class="badge badge badge-info badge-pill float-right mr-2">{{ $coupons_count }}</span></a>
+                    <ul class="menu-content">
+                        <li class="{{ Request::is('*/coupons') ? 'active' : '' }}"><a class="menu-item"
+                                href="{{ route('dashboard.coupons.index') }}"
+                                data-i18n="nav.dash.ecommerce">@lang('dashboard.coupons')</a>
+                        </li>
+
+
+                    </ul>
+                </li>
+            @endcan
             @can('roles')
                 <li class=" nav-item {{ Request::is('*/roles*') ? 'open active' : '' }}"><a href="#"><i
                             class="la la-television"></i><span class="menu-title"

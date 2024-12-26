@@ -51,7 +51,7 @@ class CategoryController extends Controller
             Session::flash('erorr', __('messages.general_error'));
             return redirect()->back();
         }
-        Session::flash('success', __('messages.created_successfully'));
+        Session::flash('success', __('messages.added_successfully'));
         return redirect()->back();
     }
 
@@ -83,7 +83,7 @@ class CategoryController extends Controller
             Session::flash('erorr', __('messages.general_error'));
             return redirect()->back();
         }
-        Session::flash('success', __('messages.updated_successfully'));
+        Session::flash('success', __('messages.updateed_successfully'));
         return redirect()->back();
     }
 

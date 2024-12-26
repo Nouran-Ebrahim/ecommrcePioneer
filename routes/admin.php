@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\Auth\Passwords\RestPasswordController;
 use App\Http\Controllers\Dashboard\Auth\AuthController;
 use App\Http\Controllers\Dashboard\BrandController;
 use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\CouponController;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\WorldController;
@@ -75,6 +76,12 @@ Route::group(
                             Route::get('brands-all', [BrandController::class, 'getAll'])
                                 ->name('brands.all');
                             Route::get('brands/{id}/status', [BrandController::class, 'changeStatus'])->name('brands.status');
+                        });
+                        Route::group(['middleware' => 'can:coupons'], function () {
+                            Route::resource('coupons', CouponController::class)->except('show');
+                            Route::get('coupons-all', [CouponController::class, 'getAll'])
+                                ->name('coupons.all');
+                            Route::get('coupons/{id}/status', [CouponController::class, 'changeStatus'])->name('coupons.status');
                         });
 
 
