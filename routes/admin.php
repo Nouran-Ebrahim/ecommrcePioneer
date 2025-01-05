@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\Auth\AuthController;
 use App\Http\Controllers\Dashboard\BrandController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\CouponController;
+use App\Http\Controllers\Dashboard\FaqController;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\WorldController;
@@ -84,7 +85,11 @@ Route::group(
                             Route::get('coupons/{id}/status', [CouponController::class, 'changeStatus'])->name('coupons.status');
                         });
 
-
+                        Route::group(['middleware' => 'can:faqs'], function () {
+                            Route::resource('faqs', FaqController::class);
+                            Route::get('faqs-all', [FaqController::class, 'getAll'])
+                                ->name('faqs.all');
+                        });
                         Route::group(['middleware' => 'can:global_shipping'], function () {
                             Route::controller(WorldController::class)->group(function () {
 

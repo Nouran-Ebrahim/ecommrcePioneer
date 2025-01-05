@@ -29,7 +29,7 @@
 
                     <div class="form-group">
                         <label for="name">{{ __('dashboard.discount') }}</label>
-                        <input type="text" name="discount_percentage" class="form-control" id="discount_percentage"
+                        <input type="number" name="discount_percentage" class="form-control" id="discount_percentage"
                             placeholder="{{ __('dashboard.discount') }}">
                             <strong class="text-danger" id=""></strong>
 
