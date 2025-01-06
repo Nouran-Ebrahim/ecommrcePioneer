@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard\CouponController;
 use App\Http\Controllers\Dashboard\FaqController;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\RoleController;
+use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\WorldController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -106,6 +107,10 @@ Route::group(
                                 });
 
                             });
+                        });
+                        Route::group(['middleware' => 'can:settings', 'as' => 'settings.'], function () {
+                            Route::get('settings', [SettingController::class, 'index'])->name('index');
+                            Route::put('settings/{id}', [SettingController::class, 'update'])->name('update');
                         });
                     }
 

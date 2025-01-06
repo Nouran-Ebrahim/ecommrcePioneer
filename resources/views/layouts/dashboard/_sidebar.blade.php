@@ -103,12 +103,25 @@
                 </li>
             @endcan
             @can('faqs')
-            <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">{{ __('dashboard.faqs') }}</span><span class="badge badge badge-info badge-pill float-right mr-2">{{ $faqs_count }}</span></a>
-                <ul class="menu-content">
-                  <li class="active"><a class="menu-item" href="{{ route('dashboard.faqs.index') }}" data-i18n="nav.dash.ecommerce">{{ __('dashboard.faqs') }}</a>
-                  </li>
-                </ul>
-              </li>
+                <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title"
+                            data-i18n="nav.dash.main">{{ __('dashboard.faqs') }}</span><span
+                            class="badge badge badge-info badge-pill float-right mr-2">{{ $faqs_count }}</span></a>
+                    <ul class="menu-content">
+                        <li class="active"><a class="menu-item" href="{{ route('dashboard.faqs.index') }}"
+                                data-i18n="nav.dash.ecommerce">{{ __('dashboard.faqs') }}</a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
+            @can('settings')
+                <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title"
+                            data-i18n="nav.dash.main">{{ __('dashboard.settings') }}</span></a>
+                    <ul class="menu-content">
+                        <li class="active"><a class="menu-item" href="{{ route('dashboard.settings.index') }}"
+                                data-i18n="nav.dash.ecommerce">{{ __('dashboard.settings') }}</a>
+                        </li>
+                    </ul>
+                </li>
             @endcan
             <li class=" navigation-header">
                 <span data-i18n="nav.category.layouts">Layouts</span><i class="la la-ellipsis-h ft-minus"
