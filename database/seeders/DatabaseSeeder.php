@@ -26,7 +26,9 @@ class DatabaseSeeder extends Seeder
             CitySeeder::class,
             CategorySeeder::class,
             BrandSeeder::class,
-            CouponSeeder::class
+            CouponSeeder::class,
+            AttributeSeeder::class,
+            // AttributeValueSeeder::class,
 
 
         ]);

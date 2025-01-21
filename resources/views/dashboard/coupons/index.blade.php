@@ -246,7 +246,7 @@
                             //anthor solution
                             $('#error_' + key).text(value[0])
                             ///
-                            $('#error_lis0t').append('<li>' + value[0] + '</li>');
+                            $('#error_list').append('<li>' + value[0] + '</li>');
                             $('#error_div').show();
                         });
                     }

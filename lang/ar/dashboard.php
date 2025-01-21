@@ -119,7 +119,9 @@ return [
     "question_en" => "السؤال بالانجليزي",
     "answer_ar" => "الجواب بالعربي",
     "answer_en" => "الجواب بالانجليزي",
-
+    "attributeValues" => "قيم الخاصية",
+    "attribute_value_ar"=>" قيمة الخاصية بالعربي",
+    "attribute_value_en"=>" قيمة الخاصية بالانجليزي",
     "coupons" => "كوبونز",
     "faqs" => "الاسئلة الشائعة",
     'add_new' => 'أضافة الأن',

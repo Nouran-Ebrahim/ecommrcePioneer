@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\AttributeController;
 use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\Auth\Passwords\ForgetPasswordController;
 use App\Http\Controllers\Dashboard\Auth\Passwords\RestPasswordController;
@@ -111,6 +112,11 @@ Route::group(
                         Route::group(['middleware' => 'can:settings', 'as' => 'settings.'], function () {
                             Route::get('settings', [SettingController::class, 'index'])->name('index');
                             Route::put('settings/{id}', [SettingController::class, 'update'])->name('update');
+                        });
+                        Route::group(['middleware' => 'can:attributes'], function () {
+                            Route::resource('attributes', AttributeController::class);
+                            Route::get('attributes-all', [AttributeController::class, 'getAll'])
+                                ->name('attributes.all');
                         });
                     }
 

@@ -25,6 +25,7 @@ return [
     'comments'=>'Manage Comments',
     'socials'=>'Manage Socials',
     'global_shipping'=>'Global Shipping',
+    'attributes'=>"Product Attributes",
 
 
 ];

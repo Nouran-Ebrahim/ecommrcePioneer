@@ -102,6 +102,16 @@
                     </ul>
                 </li>
             @endcan
+            @can('attributes')
+                <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title"
+                            data-i18n="nav.dash.main">{{ __('dashboard.attributes') }}</span></a>
+                    <ul class="menu-content">
+                        <li class="active"><a class="menu-item" href="{{ route('dashboard.attributes.index') }}"
+                                data-i18n="nav.dash.ecommerce">{{ __('dashboard.attributes') }}</a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
             @can('faqs')
                 <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title"
                             data-i18n="nav.dash.main">{{ __('dashboard.faqs') }}</span><span

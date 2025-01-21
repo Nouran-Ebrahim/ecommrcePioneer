@@ -181,6 +181,8 @@ return [
         'items.*.item_name'=>'Item name',
         'items.*.price'=>'Item Price',
         'items.*.quantity'=>'Item quantity',
+        'values.*.ar'=>"Value in Aarbic",
+        'values.*.en'=>"Value in English",
     ],
 
 ];
