@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Coupon;
 use App\Models\Faq;
+use App\Models\Product;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Admin;
 use App\Models\Brand;
@@ -46,6 +47,11 @@ class ViewServiceProvider extends ServiceProvider
                     return Coupon::count();
                 });
             }
+            if (!Cache::has('products_count')) {
+                Cache::remember('products_count', now()->addMinutes(60), function () {
+                    return Product::count();
+                });
+            }
             if (!Cache::has('faqs_count')) {
                 Cache::remember('faqs_count', now()->addMinutes(60), function () {
                     return Faq::count();
@@ -56,6 +62,7 @@ class ViewServiceProvider extends ServiceProvider
                 'brands_count' => Cache::get('brands_count'),
                 'admins_count' => Cache::get('admins_count'),
                 'coupons_count' => Cache::get('coupons_count'),
+                'products_count' => Cache::get('products_count'),
                 'faqs_count' => Cache::get('faqs_count'),
 
             ]);

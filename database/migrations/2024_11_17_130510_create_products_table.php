@@ -13,21 +13,28 @@ return new class extends Migration {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->longText('small_desc');
+            $table->string('small_desc');
+            $table->longText('desc');
             $table->boolean('status')->default(1);
             $table->string('sku');
             $table->date('available_for')->nullable();
-            $table->decimal('price', 8, 2);
-            $table->decimal('discount', 8, 2);
-            $table->date('start_disc')->nullable();
-            $table->date('end_disc')->nullable();
-            $table->boolean('manage_stock')->default(0);
-            $table->integer('quantity');
-            $table->boolean('available_in_stock')->default(1);
-            $table->integer('views');
-            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
-            $table->foreignId('brand_id')->constrained('brands')->cascadeOnDelete();
+            $table->integer('views')->default(0); // edit
 
+            $table->boolean('has_variants')->default(0);
+
+            $table->decimal('price', 8 ,3)->nullable();// if has Variants it will be null
+
+            $table->boolean('has_discount')->default(0);// if has Variants it will be null
+            $table->decimal('discount')->nullable();
+            $table->date('start_discount')->nullable();
+            $table->date('end_discount')->nullable();
+
+            $table->boolean('manage_stock')->default(0); // is zero if no Variants
+            $table->integer('quantity')->nullable();// if has Variants it will be null
+            $table->integer('available_in_stock')->default(1);
+
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->foreignId('brand_id')->constrained('brands')->onDelete('cascade');
             $table->timestamps();
         });
     }

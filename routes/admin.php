@@ -1,5 +1,5 @@
 <?php
-
+use Livewire\Livewire;
 use App\Http\Controllers\Dashboard\AttributeController;
 use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\Auth\Passwords\ForgetPasswordController;
@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\CouponController;
 use App\Http\Controllers\Dashboard\FaqController;
 use App\Http\Controllers\Dashboard\HomeController;
+use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\WorldController;
@@ -117,6 +118,15 @@ Route::group(
                             Route::resource('attributes', AttributeController::class);
                             Route::get('attributes-all', [AttributeController::class, 'getAll'])
                                 ->name('attributes.all');
+                        });
+                        Livewire::setUpdateRoute(function ($handle) {
+                            return Route::post('/livewire/update', $handle);
+                        });
+
+                        Route::group(['middleware' => 'can:products'], function () {
+                            Route::resource('products', ProductController::class);
+                            Route::get('products-all', [ProductController::class, 'getAll'])
+                                ->name('products.all');
                         });
                     }
 

@@ -102,7 +102,7 @@
                     </ul>
                 </li>
             @endcan
-            @can('attributes')
+            {{-- @can('attributes')
                 <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title"
                             data-i18n="nav.dash.main">{{ __('dashboard.attributes') }}</span></a>
                     <ul class="menu-content">
@@ -111,7 +111,27 @@
                         </li>
                     </ul>
                 </li>
-            @endcan
+            @endcan --}}
+            @if (auth('admin')->user()->can('products')||auth('admin')->user()->can('attributes'))
+                <li class="nav-item"><a href="javascript:void(0)"><i class="la la-cart-arrow-down"></i><span
+                            class="menu-title" data-i18n="nav.dash.main">{{ __('dashboard.products') }}</span><span
+                            class="badge badge badge-info badge-pill float-right mr-2">{{$products_count}}</span></a>
+                    <ul class="menu-content">
+                        @can('attributes')
+                            <li class="active"><a class="menu-item" href="{{ route('dashboard.attributes.index') }}"
+                                    data-i18n="nav.dash.ecommerce">{{ __('dashboard.attributes') }}</a>
+                            </li>
+                        @endcan
+                        @can('products')
+                        <li><a class="menu-item" href="{{ route('dashboard.products.create') }}"
+                                data-i18n="nav.dash.crypto">{{ __('dashboard.create_product') }}</a>
+                        </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endif
+
+
             @can('faqs')
                 <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title"
                             data-i18n="nav.dash.main">{{ __('dashboard.faqs') }}</span><span
@@ -1015,7 +1035,8 @@
                     <li><a class="menu-item" href="form-switch.html"
                             data-i18n="nav.form_elements.form_switch">Switch</a>
                     </li>
-                    <li><a class="menu-item" href="#" data-i18n="nav.form_elements.form_select.main">Select</a>
+                    <li><a class="menu-item" href="#"
+                            data-i18n="nav.form_elements.form_select.main">Select</a>
                         <ul class="menu-content">
                             <li><a class="menu-item" href="form-select2.html"
                                     data-i18n="nav.form_elements.form_select.form_select2">Select2</a>

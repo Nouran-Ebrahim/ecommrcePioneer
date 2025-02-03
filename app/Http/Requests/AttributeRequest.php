@@ -31,7 +31,9 @@ class AttributeRequest extends FormRequest
     {
         return [
             'name.*' => ['required', 'string', 'max:100', UniqueTranslationRule::for('attributes')->ignore($this->id)],
-            'values.*.*' => ['required', 'string', 'max:100'],//array inside array
+            'values.*.ar' => ['required', 'string', 'max:100'],//array inside array
+            'values.*.en' => ['required', 'string', 'max:100'],//array inside array
+
         ];
 
     }
