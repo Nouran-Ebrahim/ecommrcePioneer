@@ -18,6 +18,10 @@ class BrandService
         $this->brandRepository = $brandRepository;
         $this->imageManger = $imageManger;
     }
+    public function getBrands() // new
+    {
+        return $this->brandRepository->getBrands();
+    }
     public function getBrand($id)
     {
         $brand = $this->brandRepository->getBrand($id);

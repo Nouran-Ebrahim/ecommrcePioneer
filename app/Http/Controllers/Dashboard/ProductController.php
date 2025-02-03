@@ -5,25 +5,49 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\Brand;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\ProductVariant;
 use App\Http\Controllers\Controller;
+use App\Services\Dashboard\BrandService;
+use App\Services\Dashboard\ProductService;
+use App\Services\Dashboard\CategoryService;
 
 class ProductController extends Controller
 {
+    protected $productService , $brandService , $categoryService;
+    public function __construct(ProductService $productService , BrandService $brandService , CategoryService $categoryService)
+    {
+        $this->productService = $productService;
+        $this->brandService = $brandService;
+        $this->categoryService = $categoryService;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('dashboard.products.index');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function getAll()
+    {
+        return $this->productService->getProductsForDatatables();
+    }
+    public function changeStatus(Request $request)
+    {
+        if ($this->productService->changeStatus($request)) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Status changed successfully'
+            ]);
+        }
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Status not changed'
+        ]);
+    }
     public function create()
     {
-        $brands = Brand::all();
-        $categories = Category::all();
+        $brands = $this->brandService->getBrands();
+        $categories = $this->categoryService->getCategories();
         return view('dashboard.products.create', compact('brands', 'categories'));
     }
 
@@ -40,7 +64,8 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $product = $this->productService->getProduct($id);
+        return view('dashboard.products.show', compact('product'));
     }
 
     /**
@@ -64,6 +89,26 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        if (!$this->productService->deleteProduct($id)) {
+            return response()->json([
+                'status' => 'error',
+                'message' => __('dashboard.error_msg'),
+            ], 500);
+        }
+        return response()->json([
+            'status' => 'success',
+            'message' => __('dashboard.success_msg')
+        ], 200);
+    }
+
+    public function deleteVariant($variant_id)
+    {
+        $variant = ProductVariant::find($variant_id);
+        $product = $variant->product;
+        if($product->variants->count() == 1){
+            return redirect()->back()->with('error', 'You can not delete the last variant');
+        }
+        $variant->delete();
+        return redirect()->back()->with('success', 'Variant deleted successfully');
     }
 }

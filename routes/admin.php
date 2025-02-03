@@ -125,8 +125,14 @@ Route::group(
 
                         Route::group(['middleware' => 'can:products'], function () {
                             Route::resource('products', ProductController::class);
+                            Route::post('products/status', [ProductController::class, 'changeStatus'])
+                                ->name('products.status');
                             Route::get('products-all', [ProductController::class, 'getAll'])
                                 ->name('products.all');
+
+                            //Variants
+                            Route::get('products/variants/{variant_id}', [ProductController::class, 'deleteVariant'])
+                                ->name('products.variants.delete');
                         });
                     }
 

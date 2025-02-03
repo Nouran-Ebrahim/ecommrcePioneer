@@ -112,10 +112,10 @@
                     </ul>
                 </li>
             @endcan --}}
-            @if (auth('admin')->user()->can('products')||auth('admin')->user()->can('attributes'))
+            @if (auth('admin')->user()->can('products') || auth('admin')->user()->can('attributes'))
                 <li class="nav-item"><a href="javascript:void(0)"><i class="la la-cart-arrow-down"></i><span
                             class="menu-title" data-i18n="nav.dash.main">{{ __('dashboard.products') }}</span><span
-                            class="badge badge badge-info badge-pill float-right mr-2">{{$products_count}}</span></a>
+                            class="badge badge badge-info badge-pill float-right mr-2">{{ $products_count }}</span></a>
                     <ul class="menu-content">
                         @can('attributes')
                             <li class="active"><a class="menu-item" href="{{ route('dashboard.attributes.index') }}"
@@ -123,9 +123,12 @@
                             </li>
                         @endcan
                         @can('products')
-                        <li><a class="menu-item" href="{{ route('dashboard.products.create') }}"
-                                data-i18n="nav.dash.crypto">{{ __('dashboard.create_product') }}</a>
-                        </li>
+                            <li><a class="menu-item" href="{{ route('dashboard.products.index') }}"
+                                    data-i18n="nav.dash.crypto">{{ __('dashboard.products') }}</a>
+                            </li>
+                            <li><a class="menu-item" href="{{ route('dashboard.products.create') }}"
+                                    data-i18n="nav.dash.crypto">{{ __('dashboard.create_product') }}</a>
+                            </li>
                         @endcan
                     </ul>
                 </li>

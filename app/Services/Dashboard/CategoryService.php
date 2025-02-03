@@ -13,6 +13,10 @@ class CategoryService
     {
         $this->categoryRepository = $categoryRepository;
     }
+    public function getCategories()
+    {
+        return $this->categoryRepository->getAll();
+    }
     public function getAllCategories()
     {
         $categories = $this->categoryRepository->getAllCategories();
