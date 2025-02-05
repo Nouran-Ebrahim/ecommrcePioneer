@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Support\Facades\Config;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -8,10 +9,10 @@ use Spatie\Translatable\HasTranslations;
 
 class Product extends Model
 {
-    use HasFactory , HasTranslations;
+    use HasFactory, HasTranslations;
 
-    public $fillable = ['name', 'desc' ,'small_desc','status','sku','available_for','views','has_variants','price','has_discount','discount','start_discount','end_discount','manage_stock','quantity','available_in_stock','category_id','brand_id'];
-    public $translatable = ['name', 'desc','small_desc'];
+    public $fillable = ['name', 'desc', 'small_desc', 'status', 'sku', 'available_for', 'views', 'has_variants', 'price', 'has_discount', 'discount', 'start_discount', 'end_discount', 'manage_stock', 'quantity', 'available_in_stock', 'category_id', 'brand_id'];
+    public $translatable = ['name', 'desc', 'small_desc'];
 
     // relationships
     public function category()
@@ -32,13 +33,26 @@ class Product extends Model
     }
     public function tags()
     {
-        return $this->belongsToMany(Tag::class ,'product_tags','product_id' , 'tag_id');
+        return $this->belongsToMany(Tag::class, 'product_tags', 'product_id', 'tag_id');
     }
     public function variants()
     {
         return $this->hasMany(ProductVariant::class);
     }
 
+    // functions
+    public function getStatusTranslated()
+    {
+
+        return $this->status == 1 ? __('dashboard.active') : __('dashboard.unactive');
+
+    }
+    public function hasVariantsTranslated()
+    {
+
+            return $this->has_variants == 1 ? __('dashboard.yes') : __('dashboard.no');
+
+    }
     public function isSimple()
     {
         return !$this->has_variants;
@@ -55,6 +69,25 @@ class Product extends Model
     {
         return date('d/m/Y H:i a', strtotime($value));
     }
+    public function getPriceAttribute($value)
+    {
+        return $this->has_variants == 0 ? number_format($value, 2) : __("dashboard.has_variants");
+    }
+    public function getQuantityAttribute($value)
+    {
+        return $this->has_variants == 0 ? $value : __("dashboard.has_variants");
+    }
+
+    // Scopes
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
+    public function scopeInactive($query)
+    {
+        return $query->where('status', 0);
+    }
+
 
 
 

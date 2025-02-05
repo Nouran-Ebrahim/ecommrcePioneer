@@ -59,14 +59,14 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>{{ __('dashboard.product_name') }}</th>
+                                                <th>{{ __('dashboard.name') }}</th>
                                                 <th>{{ __('dashboard.has_variants') }}</th>
                                                 <th>{{ __('dashboard.images') }}</th>
                                                 <th>{{ __('dashboard.status') }}</th>
-                                                <th>{{ __('dashboard.sku') }}</th>
+                                                <th>{{ __('dashboard.product_sku') }}</th>
                                                 <th>{{ __('dashboard.available_for') }}</th>
                                                 <th>{{ __('dashboard.category') }}</th>
-                                                <th>{{ __('dashboard.brand') }}</th>
+                                                <th>{{ __('dashboard.brands') }}</th>
                                                 <th>{{ __('dashboard.price') }}</th>
                                                 <th>{{ __('dashboard.quantity') }}</th>
                                                 <th>{{ __('dashboard.actions') }}</th>
@@ -89,7 +89,7 @@
     </div>
 @endsection
 
-@push('js')
+@push('script')
     {{--  Data tables  --}}
     <script>
         var lang = "{{ app()->getLocale() }}";
@@ -113,7 +113,7 @@
                     display: DataTable.Responsive.display.modal({
                         header: function(row) {
                             var data = row.data();
-                            return 'Details for Coupon : ' + data['code'];
+                            return 'Details for Product : ' + data['name'];
                         }
                     }),
                     renderer: DataTable.Responsive.renderer.tableAll({
@@ -188,7 +188,7 @@
 
 
             language: lang === 'ar' ? {
-                url: '//cdn.datatables.net/plug-ins/2.1.8/i18n/ar.json',
+                url: "{{ asset('vendor/dataTables/languages/ar.json') }}",
             } : {},
 
 
