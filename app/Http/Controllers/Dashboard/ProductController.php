@@ -36,7 +36,7 @@ class ProductController extends Controller
         if ($this->productService->changeStatus($request)) {
             return response()->json([
                 'status' => 'success',
-                'message' => 'Status changed successfully'
+                'message' => trans('messages.updateed_successfully')
             ]);
         }
         return response()->json([
@@ -92,12 +92,12 @@ class ProductController extends Controller
         if (!$this->productService->deleteProduct($id)) {
             return response()->json([
                 'status' => 'error',
-                'message' => __('dashboard.error_msg'),
+                'message' => __('messages.general_error'),
             ], 500);
         }
         return response()->json([
             'status' => 'success',
-            'message' => __('dashboard.success_msg')
+            'message' => __('messages.deleted_successfully')
         ], 200);
     }
 

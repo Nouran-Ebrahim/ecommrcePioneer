@@ -103,7 +103,7 @@
             colReorder: true,
             rowReorder: {
                 update: false,
-                selector: "td:not(:first-child)",
+                selector: "td:not(:first-child):not(:nth-child(4))",
             },
             // scroller: true,
             // scrollY: 900,
@@ -202,51 +202,6 @@
             table.rowReorder.enable();
         });
 
-        // Create Coupon Using Ajax
-        // $('#createCoupon').on('submit', function(e) {
-        //     e.preventDefault();
-        //     var currentPage = $('#yajra_table').DataTable().page(); // get the current page number
-        //     $.ajax({
-        //         url: "{{ route('dashboard.products.store') }}",
-        //         method: 'post',
-        //         data: new FormData(this),
-        //         processData: false,
-        //         contentType: false,
-        //         success: function(data) {
-        //             if (data.status == 'success') {
-        //                 $('#createCoupon')[0].reset();
-        //                 $('#yajra_table').DataTable().page(currentPage).draw(false);
-        //                 $('#couponModal').modal('hide');
-        //                 Swal.fire({
-        //                     position: "top-center",
-        //                     icon: "success",
-        //                     title: data.message,
-        //                     showConfirmButton: false,
-        //                     timer: 1500
-        //                 });
-        //             } else {
-        //                 Swal.fire({
-        //                     position: "top-center",
-        //                     icon: "error",
-        //                     title: data.message,
-        //                     showConfirmButton: false,
-        //                     timer: 1500
-        //                 });
-        //             }
-
-        //         },
-        //         error: function(data) {
-        //             if (data.responseJSON.errors) {
-        //                 $.each(data.responseJSON.errors, function(key, value) {
-
-        //                     $('#error_list').append('<li>' + value[0] + '</li>');
-        //                     $('#error_div').show();
-        //                 });
-        //             }
-        //         }
-        //     });
-        // })
-
         // Edit Coupon
         // $(document).on('click', '.edit_coupon', function(e) {
         //     e.preventDefault();
@@ -312,6 +267,7 @@
         $(document).on('click', '.delete_confirm_btn', function(e) {
             e.preventDefault();
             var product_id = $(this).attr('product-id');
+            var currentPage = $('#yajra_table').DataTable().page(); // get the current page number
 
             Swal.fire({
                 title: "Are you sure?",
@@ -325,7 +281,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         url: "{{ route('dashboard.products.destroy', 'id') }}".replace('id',
-                            coupon_id),
+                        product_id),
                         type: "DELETE",
                         data: {
                             _token: "{{ csrf_token() }}"
@@ -337,7 +293,7 @@
                                     text: response.message,
                                     icon: "success"
                                 });
-                                $('#yajra_table').DataTable().ajax.reload();
+                                $('#yajra_table').DataTable().ajax.reload(currentPage);
                             } else {
                                 Swal.fire({
                                     title: response.status,
