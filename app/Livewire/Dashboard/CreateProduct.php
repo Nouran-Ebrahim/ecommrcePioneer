@@ -48,7 +48,8 @@ class CreateProduct extends Component
             array_pop($this->quantities);
             array_pop($this->attributeValues);
         }
-    }    public function deleteImage($key)
+    }
+       public function deleteImage($key)
     {
         unset($this->images[$key]);
     }

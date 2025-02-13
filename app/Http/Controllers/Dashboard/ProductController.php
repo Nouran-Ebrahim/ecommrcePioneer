@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Brand;
 use App\Models\Category;
+use App\Services\Dashboard\AttributeService;
 use Illuminate\Http\Request;
 use App\Models\ProductVariant;
 use App\Http\Controllers\Controller;
@@ -13,12 +14,13 @@ use App\Services\Dashboard\CategoryService;
 
 class ProductController extends Controller
 {
-    protected $productService , $brandService , $categoryService;
-    public function __construct(ProductService $productService , BrandService $brandService , CategoryService $categoryService)
+    protected $productService, $brandService, $categoryService, $attributeService;
+    public function __construct(ProductService $productService, BrandService $brandService, CategoryService $categoryService, AttributeService $attributeService)
     {
         $this->productService = $productService;
         $this->brandService = $brandService;
         $this->categoryService = $categoryService;
+        $this->attributeService = $attributeService;
     }
     /**
      * Display a listing of the resource.
@@ -73,7 +75,13 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $productId = $id;
+        $categories = $this->categoryService->getCategories();
+        $brands = $this->brandService->getBrands();
+        $attributes = $this->attributeService->getAttributes();
+        return view('dashboard.products.edit', compact('productId', 'brands', 'categories', 'attributes'));
+
+
     }
 
     /**
@@ -105,7 +113,7 @@ class ProductController extends Controller
     {
         $variant = ProductVariant::find($variant_id);
         $product = $variant->product;
-        if($product->variants->count() == 1){
+        if ($product->variants->count() == 1) {
             return redirect()->back()->with('error', 'You can not delete the last variant');
         }
         $variant->delete();

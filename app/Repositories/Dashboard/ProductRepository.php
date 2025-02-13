@@ -10,7 +10,7 @@ class ProductRepository
 {
     public function getProduct($id)
     {
-        return Product::with(['variants' , 'images'])->find($id);
+        return Product::with(['variants' , 'images','variants.variantAttributes'])->find($id);
 
     }
     public function getProducts()

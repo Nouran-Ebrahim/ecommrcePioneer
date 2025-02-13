@@ -27,7 +27,7 @@ class AttributeService
     public function getAttributesForDatatables()
     {
 
-        $attributes = $this->attributeRepository->getAttributes();
+        $attributes = $this->getAttributes();
         // dd($attributes);
         return DataTables::of($attributes)
             ->addIndexColumn()
@@ -92,6 +92,10 @@ class AttributeService
 
         $attribute = $this->attributeRepository->deleteAttribute($attribute);
         return $attribute;
+    }
+    public function getAttributes() // new
+    {
+        return $this->attributeRepository->getAttributes();
     }
 
 }
