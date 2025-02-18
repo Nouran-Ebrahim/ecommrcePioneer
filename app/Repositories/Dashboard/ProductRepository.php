@@ -3,6 +3,7 @@
 namespace App\Repositories\Dashboard;
 
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\ProductVariant;
 use App\Models\VariantAttribute;
 
@@ -10,7 +11,7 @@ class ProductRepository
 {
     public function getProduct($id)
     {
-        return Product::with(['variants' , 'images','variants.variantAttributes'])->find($id);
+        return Product::with(['variants', 'images', 'variants.variantAttributes'])->find($id);
 
     }
     public function getProducts()
@@ -33,6 +34,11 @@ class ProductRepository
     {
         return $product->update($data);
     }
+    public function deleteProductVariants($productId)
+    {
+        return ProductVariant::where('product_id', $productId)->delete();
+    }
+
     public function deleteProduct($product)
     {
         return $product->delete();
@@ -41,5 +47,10 @@ class ProductRepository
     {
         $product->status = $status;
         return $product->save();
+    }
+    public function deleteProductImage($imageId)
+    {
+        return ProductImage::destroy($imageId);
+
     }
 }

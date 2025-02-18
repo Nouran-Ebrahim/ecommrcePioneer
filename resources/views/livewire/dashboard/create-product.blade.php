@@ -1,11 +1,12 @@
 <section id="icon-tabs">
     @if (!empty($successMessage))
-        <div class="{{ $currentStep != 1 ? 'displayNone' : '' }} alert bg-success alert-icon-left alert-arrow-left alert-dismissible mb-2" role="alert">
+        <div class="{{ $currentStep != 1 ? 'displayNone' : '' }} alert bg-success alert-icon-left alert-arrow-left alert-dismissible mb-2"
+            role="alert">
             <span class="alert-icon"><i class="la la-thumbs-o-up"></i></span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-             {{ $successMessage }}
+            {{ $successMessage }}
         </div>
     @endif
 
@@ -320,9 +321,10 @@
                 @endfor
                 <button type="button" class="btn btn-success" wire:click="addNewVariant"><i
                         class="la la-plus"></i>Add new variant</button>
-                <button type="button" class="btn btn-danger" wire:click="removeVariant"><i
-                        class="la la-remove"></i>remove variant</button>
-
+                @if ($valueRowCount > 1)
+                    <button type="button" class="btn btn-danger" wire:click="removeVariant"><i
+                            class="la la-remove"></i>remove variant</button>
+                @endif
             @endif
 
             <button class="btn btn-primary pull-right  mb-3 ml-1" type="button"

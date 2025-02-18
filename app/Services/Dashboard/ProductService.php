@@ -36,6 +36,12 @@ class ProductService
             ->addColumn('has_variants', function ($row) {
                 return $row->hasVariantsTranslated();
             })
+            ->addColumn('price', function ($row) {
+                return $row->priceAttribute();
+            })
+            ->addColumn('quantity', function ($row) {
+                return $row->quantityAttribute();
+            })
             ->addColumn('images', function ($row) {
                 $row->load('images');
                 return view('dashboard.products.datatables.images', compact('row'));
@@ -84,6 +90,50 @@ class ProductService
         }
 
     }
+    public function updateProductWithDetails($product, $ProductData, $productVariant, $images)
+    {
+
+        try {
+            DB::beginTransaction();
+            // update Product
+            $status = $this->productRepository->updateProduct($product, $ProductData);
+            if (!$status) {
+                return false;
+
+            }
+            //delete all  variants
+            $this->productRepository->deleteProductVariants($product->id);
+            // update Product Variant
+            foreach ($productVariant as $variant) {
+                $productVariant = $this->productRepository->createProductVariant($variant);
+                if (!$productVariant) {
+                    return false;
+
+                }
+                // create Variant Attributes
+                foreach ($variant['attriubte_value_ids'] as $attribute_value_id) {
+                    $variantAttributes = $this->productRepository->createProductVariantAttribute([
+                        'product_variant_id' => $productVariant->id,
+                        'attribute_value_id' => $attribute_value_id,
+                    ]);
+                    if (!$variantAttributes) {
+                        return false;
+
+                    }
+                }
+            }
+
+            // update Product Images
+            $this->imageManager->uploadImages($images, $product, 'products');
+            DB::commit();
+            return true;
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Error updating product: ' . $e->getMessage(), ['trace' => $e->getTraceAsString()]);
+            return false;
+        }
+
+    }
     public function updateProduct($id, $data)
     {
         $product = $this->getProduct($id);
@@ -94,7 +144,11 @@ class ProductService
         $product = $this->getProduct($id);
         return $this->productRepository->deleteProduct($product);
     }
-
+    public function deleteProductImage($imageId, $fileName)
+    {
+        $this->imageManager->deleteImageFromLocal('uploads/products/' . $fileName);
+        return $this->productRepository->deleteProductImage($imageId);
+    }
     public function changeStatus($request)
     {
         $product = $this->getProduct($request->id);

@@ -69,13 +69,13 @@ class Product extends Model
     {
         return date('d/m/Y H:i a', strtotime($value));
     }
-    public function getPriceAttribute($value)
+    public function priceAttribute()
     {
-        return $this->has_variants == 0 ? number_format($value, 2) : __("dashboard.has_variants");
+        return $this->has_variants == 0 ? number_format($this->price, 2) : __("dashboard.has_variants");
     }
-    public function getQuantityAttribute($value)
+    public function quantityAttribute()
     {
-        return $this->has_variants == 0 ? $value : __("dashboard.has_variants");
+        return $this->has_variants == 0 ? $this->quantity : __("dashboard.has_variants");
     }
 
     // Scopes

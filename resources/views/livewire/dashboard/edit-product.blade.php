@@ -9,6 +9,16 @@
             {{ $successMessage }}
         </div>
     @endif
+    @if (!empty($errorMessage))
+        <div class="{{ $currentStep != 1 ? 'displayNone' : '' }} alert bg-error alert-icon-left alert-arrow-left alert-dismissible mb-2"
+            role="alert">
+            <span class="alert-icon"><i class="la la-thumbs-o-up"></i></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ $errorMessage }}
+        </div>
+    @endif
 
     <ul class="wizard-timeline center-align">
         <li class="{{ $currentStep > 1 ? 'completed' : '' }}">
@@ -23,10 +33,7 @@
             <span class="step-num">3</span>
             <label>{{ __('dashboard.product_images') }}</label>
         </li>
-        <li class="{{ $currentStep == 4 ? 'completed' : '' }}">
-            <span class="step-num">4</span>
-            <label>{{ __('dashboard.confirmation') }}</label>
-        </li>
+
     </ul>
 
     <form class="wizard-circle">
@@ -304,11 +311,10 @@
                                     <label for="attributes">{{ $attr->name }}</label>
                                     <select class="form-control"
                                         wire:model="variantAttributes.{{ $i }}.{{ $attr->id }}">
-
+                                        <option value="">Select {{ $attr->name }}</option>
                                         @foreach ($attr->attributeValues as $item)
-                                            @foreach ($variantAttributes as $variantAttribute)
-                                                <option value="{{ $item->id }}" @selected($variantAttribute[$attr->id]==$item->id)>{{ $item->value }}</option>
-                                            @endforeach
+                                            <option value="{{ $item->id }}" @selected(($variantAttributes[$i][$attr->id] ?? null) == $item->id)>
+                                                {{ $item->value }}</option>
                                         @endforeach
 
                                     </select>
@@ -321,8 +327,11 @@
                 @endfor
                 <button type="button" class="btn btn-success" wire:click="addNewVariant"><i
                         class="la la-plus"></i>Add new variant</button>
-                <button type="button" class="btn btn-danger" wire:click="removeVariant"><i
-                        class="la la-remove"></i>remove variant</button>
+                @if ($valueRowCount > 1)
+                    <button type="button" class="btn btn-danger" wire:click="removeVariant"><i
+                            class="la la-remove"></i>remove variant</button>
+                @endif
+
 
             @endif
 
@@ -333,12 +342,12 @@
         </div>
 
         {{-- third step Product Images --}}
-        {{-- <div class="setup-content {{ $currentStep != 3 ? 'displayNone' : '' }}" id="step-3">
+        <div class="setup-content {{ $currentStep != 3 ? 'displayNone' : '' }}" id="step-3">
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="images"> {{ __('dashboard.product_images') }} :</label>
-                        <input type="file" wire:model.live="images" class="form-control" multiple>
+                        <input type="file" wire:model.live="newImages" class="form-control" multiple>
                     </div>
                 </div>
                 @error('images')
@@ -351,57 +360,51 @@
                     <div class="col-md-12">
                         @foreach ($images as $key => $image)
                             <div class="position-relative d-inline-block mr-2 mb-2">
-                                <img src="{{ $image->temporaryUrl() }}" class="img-thumbnail rounded-md"
-                                    width="300px" height="300px">
+                                <img src="{{ asset('uploads/products/' . $image->file_name) }}"
+                                    class="img-thumbnail rounded-md" width="300px" height="300px">
 
                                 <!-- Delete Button -->
-                                <button type="button" wire:click="deleteImage({{ $key }})"
+                                <button type="button"
+                                    wire:click="deleteImage({{ $image->id }},{{ $key }},'{{ $image->file_name }}')"
                                     class="btn btn-danger btn-sm position-absolute" style="top: 5px; right: 5px;">
                                     <i class="fa fa-trash"></i>
                                 </button>
 
-                                <!-- Fullscreen Button -->
-                                <button type="button" wire:click="openFullscreen({{ $key }})"
-                                    class="btn btn-primary btn-sm position-absolute" style="bottom: 5px; right: 5px;">
-                                    <i class="fa fa-expand"></i>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+                @if ($newImages)
+                    <div class="col-md-12">
+                        <hr class="bg-black">
+                        <h3>New Images Uploaded :</h3>
+                        @foreach ($newImages as $key => $image)
+                            <div class="position-relative d-inline-block mr-2 mb-2">
+                                <img src="{{ $image->temporaryUrl() }}" class="img-thumbnail rounded-md"
+                                    width="300px" height="300px">
+
+                                <!-- Delete Button -->
+                                <button type="button" wire:click="deleteNewImage({{ $key }})"
+                                    class="btn btn-danger btn-sm position-absolute" style="top: 5px; right: 5px;">
+                                    <i class="fa fa-trash"></i>
                                 </button>
+
+
                             </div>
                         @endforeach
                     </div>
                 @endif
             </div>
 
-            <!-- Fullscreen Modal (Optional) -->
-            <div wire:ignore.self class="modal fade" id="fullscreenModal" tabindex="-1"
-                aria-labelledby="fullscreenModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <img src="{{ $fullscreenImage }}" class="img-fluid" id="fullscreenImage"
-                                alt="Full Screen Image">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="btn btn-success  pull-right  mb-3 ml-1" wire:click="thirdStepSubmit"
-                type="button">{{ __('dashboard.next') }}!</button>
+
+            <button class="btn btn-success  pull-right  mb-3 ml-1" wire:click="submitForm"
+                type="button">{{ __('dashboard.update') }}!</button>
             <button class="btn btn-danger  pull-right  mb-3" type="button"
                 wire:click="back(2)">{{ __('dashboard.back') }}</button>
 
-        </div> --}}
+        </div>
 
-        {{-- Confirm Step Display Data optional --}}
-        {{-- <div class="setup-content {{ $currentStep != 4 ? 'displayNone' : '' }}" id="step-4">
-            <div class="row">
 
-            </div>
-
-            <button class="btn btn-success  pull-right  mb-3 ml-1" wire:click="submitForm"
-                type="button">{{ __('dashboard.confirm') }}!</button>
-            <button class="btn btn-danger  pull-right  mb-3" type="button"
-                wire:click="back(3)">{{ __('dashboard.back') }}</button>
-
-        </div> --}}
 
     </form>
 </section>
