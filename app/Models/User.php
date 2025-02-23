@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'country_id',
+        'government_id',
+        'city_id',
+        'is_active',
     ];
 
     /**
@@ -40,5 +44,38 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+
     ];
+    public function getStatusTranslated()
+    {
+        return $this->is_active == 1 ? __('dashboard.active') : __('dashboard.unactive');
+    }
+
+    // relation
+    public function country()
+    {
+        return $this->belongsTo(Country::class , 'country_id');
+    }
+    public function  governorate()
+    {
+        return $this->belongsTo(Government::class , 'government_id');
+    }
+    public function  city()
+    {
+        return $this->belongsTo(City::class , 'city_id');
+    }
+    public function orders()
+    {
+        return $this->hasMany(Order::class , 'user_id');
+    }
+    // accessors
+    public function getCreatedAtAttribute($value)
+    {
+        return date('d/m/Y H:i a', strtotime($value));
+    }
+    public function getEmailVerifiedAtAttribute($value)
+    {
+        return date('d/m/Y H:i a', strtotime($value));
+    }
 }

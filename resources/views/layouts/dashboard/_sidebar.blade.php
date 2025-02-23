@@ -39,6 +39,25 @@
                     </ul>
                 </li>
             @endcan
+            @can('users')
+            <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="nav.templates.main">{{ __('dashboard.users') }}</span><span class="badge badge badge-info badge-pill float-right mr-2">{{ $admins_count }}</span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a class="menu-item" href="{{ route('dashboard.users.index') }}" data-i18n="">{{ __('dashboard.users') }}</a>
+                    </li>
+                </ul>
+            </li>
+            @endcan
+            @can('global_shipping')
+            <li class=" nav-item"><a href="#"><i class="la la-ambulance"></i><span class="menu-title" data-i18n="nav.templates.main"> {{ __('dashboard.shipping') }} </span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a class="menu-item" href="{{ route('dashboard.countries.index') }}" data-i18n="">{{ __('dashboard.shippping') }}</a>
+                    </li>
+
+                </ul>
+            </li>
+            @endcan
             @can('coupons')
                 <li class=" nav-item {{ Request::is('*/coupons*') ? 'open' : '' }}">
                     <a href="index.html"><i class="la la-home">

@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\Dashboard\UserController;
 use Livewire\Livewire;
 use App\Http\Controllers\Dashboard\AttributeController;
 use App\Http\Controllers\Dashboard\AdminController;
@@ -133,6 +134,13 @@ Route::group(
                             //Variants
                             Route::get('products/variants/{variant_id}', [ProductController::class, 'deleteVariant'])
                                 ->name('products.variants.delete');
+                        });
+                        Route::group(['middleware' => 'can:users'], function () {
+                            Route::resource('users', UserController::class);
+                            Route::post('users/status', [UserController::class, 'changeStatus'])
+                                ->name('users.status');
+                            Route::get('users-all', [UserController::class, 'getAll'])
+                                ->name('users.all');
                         });
                     }
 
