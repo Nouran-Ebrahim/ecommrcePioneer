@@ -28,8 +28,9 @@ class DatabaseSeeder extends Seeder
             BrandSeeder::class,
             CouponSeeder::class,
             AttributeSeeder::class,
-            
+
             UserSeeder::class,
+            ContactSeeder::class,
 
 
         ]);

@@ -26,6 +26,7 @@ return [
     'socials'=>'Manage Socials',
     'global_shipping'=>'Global Shipping',
     'attributes'=>"Product Attributes",
+    'contacts'=>'Manage Contacts'
 
 
 ];

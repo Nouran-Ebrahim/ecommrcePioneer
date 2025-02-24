@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\Dashboard\ContactController;
 use App\Http\Controllers\Dashboard\UserController;
 use Livewire\Livewire;
 use App\Http\Controllers\Dashboard\AttributeController;
@@ -142,6 +143,12 @@ Route::group(
                             Route::get('users-all', [UserController::class, 'getAll'])
                                 ->name('users.all');
                         });
+                          ############################### Contact Routes ##############################
+            Route::group(['middleware' => 'can:contacts'], function () {
+                Route::get('contacts', [ContactController::class, 'index'])->name('contacts.index');
+                // Route::get('contacts-reply', [ContactController::class, 'getAll'])->name('users.all');
+            });
+            ############################### End Contacts ################################
                     }
 
                 );
