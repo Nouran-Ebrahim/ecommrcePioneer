@@ -27,7 +27,7 @@
                                 <div class="sidebar-content email-app-sidebar d-flex">
                                     {{-- contact sidebar --}}
                                     <div class="email-app-menu col-md-4 card d-none d-lg-block">
-                                        {{-- @livewire('dashboard.contact.contactsidebar') --}}
+                                        @livewire('dashboard.contact.contactsidebar')
                                     </div>
                                     {{-- contact messages --}}
                                     <div class="email-app-list-wraper col-md-8 card p-0">
