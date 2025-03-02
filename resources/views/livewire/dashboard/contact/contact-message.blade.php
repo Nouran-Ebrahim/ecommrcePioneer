@@ -10,8 +10,9 @@
     </div>
     <div id="users-list" class="list-group">
         <div class="users-list-padding media-list">
-            @forelse ($messages as $message)
-                <a href="#" class="media border-0">
+            @forelse ($messages as $key=>$message)
+                <a @if ($message->id == $openMessageId) style="background-color: #f2f2f2;" @endif
+                    wire:click="showMessage({{ $message->id }})" href="#" class="media border-0">
                     <div class="media-left pr-1">
                         <span class="avatar avatar-md">
                             <span class="media-object rounded-circle text-circle bg-info">T</span>
@@ -27,8 +28,13 @@
                             {{ $message->subject }}</p>
                         <p class="list-group-item-text mb-0">{{ $message->message }}
                             <span class="float-right primary">
-                                <span class="badge badge-danger mr-1">New contact</span> <i
-                                    class="font-medium-1 ft-star blue-grey lighten-3"></i></span>
+                                @if ($message->is_read == 0)
+                                    <span class="badge badge-success mr-1">New contact</span>
+                                @else
+                                    <span class="badge badge-danger mr-1">readed</span>
+                                @endif
+                                <i class="font-medium-1 ft-star blue-grey lighten-3"></i>
+                            </span>
                         </p>
                     </div>
                 </a>

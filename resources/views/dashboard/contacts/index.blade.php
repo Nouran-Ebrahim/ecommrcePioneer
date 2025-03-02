@@ -52,3 +52,18 @@
         </div>
     </div>
 @endsection
+@push('script')
+    <script>
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('msg-deleted', (event) => {
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: event,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+        })
+    </script>
+@endpush
