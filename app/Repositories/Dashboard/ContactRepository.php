@@ -8,41 +8,66 @@ use PhpParser\Node\Expr\AssignOp\Concat;
 
 class ContactRepository
 {
-    public function getMarkReadContacts()
+    public function getMarkReadContacts($keyword = null)
     {
-        return Contact::where('is_read', 1)->get();
+        return Contact::searchContact($keyword)->read()->latest();
+    }
+    public function getMarkUnreadContacts($keyword = null)
+    {
+        return Contact::searchContact($keyword)->unread()->latest();
+    }
+    public function getAnsweredContacts($keyword = null)
+    {
+        return Contact::searchContact($keyword)->answered()->latest();
     }
     public function getInboxContacts($keyword = null)
     {
-        return Contact::searchContacts($keyword)->latest();
+        return Contact::searchContact($keyword)->latest();
     }
-
+    public function getTrashedContacts($keyword = null)
+    {
+        return Contact::searchContact($keyword)->onlyTrashed()->latest();
+    }
     public function getContactById($id)
     {
-        return Concat::withTrashed()->find($id);
+        return Contact::withTrashed()->find($id);
     }
-
+    public function deleteContact($contact)
+    {
+        return $contact->delete();
+    }
+    public function deleteAllReadedContacts()
+    {
+        return Contact::read()->delete();
+    }
+    public function markAllAsRead()
+    {
+        $contacts = Contact::get();
+        foreach ($contacts as $contact) {
+            $contact->is_read = 1;
+            $contact->save();
+        }
+        return true;
+    }
+    public function deleteAllAnsweredContacts()
+    {
+        return Contact::answered()->delete();
+    }
     public function markRead($contact)
     {
         $contact->is_read = 1;
         $contact->save();
     }
-
-    public function deleteContact($contact)
-    {
-        return $contact->delete();
-    }
-    public function getTrashedContacts($keyword = null)
-    {
-        return Contact::searchContacts($keyword)->onlyTrashed()->latest();
-    }
-
-    public function markUnRead($contact)
+    public function markUnread($contact)
     {
         $contact->is_read = 0;
         $contact->save();
     }
-    // softDeletes
+    public function latestContact()
+    {
+        return Contact::latest()->first();
+    }
+    // sofDeletes
     public function restoreContact($contact)
     {
         return $contact->restore();

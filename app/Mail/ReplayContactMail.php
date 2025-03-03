@@ -12,16 +12,13 @@ use Illuminate\Queue\SerializesModels;
 class ReplayContactMail extends Mailable
 {
     use Queueable, SerializesModels;
+    public $replyMessage, $subject, $clientName;
 
-    /**
-     * Create a new message instance.
-     */
-    public $replayMessage, $subject, $clineName;
-    public function __construct($replayMessage, $subject, $clineName)
+    public function __construct($clientName, $replyMessage, $subject)
     {
-        $this->replayMessage = $replayMessage;
+        $this->clientName = $clientName;
+        $this->replyMessage = $replyMessage;
         $this->subject = $subject;
-        $this->clineName = $clineName;
     }
 
     /**
@@ -30,9 +27,11 @@ class ReplayContactMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Replay Contact Mail',
+            subject: $this->subject,
         );
     }
+
+
 
     /**
      * Get the message content definition.
@@ -42,8 +41,8 @@ class ReplayContactMail extends Mailable
         return new Content(
             markdown: 'email.replay-contact',
             with: [
-                'replayMessage' => $this->replayMessage,
-                'clineName' => $this->clineName,
+                'clientName' => $this->clientName,
+                'replyMessage' => $this->replyMessage,
             ],
         );
     }

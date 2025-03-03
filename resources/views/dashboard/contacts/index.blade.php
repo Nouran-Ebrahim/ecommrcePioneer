@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title" id="basic-layout-colored-form-control">
-                            {{ __('dashboard.governorates') }}
+                            {{ __('dashboard.contacts') }}
                         </h4>
                         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                         <div class="heading-elements">
@@ -53,7 +53,9 @@
     </div>
 @endsection
 @push('script')
+
     <script>
+        // sweet alert after contact deleted
         document.addEventListener('livewire:init', () => {
             Livewire.on('msg-deleted', (event) => {
                 Swal.fire({
@@ -63,7 +65,19 @@
                     showConfirmButton: false,
                     timer: 1500
                 });
-            })
-        })
+            });
+        });
+        // sweet alert after contact replay
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('replay-contact-success', (event) => {
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: event,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            });
+        });
     </script>
 @endpush

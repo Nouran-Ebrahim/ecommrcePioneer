@@ -12,75 +12,54 @@ class ContactMessage extends Component
 {
     use WithPagination;
     public $itemSearch;
-    public $openMessageId;
     public $page = 1;
+    public $opendMsgId;
     public $screen = 'inbox';
-    protected ContactService $contactService;
 
-    public function mount(ContactService $contactService)
-    {
-        $this->contactService = $contactService;
-
-        // $this->openMessageId = Contact::latest()->first()->id;
-
-
-    }
     protected $listeners = [
         'msg-deleted' => '$refresh',
         'refresh-messages' => '$refresh',
-        // 'contact-replay'=>'$refresh'
     ];
 
-    #[On('select-screen')]
-    public function selectScreen($screen)
+    protected ContactService $contactService;
+    public function boot(ContactService $contactService)
     {
-        $this->screen = $screen;
+        $this->contactService = $contactService;
     }
     public function updatingItemSearch()
     {
         $this->resetPage();
     }
-    public function makrkAsRead($msgId)
-    {
-        $this->contactService->markRead($msgId);
-    }
     public function showMessage($msgId)
     {
-        // $this->makrkAsRead($msgId);
+        $this->markAsRead($msgId);
         $this->dispatch('show-message', $msgId);
-        $this->openMessageId = $msgId;
+        $this->opendMsgId = $msgId;
     }
-
-
+    public function markAsRead($msgId)
+    {
+        $this->contactService->markAsRead($msgId);
+    }
+    #[On('select-screen')]
+    public function selectScreen($screen)
+    {
+        $this->screen = $screen;
+    }
     public function render()
     {
-        if ($this->screen === 'readed') {
-            $messages = Contact::where('is_read', 1);
-        } elseif ($this->screen === 'answered') {
-            $messages = Contact::where('replay_status', 1);
-        } elseif ($this->screen === 'trash') {
-            $messages = Contact::onlyTrashed();
+        if ($this->screen == 'readed') {
+            $messages = $this->contactService->getMarkReadContacts(trim($this->itemSearch));
+        } elseif ($this->screen == 'answered') {
+            $messages = $this->contactService->getAnsweredContacts(trim($this->itemSearch));
+        } elseif ($this->screen == "trashed") {
+            $messages = $this->contactService->getTrashedContacts(trim($this->itemSearch));
 
         } else {
-            $messages = Contact::query();
+            $messages = $this->contactService->getInboxContacts(trim($this->itemSearch));
         }
 
-        if ($this->itemSearch) {
-            $messages = $messages->where('email', 'like', '%' . $this->itemSearch . '%');
-
-        }
-        // if ($this->screen === 'readed') {
-        //     $messages = Contact::where('is_read', 1);
-        // } elseif ($this->screen === 'answered') {
-        //     $messages = Contact::where('replay_status', 1);
-        // } elseif ($this->screen === 'trash') {
-        //     $messages = $this->contactService->getTrashedContacts(trim($this->itemSearch));
-
-        // } else {
-        //     $messages = $this->contactService->getInboxContacts(trim($this->itemSearch));
-        // }
         return view('livewire.dashboard.contact.contact-message', [
-            'messages' => $messages->latest()->paginate(5),
+            'messages' => $messages->paginate(5),
         ]);
     }
 }

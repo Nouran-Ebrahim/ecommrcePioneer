@@ -9,7 +9,31 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Contact extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = ['id', 'name', 'email', 'phone', 'subject', 'message', 'user_id'];
+    protected $fillable = ['id', 'replay_status', 'name', 'email', 'phone', 'subject', 'message', 'user_id'];
+
+    // Scopes
+    public function scopeRead($query)
+    {
+        return $query->where('is_read', 1);
+    }
+    public function scopeUnread($query)
+    {
+        return $query->where('is_read', 0);
+    }
+    public function scopeAnswered($query)
+    {
+        return $query->where('replay_status', 1);
+    }
+    public function scopeUnanswered($query)
+    {
+        return $query->where('replay_status', 0);
+    }
+    public static function searchContact($keyword)
+    {
+        return self::when($keyword, function ($query) use ($keyword) {
+            $query->Where('email', 'like', '%' . $keyword . '%');
+        });
+    }
 
     // relationship with user
     public function user()
@@ -17,17 +41,7 @@ class Contact extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
     // accessor for created at and updated at
-    // public function getCreatedAtAttribute($value)
-    // {
-    //     return date('d-m-Y H:i:s a', strtotime($value));
-    // }
-    public static function searchContacts($keyword)
-    {
-        return self::when($keyword != null, function ($query) use ($keyword) {
-            $query->where('email', 'like', '%' . $keyword . '%');
-        });
 
-    }
     public function getUpdatedAtAttribute($value)
     {
         return date('d-m-Y H:i:s a', strtotime($value));

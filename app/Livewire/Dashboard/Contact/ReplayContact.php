@@ -10,15 +10,16 @@ class ReplayContact extends Component
 {
     public $contact;
     public $id, $email, $subject, $replayMessage, $clientName;
+
     protected ContactService $contactService;
-    public function mount(ContactService $contactService)
+
+    public function boot(ContactService $contactService)
     {
         $this->contactService = $contactService;
     }
     #[On('call-replay-contact-component')]
     public function luanchModal($contactId)
     {
-        // dd($contactId);
         $this->setDataInAttributes($contactId);
         $this->dispatch('luanch-replay-contact-modal');
     }
@@ -30,18 +31,17 @@ class ReplayContact extends Component
         $this->subject = $this->contact->subject;
         $this->clientName = $this->contact->name;
     }
-
     public function replayContact()
     {
         $replayStatus = $this->contactService->replayContact($this->id, $this->replayMessage);
         if (!$replayStatus) {
-            return false;
+            //    $this->dispatch('replay-contact-fail',__('dashboard.error_msg'));
+            return;
         }
-        //  $this->dispatch('contact-replay');
         $this->dispatch('close-modal');
-        // $this->dispatch('replay-contact-success');
-
+        $this->dispatch('replay-contact-success', __('dashboard.success_msg')); //New
     }
+
     public function render()
     {
         return view('livewire.dashboard.contact.replay-contact');

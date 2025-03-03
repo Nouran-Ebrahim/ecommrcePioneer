@@ -12,58 +12,60 @@ class ContactService
     /**
      * Create a new class instance.
      */
-    protected $ContactRepository;
-    public function __construct(ContactRepository $ContactRepository)
+    protected $contactRepository;
+    public function __construct(ContactRepository $contactRepository)
     {
-        $this->ContactRepository = $ContactRepository;
+        $this->contactRepository = $contactRepository;
     }
-    public function getMarkReadContacts()
+
+    public function getMarkReadContacts($keyword = null)
     {
-        return $this->ContactRepository->getMarkReadContacts();
+        return $this->contactRepository->getMarkReadContacts($keyword);
+    }
+    public function getUnreadContacts($keyword = null)
+    {
+        return $this->contactRepository->getMarkUnreadContacts($keyword);
     }
     public function getInboxContacts($keyword = null)
     {
-        return $this->ContactRepository->getInboxContacts($keyword);
+        return $this->contactRepository->getInboxContacts($keyword);
+    }
+    public function getAnsweredContacts($keyword = null)
+    {
+        return $this->contactRepository->getAnsweredContacts($keyword);
     }
     public function getTrashedContacts($keyword = null)
     {
-        return $this->ContactRepository->getTrashedContacts($keyword);
-
+        return $this->contactRepository->getTrashedContacts($keyword);
     }
-
-    public function getContactById($id): mixed
+    public function getContactById($id)
     {
-        $contact = $this->getContactById($id);
+        $contact = $this->contactRepository->getContactById($id);
         return $contact ?? false;
     }
-
-    public function markRead($id)
-    {
-        $contact = $this->getContactById($id);
-        if (!$contact) {
-            return false;
-        }
-        return $this->ContactRepository->markRead($contact);
-
-    }
-
     public function deleteContact($id)
     {
         $contact = $this->getContactById($id);
         if (!$contact) {
             return false;
         }
-        return $this->ContactRepository->deleteContact($contact);
+        return $this->contactRepository->deleteContact($contact);
     }
-
-    public function markUnRead($id)
+    public function markAsRead($id)
     {
         $contact = $this->getContactById($id);
         if (!$contact) {
             return false;
         }
-        return $this->ContactRepository->markUnRead($contact);
-
+        return $this->contactRepository->markRead($contact);
+    }
+    public function markUnread($id)
+    {
+        $contact = $this->getContactById($id);
+        if (!$contact) {
+            return false;
+        }
+        return $this->contactRepository->markUnread($contact);
     }
     public function restoreContact($id)
     {
@@ -71,7 +73,7 @@ class ContactService
         if (!$contact) {
             return false;
         }
-        return $this->ContactRepository->restoreContact($contact);
+        return $this->contactRepository->restoreContact($contact);
     }
     public function forceDeleteContact($id)
     {
@@ -79,12 +81,30 @@ class ContactService
         if (!$contact) {
             return false;
         }
-        return $this->ContactRepository->forceDeleteContact($contact);
+        return $this->contactRepository->forceDeleteContact($contact);
+    }
+    public function deleteAllReadedContacts()
+    {
+        return $this->contactRepository->deleteAllReadedContacts();
+    }
+    public function markAllAsRead()
+    {
+        return $this->contactRepository->markAllAsRead();
+    }
+    public function deleteAllAnsweredContacts()
+    {
+        return $this->contactRepository->deleteAllAnsweredContacts();
+    }
+    public function latestContact()
+    {
+        return $this->contactRepository->latestContact();
     }
     public function replayContact($contactId, $replayMessage)
     {
         $contact = $this->getContactById($contactId);
-        Mail::to($contact->email)->send(new ReplayContactMail($replayMessage, $contact->subject, $contact->name));
+        Mail::to($contact->email)->send(new ReplayContactMail($contact->name, $replayMessage, $contact->subject));
+
+        //mark as read to contact
         return true;
     }
 }

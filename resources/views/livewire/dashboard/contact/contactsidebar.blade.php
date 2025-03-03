@@ -1,36 +1,37 @@
 <div>
-    <div class="form-group form-group-compose text-center">
-        <button type="button" class="btn btn-danger btn-block my-1"><i class="ft-mail"></i>
-            Compose</button>
+    <div class="form-group text-center">
+        <!-- Dropup Button -->
+        <div class="btn-group dropup w-100">
+            <button class="btn btn-danger btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="ft-mail"></i> Actions
+            </button>
+            <div class="dropdown-menu w-100 text-center">
+                <a wire:click.prevent="markAllAsRead" href="#" class="dropdown-item">
+                    <i class="ft-trash-2"></i> Mark All As Read
+                </a>
+                <a wire:click.prevent="deleteAllReadContacts" href="#" class="dropdown-item">
+                    <i class="ft-trash-2"></i> Delete All Read Contacts
+                </a>
+                <a wire:click.prevent="deleteAllAnswereContacts" href="#" class="dropdown-item">
+                    <i class="ft-trash-2"></i> Delete All Answere Contacts
+                </a>
+            </div>
+        </div>
     </div>
-    <h6 class="text-muted text-bold-500 mb-1">Messages</h6>
-    <div class="list-group list-group-messages">
-        <a wire:click.prevent="selectScreen('inbox')" href="#"
-            class="list-group-item @if ($screen == 'inbox') active @endif border-0">
-            <i class="ft-inbox mr-1"></i> Inbox
-            <span class="badge badge-secondary badge-pill float-right">8</span>
-        </a>
-        <a wire:click.prevent="selectScreen('readed')" href="#"
-            class="list-group-item @if ($screen == 'readed') active @endif list-group-item-action border-0"><i
-                class="la la-paper-plane-o mr-1"></i> Readed</a>
-        <a wire:click.prevent="selectScreen('answered')" href="#"
-            class="list-group-item @if ($screen == 'answered') active @endif list-group-item-action border-0"><i
-                class="ft-file mr-1"></i> Answered</a>
 
-        <a href="#" class="list-group-item list-group-item-action border-0"><i class="ft-star mr-1"></i>
-            Starred<span class="badge badge-danger badge-pill float-right">3</span> </a>
-        <a wire:click.prevent="selectScreen('trash')" href="#" class="list-group-item @if ($screen == 'trash') active @endif list-group-item-action border-0"><i class="ft-trash-2 mr-1"></i>
-            Trash</a>
-    </div>
-    {{-- <h6 class="text-muted text-bold-500 mt-1 mb-1">Labels</h6>
-    <div class="list-group list-group-messages">
-        <a href="#" class="list-group-item list-group-item-action border-0">
-            <i class="ft-circle mr-1 warning"></i> Work
-            <span class="badge badge-warning badge-pill float-right">5</span>
+    <h6 class="text-muted font-weight-bold">Messages</h6>
+    <div class="list-group">
+        <a wire:click.prevent="selectScreen('inbox')" href="#" class="list-group-item {{ $screen == 'inbox' ? 'active' : '' }} border-0">
+            <i class="ft-inbox mr-1"></i> Inbox <span class="badge badge-secondary float-right">{{ $inboxCount }}</span>
         </a>
-        <!--<a href="#" class="list-group-item list-group-item-action border-0"><i class="ft-circle mr-1 danger"></i> Family</a>-->
-        <!--<a href="#" class="list-group-item list-group-item-action border-0"><i class="ft-circle mr-1 primary"></i> Friends</a>-->
-        <a href="#" class="list-group-item list-group-item-action border-0"><i class="ft-circle mr-1 success"></i>
-            Private <span class="badge badge-success badge-pill float-right">3</span> </a>
-    </div> --}}
+        <a wire:click.prevent="selectScreen('readed')" href="#" class="list-group-item {{ $screen == 'readed' ? 'active' : '' }} border-0">
+            <i class="la la-paper-plane-o mr-1"></i> Read <span class="badge badge-secondary float-right">{{ $readedCount }}</span>
+        </a>
+        <a wire:click.prevent="selectScreen('answered')" href="#" class="list-group-item {{ $screen == 'answered' ? 'active' : '' }} border-0">
+            <i class="ft-file mr-1"></i> Answered <span class="badge badge-secondary float-right">{{ $answeredCount }}</span>
+        </a>
+        <a wire:click.prevent="selectScreen('trashed')" href="#" class="list-group-item {{ $screen == 'trashed' ? 'active' : '' }} border-0">
+            <i class="ft-trash-2 mr-1"></i> Trash <span class="badge badge-secondary float-right">{{ $trashedCount }}</span>
+        </a>
+    </div>
 </div>
