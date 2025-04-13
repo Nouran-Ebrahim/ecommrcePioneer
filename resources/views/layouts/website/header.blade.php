@@ -3,7 +3,7 @@
         <div class="container">
             <div class="header-top">
                 <div class="header-profile">
-                    <a href="user-profile.html"><span>Account</span></a>
+                    <a href="{{ route('website.profile') }}"><span>Account</span></a>
                     <a href="order.html"><span>Track Order</span></a>
                     <a href="faq.html"><span>Support</span></a>
                 </div>
@@ -241,7 +241,7 @@
                         </div>
                     </div>
                     <div class="header-user">
-                        <a href="user-profile.html">
+                        <a href="{{ route('website.profile') }}">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
                                     height="24" class="fill-current">
@@ -1064,7 +1064,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="user-profile.html">
+                            <a href="{{ route('website.profile') }}">
                                 <span class="list-text">User
                                     Dashboard</span>
                             </a>

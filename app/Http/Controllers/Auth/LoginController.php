@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Session;
+use Illuminate\Http\JsonResponse;
+
 
 class LoginController extends Controller
 {
@@ -41,5 +45,25 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         return view('website.auth.login');
+    }
+    protected function authenticated(Request $request, $user)
+    {
+        Session::flash('success', 'logged successfuly');
+        return redirect()->route('website.profile');
+    }
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+
+        if ($response = $this->loggedOut($request)) {
+            return $response;
+        }
+        Session::flash('success', 'loggedOut successfuly');
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 204)
+            : redirect('/');
     }
 }
