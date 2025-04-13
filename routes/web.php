@@ -40,7 +40,7 @@ Route::group(
                 Route::get('user-profile', 'showProfile')->name('profile');
             });
 
-            
+
         });
 
         Route::get('/home', [HomeController::class, 'index'])->name('home');

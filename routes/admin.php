@@ -116,9 +116,9 @@ Route::group(
                     Route::get('attributes-all', [AttributeController::class, 'getAll'])
                         ->name('attributes.all');
                 });
-                Livewire::setUpdateRoute(function ($handle) {
-                    return Route::post('/livewire/update', $handle);
-                });
+                // Livewire::setUpdateRoute(function ($handle) {
+                //     return Route::post('/livewire/update', $handle);
+                // });
 
                 Route::group(['middleware' => 'can:products'], function () {
                     Route::resource('products', ProductController::class);
