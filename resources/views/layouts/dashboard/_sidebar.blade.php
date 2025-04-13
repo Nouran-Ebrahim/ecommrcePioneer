@@ -184,9 +184,18 @@
                 <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title"
                             data-i18n="nav.dash.main">{{ __('dashboard.settings') }}</span></a>
                     <ul class="menu-content">
-                        <li class="active"><a class="menu-item" href="{{ route('dashboard.settings.index') }}"
-                                data-i18n="nav.dash.ecommerce">{{ __('dashboard.settings') }}</a>
-                        </li>
+                        @can('settings')
+                            <li class="active"><a class="menu-item" href="{{ route('dashboard.settings.index') }}"
+                                    data-i18n="nav.dash.ecommerce">{{ __('dashboard.settings') }}</a>
+                            </li>
+                        @endcan
+                        @can('sliders')
+                            <li class="active"><a class="menu-item" href="{{ route('dashboard.sliders.index') }}"
+                                    data-i18n="nav.dash.ecommerce">{{ __('dashboard.sliders') }}</a>
+
+                            </li>
+                        @endcan
+
                     </ul>
                 </li>
             @endcan

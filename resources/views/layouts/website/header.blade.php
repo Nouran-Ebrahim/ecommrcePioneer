@@ -20,7 +20,7 @@
         <div class="container">
             <div class="header-center">
                 <div class="logo">
-                    <a href="index-2.html">
+                    <a href="{{ route('website.home') }}">
                         <img src="{{ asset('assets/website') }}/assets/images/logos/logo.webp" alt="logo">
                     </a>
                 </div>
@@ -270,7 +270,7 @@
                     </svg>
                 </span>
             </button>
-            <a href="index-2.html" class="mobile-header-logo">
+            <a href="{{ route('website.home') }}" class="mobile-header-logo">
                 <img src="{{ asset('assets/website') }}/assets/images/logos/logo.webp" alt="logo">
             </a>
             <a href="cart.html" class="header-cart cart-item">
@@ -958,7 +958,7 @@
                 <div class="header-nav-menu">
                     <ul class="menu-list">
                         <li>
-                            <a href="index-2.html">
+                            <a href="{{ route('website.home') }}">
                                 <span class="list-text">Home</span>
                             </a>
                         </li>

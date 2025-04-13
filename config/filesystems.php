@@ -51,6 +51,13 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'sliders' => [
+            'driver' => 'local',
+            'root' => public_path('/uploads/sliders'),
+            'url' => env('APP_URL'). '/uploads/sliders',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
         'settings' => [
             'driver' => 'local',
             'root' => public_path('/uploads/settings'),

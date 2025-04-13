@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Dashboard\ContactController;
+use App\Http\Controllers\Dashboard\SliderController;
 use App\Http\Controllers\Dashboard\UserController;
 use Livewire\Livewire;
 use App\Http\Controllers\Dashboard\AttributeController;
@@ -78,6 +79,15 @@ Route::group(
                         ->name('brands.all');
                     Route::get('brands/{id}/status', [BrandController::class, 'changeStatus'])->name('brands.status');
                 });
+
+
+                Route::group(['middleware' => 'can:sliders'], function () {
+                    Route::resource('sliders', SliderController::class)->except('show');
+                    Route::get('sliders-all', [SliderController::class, 'getAll'])
+                        ->name('sliders.all');
+                    // Route::get('sliders/{id}/status', [SliderController::class, 'changeStatus'])->name('sliders.status');
+                });
+
                 Route::group(['middleware' => 'can:coupons'], function () {
                     Route::resource('coupons', CouponController::class)->except('show');
                     Route::get('coupons-all', [CouponController::class, 'getAll'])
@@ -116,9 +126,6 @@ Route::group(
                     Route::get('attributes-all', [AttributeController::class, 'getAll'])
                         ->name('attributes.all');
                 });
-                // Livewire::setUpdateRoute(function ($handle) {
-                //     return Route::post('/livewire/update', $handle);
-                // });
 
                 Route::group(['middleware' => 'can:products'], function () {
                     Route::resource('products', ProductController::class);
@@ -147,7 +154,12 @@ Route::group(
             }
 
         );
+        Livewire::setUpdateRoute(function ($handle) {
+            return Route::post('/livewire/update', $handle);
+        });
+
     }
 
 );
+
 
