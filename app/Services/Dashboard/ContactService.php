@@ -6,7 +6,9 @@ use App\Mail\ReplayContactMail;
 use Illuminate\Support\Facades\Mail;
 use Yajra\DataTables\Facades\DataTables;
 use App\Repositories\Dashboard\ContactRepository;
-
+use DB;
+use Illuminate\Support\Facades\Cache;
+use Log;
 class ContactService
 {
     /**
@@ -101,10 +103,23 @@ class ContactService
     }
     public function replayContact($contactId, $replayMessage)
     {
-        $contact = $this->getContactById($contactId);
-        Mail::to($contact->email)->send(new ReplayContactMail($contact->name, $replayMessage, $contact->subject));
+        try {
+            DB::beginTransaction();
+            $contact = $this->getContactById($contactId);
+            Mail::to($contact->email)->send(new ReplayContactMail($contact->name, $replayMessage, $contact->subject));
 
-        //mark as read to contact
-        return true;
+            //mark as read to contact
+            $this->markAsRead($contactId);
+            $contact->update([
+                'replay_status' => 1,
+            ]);
+            DB::commit();
+            return true;
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Error Sending email: ' . $e->getMessage(), ['trace' => $e->getTraceAsString()]);
+            return false;
+        }
+
     }
 }

@@ -5,7 +5,7 @@
         <div class="swiper hero-swiper">
             <div class="swiper-wrapper hero-wrapper">
                 @foreach ($sliders as $slider)
-                    <div class="swiper-slide hero-slider-one" style="background-image: url({{ asset($slider->file_name) }})">
+                    <div class="swiper-slide hero-slider-one" style="background-image: url({{ asset($slider->file_name) }}); background-size:cover; ">
                         <div class="container">
                             <div class="col-lg-6">
                                 <div class="wrapper-section" data-aos="fade-up">

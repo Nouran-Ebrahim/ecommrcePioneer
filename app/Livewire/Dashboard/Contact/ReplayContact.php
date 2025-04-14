@@ -39,7 +39,8 @@ class ReplayContact extends Component
             return;
         }
         $this->dispatch('close-modal');
-        $this->dispatch('replay-contact-success', __('dashboard.success_msg')); //New
+        $this->dispatch('replay-contact-success', __('dashboard.Replay Sent Successfully')); //New
+        $this->dispatch('refresh-messages');
     }
 
     public function render()

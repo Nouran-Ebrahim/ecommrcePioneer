@@ -1,9 +1,9 @@
 <x-mail::message>
-    # Hello {{ $clineName }}
+    # Hello {{ $clientName }}
 
     thanks for contcat us.
     **Our Response:**
-    {{ $replayMessage }}
+    {{ $replyMessage }}
 
     <x-mail::button :url="config('app.url')">
         Vist our website

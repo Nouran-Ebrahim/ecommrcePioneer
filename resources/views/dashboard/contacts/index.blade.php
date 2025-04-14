@@ -43,9 +43,10 @@
                             @livewire('dashboard.contact.contact-show')
                         </div>
 
-
-
-
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer text-center">
+                        @livewire('dashboard.contact.replay-contact')
                     </div>
                 </div>
             </div>
@@ -53,7 +54,6 @@
     </div>
 @endsection
 @push('script')
-
     <script>
         // sweet alert after contact deleted
         document.addEventListener('livewire:init', () => {
