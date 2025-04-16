@@ -35,8 +35,8 @@
               <div class="right"></div>
           </div>
         </div>
-       <h1 class="second-four">3</h1>
-        <p class="wrong-para">Uh Oh! Not Authorized</p>
+       <h1 class="second-four">4</h1>
+        <p class="wrong-para">Uh Oh! Not Found</p>
       </div>
       <script src="{{ asset('assets/errors/script.js') }}"></script>
 </body>
