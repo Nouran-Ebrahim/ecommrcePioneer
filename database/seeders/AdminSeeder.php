@@ -23,7 +23,7 @@ class AdminSeeder extends Seeder
 
         Admin::create([
             'name' => 'admin name',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@app.com',
             'password' => bcrypt( '12345678'),
             'status' => 1,
             'role_id' => $first_role_id
