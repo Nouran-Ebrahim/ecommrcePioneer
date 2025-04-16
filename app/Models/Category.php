@@ -52,4 +52,9 @@ class Category extends Model
     {
         return $q->where('status', 1);
     }
+    public function getIconAttribute($icon)
+    {
+
+        return 'uploads/categories/' . $icon;
+    }
 }

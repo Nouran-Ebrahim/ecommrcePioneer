@@ -60,6 +60,7 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>{{ __('dashboard.name') }}</th>
+                                                <th>{{ __('dashboard.slug') }}</th>
                                                 <th>{{ __('dashboard.has_variants') }}</th>
                                                 <th>{{ __('dashboard.images') }}</th>
                                                 <th>{{ __('dashboard.status') }}</th>
@@ -130,6 +131,10 @@
                 {
                     data: 'name',
                     name: 'name',
+                },
+                {
+                    data: 'slug',
+                    name: 'slug',
                 },
                 {
                     data: 'has_variants',

@@ -6,14 +6,22 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Product extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory, HasTranslations, Sluggable;
 
-    public $fillable = ['name', 'desc', 'small_desc', 'status', 'sku', 'available_for', 'views', 'has_variants', 'price', 'has_discount', 'discount', 'start_discount', 'end_discount', 'manage_stock', 'quantity', 'available_in_stock', 'category_id', 'brand_id'];
+    public $fillable = ['name','slug', 'desc', 'small_desc', 'status', 'sku', 'available_for', 'views', 'has_variants', 'price', 'has_discount', 'discount', 'start_discount', 'end_discount', 'manage_stock', 'quantity', 'available_in_stock', 'category_id', 'brand_id'];
     public $translatable = ['name', 'desc', 'small_desc'];
-
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
     // relationships
     public function category()
     {

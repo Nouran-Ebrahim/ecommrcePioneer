@@ -101,6 +101,14 @@
                                                     SKU: {{ $product->sku }}
                                                 </p>
                                             </div>
+                                            <!-- Slug -->
+                                            <div>
+                                                <p>
+                                                    <i class="fa fa-barcode text-info"></i>
+                                                    Slug: {{ $product->slug }}
+                                                </p>
+                                            </div>
+
 
                                             <!-- Views -->
                                             <div>

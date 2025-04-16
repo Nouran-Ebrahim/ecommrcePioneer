@@ -52,7 +52,7 @@
                                 @include('dashboard.includes.validations-errors')
 
                                 {{-- <p class="card-text">{{ __('dashboard.form_edit') }}.</p> --}}
-                                <form class="form" action="{{ route('dashboard.categories.store')}}" method="POST" >
+                                <form class="form" enctype="multipart/form-data" action="{{ route('dashboard.categories.store')}}" method="POST" >
                                     @csrf
 
                                     <div class="form-body">
@@ -75,7 +75,11 @@
                                                 @endforeach
                                             </select>
                                         </div>
-
+                                        <div class="form-group">
+                                            <label for="image">{{ __('dashboard.icon') }}</label>
+                                            <input type="file" name="icon" class="form-control" id="single-image"
+                                                placeholder="{{ __('dashboard.image') }}">
+                                        </div>
 
                                         <div class="form-group">
                                             <label>{{ __('dashboard.status') }}</label>

@@ -50,7 +50,7 @@
                                     @include('dashboard.includes.validations-errors')
 
                                     {{-- <p class="card-text">{{ __('dashboard.form_edit') }}.</p> --}}
-                                    <form class="form" action="{{ route('dashboard.categories.update', $category->id) }}" method="POST" >
+                                    <form enctype="multipart/form-data" class="form" action="{{ route('dashboard.categories.update', $category->id) }}" method="POST" >
                                         @csrf
                                         @method('PUT')
 
@@ -77,7 +77,11 @@
                                                 </select>
                                             </div>
 
-
+                                            <div class="form-group">
+                                                <label for="image">{{ __('dashboard.icon') }}</label>
+                                                <input type="file"  name="icon" class="form-control" id="single-image-edit"
+                                                    placeholder="{{ __('dashboard.image') }}">
+                                            </div>
                                             <div class="form-group">
                                                 <label>{{ __('dashboard.status') }}</label>
                                                 <div class="input-group">
@@ -113,3 +117,24 @@
     </div>
 
 @endsection
+@push('script')
+<script>
+    var lang = "{{ app()->getLocale() }}";
+    $(function() {
+         $('#single-image-edit').fileinput({
+             theme: 'fa5',
+             language:lang,
+             allowedFileTypes: ['image'],
+             maxFileCount: 1,
+             enableResumableUpload: false,
+             showUpload: false,
+             initialPreviewAsData:true,
+             initialPreview:[
+                "{{ asset($category->icon) }}",
+             ],
+
+         });
+
+     });
+</script>
+@endpush

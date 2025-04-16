@@ -46,7 +46,7 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        $data = $request->only(['name', 'parent', 'status']);
+        $data = $request->only(['name', 'parent', 'status','icon']);
         if (!$this->categoryService->store($data)) {
             Session::flash('erorr', __('messages.general_error'));
             return redirect()->back();
@@ -78,7 +78,7 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, string $id)
     {
-        $data = $request->only(['name', 'parent', 'status', 'id']);
+        $data = $request->only(['name', 'parent', 'status', 'id','icon']);
         if (!$this->categoryService->update($data)) {
             Session::flash('erorr', __('messages.general_error'));
             return redirect()->back();

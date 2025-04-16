@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Website\AboutusController;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Website\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,8 @@ Route::group(
         });
 
         Route::get('/home', [HomeController::class, 'index'])->name('home');
+        Route::get('/about', [AboutusController::class, 'index'])->name('about');
+
         Livewire::setUpdateRoute(function ($handle) {
             return Route::post('/livewire/update', $handle);
         });

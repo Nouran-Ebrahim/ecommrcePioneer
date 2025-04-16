@@ -12,6 +12,8 @@ use App\Models\Brand;
 use App\Models\Category;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Setting;
+use App\Services\Website\HomeService;
+
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -76,9 +78,11 @@ class ViewServiceProvider extends ServiceProvider
         });
         // get Setting And Share
         $setting = $this->firstOrCreateSetting();
-
+        $homeService = app(HomeService::class);
+        $allCategories = $homeService->getCategories();
         view()->share([
             'setting' => $setting,
+            'allCategories'=> $allCategories
         ]);
     }
     public function firstOrCreateSetting()

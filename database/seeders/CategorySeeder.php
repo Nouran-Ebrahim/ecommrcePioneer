@@ -18,27 +18,34 @@ class CategorySeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Category::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-        
+
         $data = [
             [
                 'name' => ['en' => 'Electronics', 'ar' => 'الالكترونيات'],
                 'status' => 1,
-                'parent' => null
+                'parent' => null,
+                'icon'=>'dresses.webp'
             ],
             [
                 'name' => ['en' => 'Category2', 'ar' => 'التصنيف الثاني'],
                 'status' => 1,
-                'parent' => null
+                'parent' => null,
+                'icon'=>'dresses.webp'
+
             ],
             [
                 'name' => ['en' => 'Category3', 'ar' => 'التصيف الثالث'],
                 'status' => 1,
-                'parent' => null
+                'parent' => null,
+                'icon'=>'dresses.webp'
+
             ],
             [
                 'name' => ['en' => 'Category4', 'ar' => 'التصيف الرابع'],
                 'status' => 1,
-                'parent' => null
+                'parent' => null,
+                'icon'=>'dresses.webp'
+
             ],
 
         ];

@@ -57,6 +57,7 @@
                                         <th>@lang('dashboard.name')</th>
                                         <th>@lang('dashboard.status')</th>
                                         <th>{{ __('dashboard.products_count') }}</th>
+                                        <th>{{ __('dashboard.icon') }}</th>
 
                                         <th>@lang('dashboard.created_at')</th>
                                         <th>@lang('dashboard.actions')</th>
@@ -69,6 +70,7 @@
                                         <th>@lang('dashboard.name')</th>
                                         <th>@lang('dashboard.status')</th>
                                         <th>{{ __('dashboard.products_count') }}</th>
+                                        <th>{{ __('dashboard.icon') }}</th>
 
                                         <th>@lang('dashboard.created_at')</th>
                                         <th>@lang('dashboard.actions')</th>
@@ -140,6 +142,10 @@
                 {
                     data: 'products_count',
                     name: 'products_count',
+                },
+                {
+                    data: 'icon',
+                    name: 'icon',
                 },
                 {
                     data: 'created_at',
