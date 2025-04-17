@@ -120,4 +120,6 @@
      });
  </script>
  {{-- end fileinput --}}
+ <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
+
  @stack('script')

@@ -84,5 +84,7 @@
 <link rel="stylesheet" href="{{ asset('vendor/file-input/css/fileinput.min.css') }}">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" crossorigin="anonymous">
 
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
+
 {{-- end file input --}}
 @stack('style')

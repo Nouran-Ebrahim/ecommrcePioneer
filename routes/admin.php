@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Dashboard\ContactController;
+use App\Http\Controllers\Dashboard\PageController;
 use App\Http\Controllers\Dashboard\SliderController;
 use App\Http\Controllers\Dashboard\UserController;
 use Livewire\Livewire;
@@ -86,6 +87,11 @@ Route::group(
                     Route::get('sliders-all', [SliderController::class, 'getAll'])
                         ->name('sliders.all');
                     // Route::get('sliders/{id}/status', [SliderController::class, 'changeStatus'])->name('sliders.status');
+                });
+                Route::group(['middleware' => 'can:pages'], function () {
+                    Route::resource('pages', PageController::class)->except('show');
+                    Route::get('pages-all', [PageController::class, 'getAll'])
+                        ->name('pages.all');
                 });
 
                 Route::group(['middleware' => 'can:coupons'], function () {

@@ -27,6 +27,8 @@ return [
     'global_shipping'=>'اداره الشحن العالمي',
     'attributes'=>'خصائص المنتج',
     "contacts"=>"اداره التواصل",
+    'pages'=>'اداره الصفحات'
+
 
 
 ];

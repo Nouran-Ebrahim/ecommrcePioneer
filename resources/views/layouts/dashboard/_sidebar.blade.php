@@ -195,6 +195,12 @@
 
                             </li>
                         @endcan
+                        @can('pages')
+                            <li class="active"><a class="menu-item" href="{{ route('dashboard.pages.index') }}"
+                                    data-i18n="nav.dash.ecommerce">{{ __('dashboard.pages') }}</a>
+
+                            </li>
+                        @endcan
 
                     </ul>
                 </li>

@@ -72,6 +72,13 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'pages' => [
+            'driver' => 'local',
+            'root' => public_path('/uploads/pages'),
+            'url' => env('APP_URL'),
+            'visibility' => 'public',
+            'throw' => false,
+        ],
         'products' => [
             'driver' => 'local',
             'root' => public_path('/uploads/products'),
