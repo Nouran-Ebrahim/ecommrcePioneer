@@ -9,12 +9,17 @@ class PageRepository
 
     public function getPages()
     {
-       $Pages = Page::latest()->get();
-       return $Pages;
+        $Pages = Page::latest()->get();
+        return $Pages;
     }
     public function getPage($id)
     {
         $Page = Page::find($id);
+        return $Page;
+    }
+    public function getBySlug($slug)
+    {
+        $Page = Page::where("slug", $slug)->first();
         return $Page;
     }
     public function createPage($data)
@@ -24,11 +29,11 @@ class PageRepository
     }
     public function updatePage($Page, $data)
     {
-       return $Page->update($data);
+        return $Page->update($data);
     }
     public function deletePage($Page)
     {
-       return $Page->delete();
+        return $Page->delete();
     }
 
 

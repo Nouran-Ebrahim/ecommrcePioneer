@@ -6,6 +6,7 @@ use App\Repositories\Dashboard\PageRepository;
 use Nette\Utils\Image;
 use App\Utils\ImageManger;
 use Illuminate\Support\Facades\Cache;
+use Str;
 use Yajra\DataTables\Facades\DataTables;
 
 class PageService
@@ -28,6 +29,12 @@ class PageService
         if (!$page) {
             abort(404);
         }
+        return $page;
+    }
+    public function getBySlug($slug)
+    {
+        $page = $this->pageRepository->getBySlug($slug);
+
         return $page;
     }
     public function getPagesForDatatables()
@@ -59,7 +66,7 @@ class PageService
             $file_name = $this->imageManger->uploadSingleimage('/', $data['image'], 'pages');
             $data['image'] = $file_name;
         }
-        // dd($data);
+        $data['slug'] = Str::slug($data['title']['en']);
         return $this->pageRepository->createPage($data);
     }
 
@@ -75,6 +82,7 @@ class PageService
             $file_name = $this->imageManger->uploadSingleimage('/', $data['image'], 'pages');
             $data['image'] = $file_name;
         }
+        $data['slug'] = Str::slug($data['title']['en']);
 
         return $this->pageRepository->updatePage($page, $data);
     }

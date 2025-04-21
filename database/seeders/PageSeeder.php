@@ -19,6 +19,7 @@ class PageSeeder extends Seeder
                 'en' => 'Terms & Conditions',
                 'ar' => 'شروط والاحكام'
             ],
+            'slug'=>'terms-conditions',
             'content' => [
                 'en' => 'Terms & Conditions short description',
                 'ar' => 'وصف قصير للشروط والاحكام'
@@ -30,6 +31,7 @@ class PageSeeder extends Seeder
                 'en' => 'Privacy Policy',
                 'ar' => 'سياسية الخصوصية'
             ],
+            'slug'=> 'privacy-policy',
             'content' => [
                 'en' => 'Privacy Policy short description',
                 'ar' => 'سياسية الخصصويه قصيره'

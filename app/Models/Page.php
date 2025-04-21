@@ -8,7 +8,7 @@ use Spatie\Translatable\HasTranslations;
 use Cviebrock\EloquentSluggable\Sluggable;
 class Page extends Model
 {
-    use HasFactory, HasTranslations, Sluggable;
+    use HasFactory, HasTranslations;
     protected $fillable = [
         "title",
         "slug",
@@ -16,14 +16,17 @@ class Page extends Model
         'image'
     ];
     public $translatable = ['title', 'content'];
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
-    }
+    // public function sluggable(): array
+    // {
+    //     return [
+    //         'slug' => [
+    //             'source' => function ($model) {
+    //                 // Always use English title for slug
+    //                 return $model->getTranslation('title', 'en');
+    //             }
+    //         ]
+    //     ];
+    // }
     public function getCreatedAtAttribute($value)
     {
         return date('d/m/Y h:i A', strtotime($value));

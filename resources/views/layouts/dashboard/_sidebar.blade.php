@@ -180,6 +180,16 @@
                     </ul>
                 </li>
             @endcan
+            @can('faqsQuestions')
+                <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title"
+                            data-i18n="nav.dash.main">{{ __('dashboard.faqsQuestions') }}</span></a>
+                    <ul class="menu-content">
+                        <li class="active"><a class="menu-item" href="{{ route('dashboard.faqsQuestions.index') }}"
+                                data-i18n="nav.dash.ecommerce">{{ __('dashboard.faqsQuestion') }}</a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
             @can('settings')
                 <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title"
                             data-i18n="nav.dash.main">{{ __('dashboard.settings') }}</span></a>

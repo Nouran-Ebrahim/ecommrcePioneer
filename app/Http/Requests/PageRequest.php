@@ -25,7 +25,7 @@ class PageRequest extends FormRequest
         $rules =  [
             'title.*'=>['required','string','min:2','max:100'],
             'content.*'=>['required','string','min:3','max:100000'],
-            'image'=>['nullable','image','mimes:png,jpg,gif.jpeg,svg','max:2048']
+            'image'=>['nullable','image','mimes:png,jpg,gif.jpeg,svg,webp','max:2048']
         ];
 
         return $rules;

@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Dashboard\ContactController;
+use App\Http\Controllers\Dashboard\FaqQuestionController;
 use App\Http\Controllers\Dashboard\PageController;
 use App\Http\Controllers\Dashboard\SliderController;
 use App\Http\Controllers\Dashboard\UserController;
@@ -90,6 +91,8 @@ Route::group(
                 });
                 Route::group(['middleware' => 'can:pages'], function () {
                     Route::resource('pages', PageController::class)->except('show');
+                    Route::post('deleteImage', [PageController::class, 'deleteImage'])
+                        ->name('pages.deleteImage');
                     Route::get('pages-all', [PageController::class, 'getAll'])
                         ->name('pages.all');
                 });
@@ -105,6 +108,11 @@ Route::group(
                     Route::resource('faqs', FaqController::class);
                     Route::get('faqs-all', [FaqController::class, 'getAll'])
                         ->name('faqs.all');
+                });
+                Route::group(['middleware' => 'can:faqsQuestions'], function () {
+                    Route::resource('faqsQuestions', FaqQuestionController::class);
+                    Route::get('faqsQuestions-all', [FaqQuestionController::class, 'getAll'])
+                        ->name('faqsQuestions.all');
                 });
                 Route::group(['middleware' => 'can:global_shipping'], function () {
                     Route::controller(WorldController::class)->group(function () {
