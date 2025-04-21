@@ -1,6 +1,6 @@
     <div>
         <form wire:submit.prevent="submit">
-            <div class="question-section login-section " data-aos="fade-left">
+            <div class="question-section login-section " >
                 <div class="review-form">
                     <h5 class="comment-title">Have Any Question</h5>
                     <div class=" account-inner-form">
