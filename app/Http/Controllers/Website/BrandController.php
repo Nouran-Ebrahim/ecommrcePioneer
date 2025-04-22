@@ -8,7 +8,7 @@ use App\Models\Slider;
 use App\Services\Website\HomeService;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class BrandController extends Controller
 {
     public $homeService;
     public function __construct(HomeService $homeService)
@@ -17,11 +17,10 @@ class HomeController extends Controller
     }
     public function index()
     {
-        $sliders = $this->homeService->getSliders();
-        $someCategories=$this->homeService->getCategories(12);
-        $someBrands=$this->homeService->getBrands(12);
 
-        return view('website.index', compact('sliders','someCategories','someBrands'));
+        $brands=$this->homeService->getBrands(12);
+
+        return view('website.brands', compact('brands'));
 
     }
 }

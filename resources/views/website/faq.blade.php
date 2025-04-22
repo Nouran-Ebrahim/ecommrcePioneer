@@ -4,7 +4,7 @@
     <section class="blog about-blog">
         <div class="container">
             <div class="blog-bradcrum">
-                <span><a href="index-2.html">Home</a></span>
+                <span><a href="{{route('website.home')}}">Home</a></span>
                 <span class="devider">/</span>
                 <span><a href="#">@lang('dashboard.faqs')</a></span>
             </div>

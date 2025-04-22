@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repositories\Website;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Slider;
 
@@ -10,8 +11,20 @@ class HomeRepository
     {
         return Slider::all();
     }
-    public function getCategories($take = null)
+    public function getCategories($limit = null)
     {
-        return Category::active()->latest()->get()->take($take);
+        $categories = Category::active()->when($limit ?? null, function ($query) use ($limit) {
+            $query->limit($limit);
+        })->latest()->get();
+
+        return $categories;
+    }
+    public function getBrands($limit = null)
+    {
+        $Brands = Brand::active()->when($limit ?? null, function ($query) use ($limit) {
+            $query->limit($limit);
+        })->latest()->get();
+
+        return $Brands;
     }
 }

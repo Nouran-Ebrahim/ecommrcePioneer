@@ -15,8 +15,12 @@ class HomeService
     {
       return  $this->homeRepository->getSliders();
     }
-    public function getCategories($take = null)
+    public function getCategories($limit = null)
     {
-        return $this->homeRepository->getCategories($take);
+        return $this->homeRepository->getCategories($limit);
+    }
+    public function getBrands($limit = null)
+    {
+        return $this->homeRepository->getBrands($limit);
     }
 }

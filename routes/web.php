@@ -3,10 +3,13 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Website\AboutusController;
+use App\Http\Controllers\Website\BrandController;
+use App\Http\Controllers\Website\CategoryController;
 use App\Http\Controllers\Website\DaynamicPageController;
 use App\Http\Controllers\Website\FaqController;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Website\ProfileController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
@@ -49,6 +52,8 @@ Route::group(
         Route::get('/home', [HomeController::class, 'index'])->name('home');
         Route::get('/faq', [FaqController::class, 'index'])->name('faq');
         Route::get('page/{slug}', [DaynamicPageController::class, 'index'])->name('daynamic.page');
+        Route::get('/brands', [BrandController::class, 'index'])->name('brands.index');
+        Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 
         Livewire::setUpdateRoute(function ($handle) {
             return Route::post('/livewire/update', $handle);

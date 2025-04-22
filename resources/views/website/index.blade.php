@@ -5,7 +5,8 @@
         <div class="swiper hero-swiper">
             <div class="swiper-wrapper hero-wrapper">
                 @foreach ($sliders as $slider)
-                    <div class="swiper-slide hero-slider-one" style="background-image: url({{ asset($slider->file_name) }}); background-size:cover; ">
+                    <div class="swiper-slide hero-slider-one"
+                        style="background-image: url({{ asset($slider->file_name) }}); background-size:cover; ">
                         <div class="container">
                             <div class="col-lg-6">
                                 <div class="wrapper-section" data-aos="fade-up">
@@ -89,18 +90,18 @@
         <div class="container">
             <div class="section-title">
                 <h5>Our Categories</h5>
-                <a href="product-sidebar.html" class="view">View All</a>
+                <a href="{{ route('website.categories.index') }}" class="view">View All</a>
             </div>
             <div class="category-section">
                 @foreach ($someCategories as $category)
-                <div class="product-wrapper" data-aos="fade-right" data-aos-duration="100">
-                    <div class="wrapper-img">
-                        <img src="{{asset( $category->icon)}}" alt="dress">
+                    <div class="product-wrapper" data-aos="fade-right" data-aos-duration="100">
+                        <div class="wrapper-img">
+                            <img src="{{ asset($category->icon) }}" alt="dress">
+                        </div>
+                        <div class="wrapper-info">
+                            <a href="product-sidebar.html" class="wrapper-details">{{ $category->name }}</a>
+                        </div>
                     </div>
-                    <div class="wrapper-info">
-                        <a href="product-sidebar.html" class="wrapper-details">{{ $category->name }}</a>
-                    </div>
-                </div>
                 @endforeach
 
 
@@ -113,93 +114,21 @@
         <div class="container">
             <div class="section-title">
                 <h5>Brand of Prodcuts</h5>
-                <a href="product-sidebar.html" class="view">View All</a>
+                <a href="{{ route('website.brands.index') }}" class="view">View All</a>
             </div>
             <div class="brand-section">
-                <div class="product-wrapper">
-                    <div class="wrapper-img">
-                        <a href="product-sidebar.html">
-                            <img src="assets/images/homepage-one/brand-img-1.webp" alt="img">
-                        </a>
+                @forelse ($someBrands as $brand)
+                    <div class="product-wrapper">
+                        <div class="wrapper-img">
+                            <a href="product-sidebar.html">
+                                <img src="{{ $brand->logo }}" alt="{{ $brand->name }}">
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="wrapper-img">
-                        <a href="product-sidebar.html">
-                            <img src="assets/images/homepage-one/brand-img-2.webp" alt="img">
-                        </a>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="wrapper-img">
-                        <a href="product-sidebar.html">
-                            <img src="assets/images/homepage-one/brand-img-3.webp" alt="img">
-                        </a>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="wrapper-img">
-                        <a href="product-sidebar.html">
-                            <img src="assets/images/homepage-one/brand-img-4.webp" alt="img">
-                        </a>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="wrapper-img">
-                        <a href="product-sidebar.html">
-                            <img src="assets/images/homepage-one/brand-img-5.webp" alt="img">
-                        </a>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="wrapper-img">
-                        <a href="product-sidebar.html">
-                            <img src="assets/images/homepage-one/brand-img-6.webp" alt="img">
-                        </a>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="wrapper-img">
-                        <a href="product-sidebar.html">
-                            <img src="assets/images/homepage-one/brand-img-7.webp" alt="img">
-                        </a>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="wrapper-img">
-                        <a href="product-sidebar.html">
-                            <img src="assets/images/homepage-one/brand-img-8.webp" alt="img">
-                        </a>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="wrapper-img">
-                        <a href="product-sidebar.html">
-                            <img src="assets/images/homepage-one/brand-img-9.webp" alt="img">
-                        </a>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="wrapper-img">
-                        <a href="product-sidebar.html">
-                            <img src="assets/images/homepage-one/brand-img-10.webp" alt="img">
-                        </a>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="wrapper-img">
-                        <a href="product-sidebar.html">
-                            <img src="assets/images/homepage-one/brand-img-11.webp" alt="img">
-                        </a>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="wrapper-img">
-                        <a href="product-sidebar.html">
-                            <img src="assets/images/homepage-one/brand-img-12.webp" alt="img">
-                        </a>
-                    </div>
-                </div>
+                @empty
+                    <div class="alert-info">No brands</div>
+                @endforelse
+
             </div>
         </div>
     </section>
