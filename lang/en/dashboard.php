@@ -636,7 +636,7 @@ return [
     "back"=>"Back",
     "has_discount"=>"Has discount ?",
     "manage_stock"=>"Manage stock ?",
-    "has_variants"=>"Has variants ?",
+    "has_variants"=>"Has variants",
     "product_sku"=>"SKU",
     "available_for"=>"Available for",
     "small_description_ar"=>"Small description Arabic",

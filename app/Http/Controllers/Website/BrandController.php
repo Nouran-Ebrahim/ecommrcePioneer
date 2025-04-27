@@ -18,9 +18,15 @@ class BrandController extends Controller
     public function index()
     {
 
-        $brands=$this->homeService->getBrands(12);
+        $brands = $this->homeService->getBrands(12);
 
         return view('website.brands', compact('brands'));
 
+    }
+    public function getProductsByBrand($slug)
+    {
+        $products = $this->homeService->getProductsByBrand($slug);
+// dd($products);
+        return view('website.products', compact('products'));
     }
 }

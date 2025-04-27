@@ -12,7 +12,7 @@ class Product extends Model
 {
     use HasFactory, HasTranslations, Sluggable;
 
-    public $fillable = ['name','slug', 'desc', 'small_desc', 'status', 'sku', 'available_for', 'views', 'has_variants', 'price', 'has_discount', 'discount', 'start_discount', 'end_discount', 'manage_stock', 'quantity', 'available_in_stock', 'category_id', 'brand_id'];
+    public $fillable = ['name', 'slug', 'desc', 'small_desc', 'status', 'sku', 'available_for', 'views', 'has_variants', 'price', 'has_discount', 'discount', 'start_discount', 'end_discount', 'manage_stock', 'quantity', 'available_in_stock', 'category_id', 'brand_id'];
     public $translatable = ['name', 'desc', 'small_desc'];
     public function sluggable(): array
     {
@@ -58,7 +58,7 @@ class Product extends Model
     public function hasVariantsTranslated()
     {
 
-            return $this->has_variants == 1 ? __('dashboard.yes') : __('dashboard.no');
+        return $this->has_variants == 1 ? __('dashboard.yes') : __('dashboard.no');
 
     }
     public function isSimple()
@@ -96,7 +96,13 @@ class Product extends Model
         return $query->where('status', 0);
     }
 
-
+    public function getPriceAfterDiscount()
+    {
+        if ($this->has_discount) {
+            return $this->price - $this->discount;
+        }
+        return $this->price;
+    }
 
 
 

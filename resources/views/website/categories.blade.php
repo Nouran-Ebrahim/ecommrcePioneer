@@ -23,7 +23,7 @@
                             <img src="{{ asset($category->icon) }}" alt="dress">
                         </div>
                         <div class="wrapper-info">
-                            <a href="product-sidebar.html" class="wrapper-details">{{ $category->name }}</a>
+                            <a href="{{ route('website.categories.products',$category->slug) }}" class="wrapper-details">{{ $category->name }}</a>
                         </div>
                     </div>
                 @endforeach

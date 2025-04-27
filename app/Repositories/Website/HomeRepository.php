@@ -27,4 +27,25 @@ class HomeRepository
 
         return $Brands;
     }
+    public function getProductsByBrand($slug)
+    {
+        $brand = Brand::where('slug', $slug)->first();
+        $products = $brand->products()
+            ->active()
+            ->with(['category', 'brand', 'images'])
+            ->latest()
+            ->select(['id', 'name', 'slug', 'price', 'has_variants', 'has_discount', 'discount', 'brand_id', 'category_id'])
+            ->paginate(2);
+        return $products;
+    }
+    public function getProductsByCategory($slug)
+    {
+        $category = Category::where('slug', $slug)->first();
+        $products = $category->products()
+            ->active()
+            ->with(['category', 'brand', 'images'])
+            ->latest()->select(['id', 'name', 'slug', 'price', 'has_variants', 'has_discount', 'discount', 'brand_id', 'category_id'])
+            ->paginate(2);
+        return $products;
+    }
 }

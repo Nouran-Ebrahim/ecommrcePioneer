@@ -17,9 +17,14 @@ class CategoryController extends Controller
     }
     public function index()
     {
-        $categories=$this->homeService->getCategories();
+        $categories = $this->homeService->getCategories();
 
         return view('website.categories', compact('categories'));
 
+    }
+    public function getProductsByCategory($slug)
+    {
+        $products = $this->homeService->getProductsByCategory($slug);
+        return view('website.products', compact('products'));
     }
 }

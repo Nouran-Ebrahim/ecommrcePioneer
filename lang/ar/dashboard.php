@@ -117,7 +117,7 @@ return [
     "back"=>"رجوع",
     "has_discount"=>"يوجد تخفيض ؟",
     "manage_stock"=>"اداره المخزن ؟",
-    "has_variants"=>"لدية انواع ؟",
+    "has_variants"=>"لدية انواع",
     "small_description_ar"=>"وصف صغير بالعربي",
     "small_description_en"=>"وصف صغير بالانجليزي",
     "product_images"=>"صور المنتج",
