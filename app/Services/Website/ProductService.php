@@ -25,6 +25,11 @@ class ProductService
         return $this->ProductRepository->getFlashProudcts($limit);
 
     }
+    public function getFlashProudctsWithTimer($limit = null)
+    {
+        return $this->ProductRepository->getFlashProudctsWithTimer($limit);
+
+    }
 
 
 

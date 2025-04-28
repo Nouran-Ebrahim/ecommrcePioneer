@@ -138,7 +138,7 @@
             <div class="container">
                 <div class="section-title">
                     <h5>NEW ARRIVALS</h5>
-                    <a href="product-sidebar.html" class="view">View All</a>
+                    <a href="{{ route('website.products.getProductsByType','new_ariavals') }}" class="view">View All</a>
                 </div>
                 <div class="arrival-section">
                     <div class="row g-5">
@@ -308,7 +308,7 @@
                             <span class="text">seconds</span>
                         </div>
                     </div>
-                    <a href="flash-sale.html" class="view">View All</a>
+                    <a href="{{ route('website.products.getProductsByType','flash_timer') }}" class="view">View All</a>
                 </div>
                 <div class="flash-sale-section">
                     <div class="row g-5">
@@ -1737,7 +1737,7 @@
             <div class="container">
                 <div class="section-title">
                     <h5>Flash Sale</h5>
-                    <a href="flash-sale.html" class="view">View All</a>
+                    <a href="{{ route('website.products.getProductsByType','flash') }}" class="view">View All</a>
                 </div>
                 <div class="best-product-section">
                     <div class="row g-4">
