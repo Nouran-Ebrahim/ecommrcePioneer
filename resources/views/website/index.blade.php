@@ -1819,9 +1819,9 @@
             const seconds = totalSeconds % 60
 
             $('#day').text("0"); // 0
-            $('#hour').text(hours);
-            $('#minute').text(minutes);
-            $('#second').text(seconds);
+            $('#hour').text(String(hours).padStart(2,'0'));
+            $('#minute').text(String(minutes).padStart(2,'0'));
+            $('#second').text(String(seconds).padStart(2,'0'));
 
         }
         $(function() {
