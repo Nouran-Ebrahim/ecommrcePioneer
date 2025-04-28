@@ -15,6 +15,16 @@ class ProductService
     {
         return $this->ProductRepository->getProductBySlug($slug);
     }
+    public function newAriavalsProducts($limit = null)
+    {
+        return $this->ProductRepository->newAriavalsProducts($limit);
+
+    }
+    public function getFlashProudcts($limit = null)
+    {
+        return $this->ProductRepository->getFlashProudcts($limit);
+
+    }
 
 
 
