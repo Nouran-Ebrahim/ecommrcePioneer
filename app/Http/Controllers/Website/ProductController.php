@@ -19,7 +19,9 @@ class ProductController extends Controller
     {
 
         $product = $this->ProductService->getProductBySlug($slug);
-
+        if (!$product) {
+            abort(404);
+        }
         return view('website.show', compact('product'));
 
     }

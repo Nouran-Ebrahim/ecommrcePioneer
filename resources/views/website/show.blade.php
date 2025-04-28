@@ -1,26 +1,15 @@
 @extends('layouts.website.app')
 @section('title', __('dashboard.show'))
 @section('content')
-    <section class="blog about-blog">
+
+    <section class="product product-info">
         <div class="container">
             <div class="blog-bradcrum">
                 <span><a href="{{ route('website.home') }}">Home</a></span>
                 <span class="devider">/</span>
-                <span><a href="javascript:;">@lang('dashboard.peoducts')</a></span>
-            </div>
-            <div class="blog-heading about-heading">
-                <h1 class="heading">@lang('dashboard.show')</h1>
-            </div>
-        </div>
-    </section>
-    <section class="product product-info">
-        <div class="container">
-            <div class="blog-bradcrum">
-                <span><a href="index-2.html">Home</a></span>
+                <span><a href="javascript:;">Shop</a></span>
                 <span class="devider">/</span>
-                <span><a href="product-sidebar.html">Shop</a></span>
-                <span class="devider">/</span>
-                <span><a href="#">Product Details</a></span>
+                <span><a href="javascript:;">Product Details</a></span>
             </div>
             <div class="product-info-section">
                 <div class="row ">

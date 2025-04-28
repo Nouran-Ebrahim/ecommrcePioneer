@@ -246,7 +246,7 @@
                                                 alt="product-img">
 
                                             <div class="product-cart-items">
-                                                <a href="#" class="cart cart-item">
+                                                <a href="{{ route('website.products.show', $product->slug) }}" class="cart cart-item">
                                                     <span>
                                                         <svg width="40" height="40" viewBox="0 0 40 40"
                                                             fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -314,10 +314,12 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <div class="position-absolute top-0 start-0 bg-danger text-white py-1 px-2 m-2 rounded">
+                                        <div
+                                            class="position-absolute top-0 start-0 bg-danger text-white py-1 px-2 m-2 rounded">
                                             {{ $product->brand->name }}
                                         </div>
-                                        <div class="position-absolute start-0 bg-dark text-white py-1 px-2 m-2 rounded" style="top:26px">
+                                        <div class="position-absolute start-0 bg-dark text-white py-1 px-2 m-2 rounded"
+                                            style="top:26px">
                                             {{ $product->category->name }}
                                         </div>
                                         <div class="product-info">
@@ -344,7 +346,8 @@
                                                 </span>
                                             </div> --}}
                                             <div class="product-description">
-                                                <a href="product-info.html" class="product-details">{{ $product->name }}
+                                                <a href="{{ route('website.products.show', $product->slug) }}"
+                                                    class="product-details">{{ $product->name }}
                                                 </a>
                                                 <div class="price">
                                                     @if ($product->has_variants == 1)
@@ -354,7 +357,8 @@
                                                             <span class="new-price">{{ $product->price }} EGP</span>
                                                         @else
                                                             <span class="price-cut">{{ $product->price }} EGP</span>
-                                                            <span class="new-price">{{ $product->getPriceAfterDiscount() }}
+                                                            <span
+                                                                class="new-price">{{ $product->getPriceAfterDiscount() }}
                                                                 EGP</span>
                                                         @endif
                                                     @endif
@@ -364,7 +368,7 @@
                                             </div>
                                         </div>
                                         <div class="product-cart-btn">
-                                            <a href="cart.html" class="product-btn">@lang('dashboard.show')</a>
+                                            <a href="{{ route('website.products.show', $product->slug) }}" class="product-btn">@lang('dashboard.show')</a>
                                         </div>
                                     </div>
                                 </div>
