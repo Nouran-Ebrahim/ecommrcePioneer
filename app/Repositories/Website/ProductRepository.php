@@ -11,9 +11,21 @@ class ProductRepository
     public function getProductBySlug($slug)
     {
         return Product::active()
-            ->with(['images', 'brand', 'category'])
+            ->with(['images', 'brand','productPreviews', 'category'])
             ->where('slug', $slug)
             ->first();
+    }
+    public function getRelatedProductsBySlug($product, $limit = null)
+    {
+        $products = Product::active()
+            ->with(['images','productPreviews', 'brand', 'category'])
+            ->where('category_id', $product->category_id)
+            ->where('id', '!=', $product->id)
+            ->latest();
+        if ($limit) {
+            return $products->paginate($limit);
+        }
+        return $products->paginate(30);
     }
     public function newAriavalsProducts($limit = null)
     {

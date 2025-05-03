@@ -67,8 +67,9 @@ Route::group(
         });
 
         Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
-            Route::get('/show/{slug}', [ProductController::class, 'show'])->name('show');
             Route::get('/{type}', [ProductController::class, 'getProductsByType'])->name('getProductsByType');
+            Route::get('/show/{slug}', [ProductController::class, 'show'])->name('show');
+            Route::get('/{product}/related-products', [ProductController::class, 'relatedProducts'])->name('related');
 
         });
 

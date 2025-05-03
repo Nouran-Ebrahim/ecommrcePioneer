@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\Slider;
 use App\Services\Website\ProductService;
 use Illuminate\Http\Request;
@@ -22,7 +23,16 @@ class ProductController extends Controller
         if (!$product) {
             abort(404);
         }
-        return view('website.show', compact('product'));
+        $relatedProducts=$this->ProductService->getRelatedProductsBySlug($product,4);
+        // dd($relatedProducts);
+        return view('website.show', compact('product','relatedProducts'));
+
+    }
+    public function relatedProducts(Product $product)
+    {
+        $products=$this->ProductService->getRelatedProductsBySlug($product);
+        $type="";
+        return view('website.products', compact('products','type'));
 
     }
     public function getProductsByType($type)

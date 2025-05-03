@@ -26,7 +26,8 @@ class BrandController extends Controller
     public function getProductsByBrand($slug)
     {
         $products = $this->homeService->getProductsByBrand($slug);
+        $type="";
 // dd($products);
-        return view('website.products', compact('products'));
+        return view('website.products', compact('products','type'));
     }
 }

@@ -25,6 +25,7 @@ class CategoryController extends Controller
     public function getProductsByCategory($slug)
     {
         $products = $this->homeService->getProductsByCategory($slug);
-        return view('website.products', compact('products'));
+        $type="";
+        return view('website.products', compact('products','type'));
     }
 }
