@@ -230,21 +230,23 @@
                         </div>
                     @endif
                 @endif
-
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="status">{{ __('dashboard.has_discount') }} :</label>
-                        <select name="status" id="status" class="form-control" wire:model.live="has_discount">
-                            <option value="0" selected>{{ __('dashboard.no') }}</option>
-                            <option value="1">{{ __('dashboard.yes') }}</option>
-                        </select>
-                        @error('has_discount')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                @if ($has_variants == 0)
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="status">{{ __('dashboard.has_discount') }} :</label>
+                            <select name="status" id="status" class="form-control"
+                                wire:model.live="has_discount">
+                                <option value="0" selected>{{ __('dashboard.no') }}</option>
+                                <option value="1">{{ __('dashboard.yes') }}</option>
+                            </select>
+                            @error('has_discount')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
-                </div>
+                @endif
                 {{-- depend on has discount --}}
-                @if ($has_discount == 1)
+                @if ($has_discount == 1 && $has_variants == 0)
                     <div class="col-6">
                         <div class="form-group">
                             <label for="discount">{{ __('dashboard.discount') }}</label>
