@@ -55,19 +55,23 @@ class User extends Authenticatable
     // relation
     public function country()
     {
-        return $this->belongsTo(Country::class , 'country_id');
+        return $this->belongsTo(Country::class, 'country_id');
     }
-    public function  governorate()
+    public function governorate()
     {
-        return $this->belongsTo(Government::class , 'government_id');
+        return $this->belongsTo(Government::class, 'government_id');
     }
-    public function  city()
+    public function city()
     {
-        return $this->belongsTo(City::class , 'city_id');
+        return $this->belongsTo(City::class, 'city_id');
     }
     public function orders()
     {
-        return $this->hasMany(Order::class , 'user_id');
+        return $this->hasMany(Order::class, 'user_id');
+    }
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class, 'user_id');
     }
     // accessors
     public function getCreatedAtAttribute($value)

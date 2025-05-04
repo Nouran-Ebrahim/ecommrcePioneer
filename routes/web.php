@@ -10,6 +10,7 @@ use App\Http\Controllers\Website\FaqController;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Website\ProductController;
 use App\Http\Controllers\Website\ProfileController;
+use App\Http\Controllers\Website\WishlistController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
@@ -46,6 +47,7 @@ Route::group(
             Route::controller(ProfileController::class)->group(function () {
                 Route::get('user-profile', 'showProfile')->name('profile');
             });
+            Route::get('wishlist', WishlistController::class)->name('wishlist');
 
 
         });
