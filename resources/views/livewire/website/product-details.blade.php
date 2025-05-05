@@ -41,18 +41,18 @@
                     </span>
                 </div>
             </div>
-            <select class="size-option">
+            <ul class="size-option">
                 @foreach ($variants as $item)
-                    <option wire:click="changeVariant({{ $item->id }})" class="option">
+                    <a wire:click="changeVariant({{ $item->id }})" href="javascript:void(0)" class="option">
                         @foreach ($item->VariantAttributes as $itemAttr)
                             <span @selected($item->id == $variantId) class="option-text">
                                 {{ $itemAttr->attributeValue->attribute->name }} :
                                 {{ $itemAttr->attributeValue->value }}
                             </span>
                         @endforeach
-                    </option>
+                    </a>
                 @endforeach
-            </select>
+            </ul>
         </div>
     @endif
 </div>
