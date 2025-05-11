@@ -12,8 +12,6 @@ class WishlistController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('website.wishlist', [
-            'wishlists' => auth('web')->user()->wishlists()->get()
-        ]);
+        return view('website.wishlist');
     }
 }

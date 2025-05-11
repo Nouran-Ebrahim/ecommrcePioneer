@@ -33,6 +33,7 @@ class Wishlist extends Component
         ]);
         $this->inWishlist = true;
         $this->dispatch('added-wishlist', __('messages.added_successfully'));
+        $this->dispatch('wishlistCountRefresh');
 
     }
     public function removeToWishlist($productId)
@@ -47,6 +48,7 @@ class Wishlist extends Component
             $wishlistProduct->delete();
             $this->inWishlist = false;
             $this->dispatch('remove-wishlist', __('messages.removed_successfully'));
+            $this->dispatch('wishlistCountRefresh');
 
         }
 
