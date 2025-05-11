@@ -638,6 +638,7 @@ return [
     "manage_stock"=>"Manage stock ?",
     "has_variants"=>"Has variants",
     "product_sku"=>"SKU",
+    "cart"=>"Cart",
     "available_for"=>"Available for",
     "small_description_ar"=>"Small description Arabic",
     "small_description_en"=>"Small description English",

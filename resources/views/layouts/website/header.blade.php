@@ -89,7 +89,7 @@
                     </div>
                     @livewire('website.wishlist-icon')
                     <div class="header-cart">
-                        <a href="cart.html" class="cart-item">
+                        <a href="{{ route('website.cart') }}" class="cart-item">
                             <span>
                                 <svg width="35" height="28" viewBox="0 0 35 28" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -214,7 +214,7 @@
                                     <h5 class="wrapper-title">$60</h5>
                                 </div>
                                 <div class="cart-btn">
-                                    <a href="cart.html" class="shop-btn view-btn">View
+                                    <a href="{{ route('website.cart') }}" class="shop-btn view-btn">View
                                         Cart</a>
                                     <a href="checkout.html" class="shop-btn checkout-btn">Checkout
                                         Now</a>
@@ -255,7 +255,7 @@
             <a href="{{ route('website.home') }}" class="mobile-header-logo">
                 <img src="{{ asset('assets/website') }}/assets/images/logos/logo.webp" alt="logo">
             </a>
-            <a href="cart.html" class="header-cart cart-item">
+            <a href="{{ route('website.cart') }}" class="header-cart cart-item">
                 <span>
                     <svg width="35" height="28" viewBox="0 0 35 28" fill="none"
                         xmlns="http://www.w3.org/2000/svg">

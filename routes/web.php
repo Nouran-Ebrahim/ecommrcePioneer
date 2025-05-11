@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Website\AboutusController;
 use App\Http\Controllers\Website\BrandController;
+use App\Http\Controllers\Website\CartController;
 use App\Http\Controllers\Website\CategoryController;
 use App\Http\Controllers\Website\DaynamicPageController;
 use App\Http\Controllers\Website\FaqController;
@@ -48,8 +49,8 @@ Route::group(
                 Route::get('user-profile', 'showProfile')->name('profile');
             });
             Route::get('wishlist', WishlistController::class)->name('wishlist');
-
-
+            
+            Route::get('cart', [CartController::class, 'showCartPage'])->name('cart');
         });
 
         Route::get('/home', [HomeController::class, 'index'])->name('home');

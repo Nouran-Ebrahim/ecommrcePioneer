@@ -115,6 +115,7 @@ return [
     'show_all' => 'عرض الكل',
     "code" => "الكود",
     "back"=>"رجوع",
+    "cart"=>"السلة",
     "has_discount"=>"يوجد تخفيض ؟",
     "manage_stock"=>"اداره المخزن ؟",
     "has_variants"=>"لدية انواع",
