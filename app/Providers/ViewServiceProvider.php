@@ -13,6 +13,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Setting;
 use App\Services\Website\HomeService;
+use App\Services\Dashboard\PageService;
 
 
 class ViewServiceProvider extends ServiceProvider
@@ -72,18 +73,27 @@ class ViewServiceProvider extends ServiceProvider
                 'coupons_count' => Cache::get('coupons_count'),
                 'products_count' => Cache::get('products_count'),
                 'faqs_count' => Cache::get('faqs_count'),
-                'contacts_count'=> Cache::get('contacts_count'),
+                'contacts_count' => Cache::get('contacts_count'),
 
             ]);
         });
         // get Setting And Share
         $setting = $this->firstOrCreateSetting();
-        $homeService = app(HomeService::class);
-        $allCategories = $homeService->getCategories();
+
         view()->share([
             'setting' => $setting,
-            'allCategories'=> $allCategories
         ]);
+
+        view()->composer('website.*', function ($view) {
+            $homeService = app(HomeService::class);
+            $allCategories = $homeService->getCategories();
+            $pageService=app(PageService::class);
+            $pages=$pageService->getPages();
+            view()->share([
+                'allCategories' => $allCategories,
+                'pages'=> $pages
+            ]);
+        });
     }
     public function firstOrCreateSetting()
     {

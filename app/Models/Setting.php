@@ -42,6 +42,17 @@ class Setting extends Model
         //$value = $this->attributes['logo']
         return 'uploads/settings/' . $value;
     }
+    public function getPromotionVideoUrlAttribute($value)
+    {
+        return $this->convertToEmbedUrl($value);
+    }
+    private function convertToEmbedUrl($url)
+    {
+        if (strpos($url, 'watch?v=') !== false) {
+            return str_replace('watch?v=', 'embed/', $url);
+        }
+        return $url;
+    }
 
     public function getFaviconAttribute()
     {

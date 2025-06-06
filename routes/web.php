@@ -3,8 +3,16 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Website\AboutusController;
+use App\Http\Controllers\Website\BrandController;
+use App\Http\Controllers\Website\CartController;
+use App\Http\Controllers\Website\CategoryController;
+use App\Http\Controllers\Website\DaynamicPageController;
+use App\Http\Controllers\Website\FaqController;
 use App\Http\Controllers\Website\HomeController;
+use App\Http\Controllers\Website\ProductController;
 use App\Http\Controllers\Website\ProfileController;
+use App\Http\Controllers\Website\WishlistController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
@@ -40,12 +48,34 @@ Route::group(
             Route::controller(ProfileController::class)->group(function () {
                 Route::get('user-profile', 'showProfile')->name('profile');
             });
-
-
+            Route::get('wishlist', WishlistController::class)->name('wishlist');
+            
+            Route::get('cart', [CartController::class, 'showCartPage'])->name('cart');
         });
 
         Route::get('/home', [HomeController::class, 'index'])->name('home');
-        Route::get('/about', [AboutusController::class, 'index'])->name('about');
+        Route::get('/faq', [FaqController::class, 'index'])->name('faq');
+        Route::get('page/{slug}', [DaynamicPageController::class, 'index'])->name('daynamic.page');
+
+        Route::group(['prefix' => 'brands', 'as' => 'brands.'], function () {
+            Route::get('/', [BrandController::class, 'index'])->name('index');
+            Route::get('/{slug}/products', [BrandController::class, 'getProductsByBrand'])->name('products');
+
+        });
+
+        Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
+            Route::get('/', [CategoryController::class, 'index'])->name('index');
+            Route::get('/{slug}/products', [CategoryController::class, 'getProductsByCategory'])->name('products');
+
+        });
+
+        Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
+            Route::get('/{type}', [ProductController::class, 'getProductsByType'])->name('getProductsByType');
+            Route::get('/show/{slug}', [ProductController::class, 'show'])->name('show');
+            Route::get('/{product}/related-products', [ProductController::class, 'relatedProducts'])->name('related');
+
+        });
+
 
         Livewire::setUpdateRoute(function ($handle) {
             return Route::post('/livewire/update', $handle);
@@ -54,6 +84,6 @@ Route::group(
 );
 
 
-Auth::routes();
+// Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

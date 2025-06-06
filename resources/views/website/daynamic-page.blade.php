@@ -1,101 +1,63 @@
 @extends('layouts.website.app')
-@section('title', __('dashboard.about'))
+@section('title', __('dashboard.' . $page->title))
 @section('content')
     <section class="blog about-blog">
         <div class="container">
             <div class="blog-bradcrum">
-                <span><a href="index-2.html">Home</a></span>
+                <span><a href="{{ route('website.home') }}">Home</a></span>
                 <span class="devider">/</span>
-                <span><a href="#">About Us</a></span>
+                <span><a href="javascript:;">{{ $page->title }}</a></span>
             </div>
             <div class="blog-heading about-heading">
-                <h1 class="heading">About Us</h1>
+                <h1 class="heading">{{ $page->title }}</h1>
             </div>
         </div>
     </section>
-
-    <section class="about">
-        <div class="container">
-            <div class="about-section">
-                <div class="row align-items-center gy-5">
-                    <div class="col-lg-6">
-                        <div class="about-img" data-aos="fade-right">
-                            <img src="assets/images/homepage-one/about/about-img-1.webp" alt="img">
-                        </div>
+    @if ($page->image == null)
+        <section class="product privacy footer-padding">
+            <div class="container">
+                <div class="privacy-section">
+                    <div class="policy">
+                        {!! $page->content !!}
                     </div>
-                    <div class="col-lg-6">
-                        <div class="about-content" data-aos="fade-up">
-                            <h3 class="about-title">Know More About Us?</h3>
-                            <p class="about-info">
-                                It is a long established fact that a reader
-                                will be distracted by the readable
-                                content of a page when looking at its
-                                layout. It is a long established fact a
-                                that a reader will be distracted by the
-                                readable content of a page when our
-                                looking at its layout.</p>
-                            <div class="about-list">
-                                <ul>
-                                    <li>
-                                        <span>
-                                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <circle cx="12.5" cy="12.5" r="12.5" fill="#AE1C9A" />
-                                                <path
-                                                    d="M10.1691 13.2566C10.5172 12.8649 10.8498 12.4803 11.198 12.1029C12.7761 10.3864 14.4973 8.80535 16.4699 7.47353C16.6749 7.33465 16.8876 7.20289 17.1042 7.0747C17.1739 7.03552 17.2628 7.00347 17.344 7.00347C17.7888 6.99635 18.2337 6.99991 18.6746 6.99991C18.8138 6.99991 18.926 7.04265 18.9763 7.16728C19.0266 7.28836 18.9879 7.39163 18.8835 7.48065C17.0772 8.99765 15.588 10.7639 14.1724 12.5872C12.8689 14.2644 11.6621 16.0022 10.5288 17.7863C10.4901 17.8504 10.4398 17.918 10.3741 17.9572C10.2348 18.0462 10.0763 17.9964 9.97183 17.8432C9.79777 17.5868 9.63532 17.3233 9.44966 17.074C8.36278 15.6318 7.26817 14.1896 6.17742 12.751C6.13488 12.6976 6.08846 12.6441 6.04978 12.5872C5.97243 12.4732 5.97629 12.3486 6.07686 12.256C6.36695 11.9853 6.66478 11.7147 6.96261 11.4476C7.07864 11.3444 7.20242 11.3515 7.35713 11.4476C7.83675 11.7539 8.31637 12.0637 8.79212 12.3699C9.24853 12.6655 9.70495 12.9575 10.1691 13.2566Z"
-                                                    fill="white" />
-                                            </svg>
-                                        </span>
-                                        <p>Complete Sanitization and
-                                            cleaning of bathroom</p>
-                                    </li>
-                                    <li>
-                                        <span>
-                                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <circle cx="12.5" cy="12.5" r="12.5" fill="#AE1C9A" />
-                                                <path
-                                                    d="M10.1691 13.2566C10.5172 12.8649 10.8498 12.4803 11.198 12.1029C12.7761 10.3864 14.4973 8.80535 16.4699 7.47353C16.6749 7.33465 16.8876 7.20289 17.1042 7.0747C17.1739 7.03552 17.2628 7.00347 17.344 7.00347C17.7888 6.99635 18.2337 6.99991 18.6746 6.99991C18.8138 6.99991 18.926 7.04265 18.9763 7.16728C19.0266 7.28836 18.9879 7.39163 18.8835 7.48065C17.0772 8.99765 15.588 10.7639 14.1724 12.5872C12.8689 14.2644 11.6621 16.0022 10.5288 17.7863C10.4901 17.8504 10.4398 17.918 10.3741 17.9572C10.2348 18.0462 10.0763 17.9964 9.97183 17.8432C9.79777 17.5868 9.63532 17.3233 9.44966 17.074C8.36278 15.6318 7.26817 14.1896 6.17742 12.751C6.13488 12.6976 6.08846 12.6441 6.04978 12.5872C5.97243 12.4732 5.97629 12.3486 6.07686 12.256C6.36695 11.9853 6.66478 11.7147 6.96261 11.4476C7.07864 11.3444 7.20242 11.3515 7.35713 11.4476C7.83675 11.7539 8.31637 12.0637 8.79212 12.3699C9.24853 12.6655 9.70495 12.9575 10.1691 13.2566Z"
-                                                    fill="white" />
-                                            </svg>
-                                        </span>
-                                        <p>when looking at its layout. It is
-                                            a long established fact </p>
-                                    </li>
-                                    <li>
-                                        <span>
-                                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <circle cx="12.5" cy="12.5" r="12.5" fill="#AE1C9A" />
-                                                <path
-                                                    d="M10.1691 13.2566C10.5172 12.8649 10.8498 12.4803 11.198 12.1029C12.7761 10.3864 14.4973 8.80535 16.4699 7.47353C16.6749 7.33465 16.8876 7.20289 17.1042 7.0747C17.1739 7.03552 17.2628 7.00347 17.344 7.00347C17.7888 6.99635 18.2337 6.99991 18.6746 6.99991C18.8138 6.99991 18.926 7.04265 18.9763 7.16728C19.0266 7.28836 18.9879 7.39163 18.8835 7.48065C17.0772 8.99765 15.588 10.7639 14.1724 12.5872C12.8689 14.2644 11.6621 16.0022 10.5288 17.7863C10.4901 17.8504 10.4398 17.918 10.3741 17.9572C10.2348 18.0462 10.0763 17.9964 9.97183 17.8432C9.79777 17.5868 9.63532 17.3233 9.44966 17.074C8.36278 15.6318 7.26817 14.1896 6.17742 12.751C6.13488 12.6976 6.08846 12.6441 6.04978 12.5872C5.97243 12.4732 5.97629 12.3486 6.07686 12.256C6.36695 11.9853 6.66478 11.7147 6.96261 11.4476C7.07864 11.3444 7.20242 11.3515 7.35713 11.4476C7.83675 11.7539 8.31637 12.0637 8.79212 12.3699C9.24853 12.6655 9.70495 12.9575 10.1691 13.2566Z"
-                                                    fill="white" />
-                                            </svg>
-                                        </span>
-                                        <p>Complete Sanitization and
-                                            cleaning of bathroom</p>
-                                    </li>
-                                </ul>
+
+
+                </div>
+            </div>
+        </section>
+    @else
+        <section class="about">
+            <div class="container">
+                <div class="about-section">
+                    <div class="row align-items-center gy-5">
+                        <div class="col-lg-6">
+                            <div class="about-img" data-aos="fade-right">
+                                <img src="{{ asset('uploads/pages/' . $page->image) }}" alt="img">
                             </div>
-                            <a href="contact-us.html" class="shop-btn">
-                                Contact us
-                                <span>
-                                    <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <rect x="1.45312" y="0.914062" width="9.25346" height="2.05632"
-                                            transform="rotate(45 1.45312 0.914062)" fill="white" />
-                                        <rect x="8" y="7.45703" width="9.25346" height="2.05632"
-                                            transform="rotate(135 8 7.45703)" fill="white" />
-                                    </svg>
-                                </span>
-                            </a>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="about-content" data-aos="fade-up">
+                                {!! $page->content !!}
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
+        </section>
+    @endif
+    <div class="about-promotion">
+        <a href="{{ $setting->promotion_video_url }}" target="_blank" class="about-btn">
+            <span>
+                <svg width="34" height="38" viewBox="0 0 34 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M5.19276 0.628906C6.04182 0.925379 6.95574 1.10689 7.72983 1.53849C15.5883 5.91299 23.4346 10.3097 31.2626 14.7386C34.8453 16.7655 34.8595 21.3861 31.2829 23.413C23.4569 27.846 15.6126 32.2467 7.75617 36.6252C4.10052 38.6622 0.0780744 36.3267 0.0618631 32.1478C0.0294404 23.4452 0.0395725 14.7426 0.0578102 6.04005C0.0659159 2.98657 2.26255 0.751933 5.19276 0.628906Z"
+                        fill="#AE1C9A" />
+                </svg>
+            </span>
+        </a>
+        <video src="{{ $setting->promotion_video_url }}" autoplay loop muted></video>
+    </div>
     <section class="about-service product ">
         <div class="container">
             <div class="about-service-section">
@@ -238,22 +200,7 @@
             </div>
         </div>
     </section>
-
-    <div class="about-promotion">
-        <a href="assets/images/homepage-one/about/advertrisement-vedio.mp4" target="_blank" class="about-btn">
-            <span>
-                <svg width="34" height="38" viewBox="0 0 34 38" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M5.19276 0.628906C6.04182 0.925379 6.95574 1.10689 7.72983 1.53849C15.5883 5.91299 23.4346 10.3097 31.2626 14.7386C34.8453 16.7655 34.8595 21.3861 31.2829 23.413C23.4569 27.846 15.6126 32.2467 7.75617 36.6252C4.10052 38.6622 0.0780744 36.3267 0.0618631 32.1478C0.0294404 23.4452 0.0395725 14.7426 0.0578102 6.04005C0.0659159 2.98657 2.26255 0.751933 5.19276 0.628906Z"
-                        fill="#AE1C9A" />
-                </svg>
-            </span>
-        </a>
-        <video src="assets/images/homepage-one/about/advertrisement-vedio.mp4" autoplay loop muted></video>
-    </div>
-
-    <section class="about-feedback product">
+    {{-- <section class="about-feedback product">
         <div class="container p-0">
             <div class="position-relative px-5">
                 <div class="swiper about-swiper">
@@ -607,5 +554,5 @@
                 <div class="swiper-pagination"></div>
             </div>
         </div>
-    </section>
+    </section> --}}
 @endsection

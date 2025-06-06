@@ -27,7 +27,8 @@ return [
     'global_shipping'=>'Global Shipping',
     'attributes'=>"Product Attributes",
     'contacts'=>'Manage Contacts',
-    'pages'=>'Manage Pages'
+    'pages'=>'Manage Pages',
+    'faqsQuestions'=>'Manage Faq Questions'
 
 
 ];

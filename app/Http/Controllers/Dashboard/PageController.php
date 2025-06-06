@@ -3,16 +3,19 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Page;
+use App\Utils\ImageManger;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\PageRequest;
 use App\Services\Dashboard\PageService;
 class PageController extends Controller
 {
-    protected $PageService;
-    public function __construct(PageService $PageService)
+    protected $PageService, $imageManger;
+    public function __construct(PageService $PageService, ImageManger $imageManger)
     {
         $this->PageService = $PageService;
+        $this->imageManger = $imageManger;
     }
 
     public function index()
@@ -71,6 +74,17 @@ class PageController extends Controller
         }
         Session::flash('success', __('messages.deleted_successfully'));
         return redirect()->back();
+    }
+    public function deleteImage(Request $request)
+    {
+        $page = $this->PageService->getPage($request->key);
+        $this->imageManger->deleteimageFromLocal('uploads/pages/' . $page->image);
+        $page->update(['image' => null]);
+        return response()->json([
+            'status' => 200,
+            "msg" => "Image Deleted"
+        ]);
+
     }
 
 

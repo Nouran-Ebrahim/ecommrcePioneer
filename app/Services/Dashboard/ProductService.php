@@ -124,7 +124,9 @@ class ProductService
             }
 
             // update Product Images
-            $this->imageManager->uploadImages($images, $product, 'products');
+            if (is_array($images) || is_object($images)) {
+                $this->imageManager->uploadImages($images, $product, 'products');
+            }
             DB::commit();
             return true;
         } catch (\Exception $e) {
