@@ -41,9 +41,9 @@ class WorldService
     }
 
 
-    public function getAllCities($governorate_id)
+    public function getAllCities($government_id)
     {
-        $governorate = self::getGovernorateById($governorate_id);
+        $governorate = self::getGovernorateById($government_id);
         return $this->worldRepository->getAllCities($governorate);
     }
 

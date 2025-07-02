@@ -103,7 +103,16 @@ class Product extends Model
         }
         return $this->price;
     }
+    public function discountPercentage()
+    {
+        // Skip if product has variants or discount is null/zero
+        if ($this->variants()->exists() || !$this->discount || $this->price == 0) {
+            return '🔥';
+        }
 
+        // Calculate percentage
+        return round(($this->discount / $this->price) * 100, 2).'%';
+    }
 
 
 }
