@@ -43,11 +43,11 @@ class CheckoutController extends Controller
             'InvoiceValue' => $invoiceValue,
             'DisplayCurrencyIso' => 'EGP',
             'CustomerEmail' => $shipping['user_email'],
-            'CallBackUrl' => 'http://localhost:8000/checkout/callback',
-            'ErrorUrl' => 'http://localhost:8000/checkout/error',
+            'CallBackUrl' => env('APP_URL') . '/checkout/callback', // if the payment sucess will return to this url and change the order status
+            'ErrorUrl' => env('APP_URL') . '/checkout/error',// if fails
             'Language' => app()->getLocale() == 'ar' ? 'ar' : 'en',
         ];
-        $data = $this->myFatoorahService->checkout($data);
+        $data = $this->myFatoorahService->checkout($data); // this will return invoice id of created invoice with invoice url that i will viste it to pay the the amount of the invoice and add my payment card
 
         // return $data;
         if ($url = $data["Data"]["InvoiceURL"]) {
@@ -77,7 +77,7 @@ class CheckoutController extends Controller
         $data['KeyType'] = 'paymentId';
 
         $response = $this->myFatoorahService->getPaymentStatus($data);
-        return $response;
+        // return $response;
 
         // Change Order Status
         $user_id = Transaction::where('transaction_id', $response['Data']['InvoiceId'])->pluck('user_id');
@@ -87,13 +87,16 @@ class CheckoutController extends Controller
             Order::where('id', $order_id)->where('user_id', $user_id)->update(['status' => 'paid']);
             // $this->orderService->clearUserCart(auth('web')->user()->cart);
 
-
-            // send notification to admin
-            $order = Order::where('id', $order_id)->where('user_id', $user_id)->first();
-            $admins = Admin::all();
-            foreach ($admins as $admin) {
-                $admin->notify(new CreateOrderNotification($order));
+            $user = auth('web')->user();
+            if ($user && $user->cart) {
+                $this->orderService->clearUserCart($user->cart);
             }
+            // // send notification to admin
+            // $order = Order::where('id', $order_id)->where('user_id', $user_id)->first();
+            // $admins = Admin::all();
+            // foreach ($admins as $admin) {
+            //     $admin->notify(new CreateOrderNotification($order));
+            // }
 
             Session::flash('success', 'تم الدفع بنجاح  راقب حاله الاوردر !');
             return redirect()->route('website.checkout.get');

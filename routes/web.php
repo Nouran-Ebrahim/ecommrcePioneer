@@ -85,7 +85,8 @@ Route::group(
         });
     }
 );
-
+Route::get('checkout/callback',    [CheckoutController::class, 'callback']);
+Route::get('checkout/error',       [CheckoutController::class, 'error']);
 
 // Auth::routes();
 

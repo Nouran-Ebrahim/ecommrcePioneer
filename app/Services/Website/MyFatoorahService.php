@@ -22,7 +22,7 @@ class MyFatoorahService
         }
 
         $response = Http::withHeaders($this->headers)
-            ->withoutVerifying() // equivalent to 'verify' => false
+            ->withoutVerifying() // equivalent to 'verify' => false in production we must remove this option as in production the request will be https
             ->acceptJson()       // sets Content-Type and Accept headers to JSON
             ->timeout(30)        // optional: in seconds
             ->send($method, $this->base_url . $uri, [
