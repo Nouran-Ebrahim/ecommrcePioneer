@@ -4,19 +4,19 @@ namespace App\Services\Website;
 
 use App\Models\Cart;
 use App\Models\City;
+use App\Models\Government;
 use App\Models\Order;
 use App\Models\Coupon;
 use App\Models\Country;
-use App\Models\Governorate;
 use App\Models\Transaction;
-use App\Models\ShippingGovernorate;
+use App\Models\ShippingGovernment;
 use Illuminate\Support\Facades\Auth;
 
 class OrderService
 {
     public function getInvoiceValue($address)
     {
-        $governorateName = $this->getLocationName(Governorate::class, $address['government_id']);
+        $GovernmentName = $this->getLocationName(Government::class, $address['government_id']);
 
         $cart = $this->getUserCart();
         if (!$cart || $cart->items->isEmpty()) {
@@ -30,7 +30,7 @@ class OrderService
         if ($coupon_exists = $cart->coupon != null) {
             $coupon = Coupon::valid()->where('code', trim($cart->coupon, ' '))->first();
             if ($coupon) {
-                $subTotal = $subTotal - ($subTotal * $coupon->discount_precentage / 100);
+                $subTotal = $subTotal - ($subTotal * $coupon->discount_percentage / 100);
             }
         }
         $totalPrice    = $subTotal + $shippingPrice;
@@ -53,10 +53,10 @@ class OrderService
     public function createOrder(array $address): ?Order
     {
         $countryName     = $this->getLocationName(Country::class, $address['country_id']);
-        $governorateName = $this->getLocationName(Governorate::class, $address['government_id']);
+        $GovernmentName = $this->getLocationName(Government::class, $address['government_id']);
         $cityName        = $this->getLocationName(City::class, $address['city_id']);
 
-        if (!$countryName || !$governorateName || !$cityName) {
+        if (!$countryName || !$GovernmentName || !$cityName) {
             return null;
         }
 
@@ -73,7 +73,7 @@ class OrderService
         if ($coupon_exists = $cart->coupon != null) {
             $coupon = Coupon::valid()->where('code', trim($cart->coupon, ' '))->first();
             if ($coupon) {
-                $subTotal = $subTotal - ($subTotal * $coupon->discount_precentage / 100);
+                $subTotal = $subTotal - ($subTotal * $coupon->discount_percentage / 100);
             }
         }
         $totalPrice    = $subTotal + $shippingPrice;
@@ -85,15 +85,15 @@ class OrderService
             'user_phone'     => $address['user_phone'],
             'user_email'     => $address['user_email'],
             'country'        => $countryName,
-            'governorate'    => $governorateName,
+            'governorate'    => $GovernmentName,
             'city'           => $cityName,
             'street'         => $address['street'],
             'note'           => $address['note'],
-            'price'          => $subTotal,
+            'price'          => $subTotal, //subtotal
             'shapping_price' => $shippingPrice,
             'total_price'    => $totalPrice,
             'coupon'         => $coupon_exists && $coupon? $coupon->code : null,
-            'coupon_discount'=> $coupon_exists && $coupon? $coupon->discount_precentage : 0,
+            'coupon_discount'=> $coupon_exists && $coupon? $coupon->discount_percentage : 0,
         ]);
 
         $this->storeOrderItemsFromCart($order, $cart);
@@ -111,9 +111,9 @@ class OrderService
         return Cart::with('items.product')->where('user_id', auth('web')->user()->id)->first();
     }
 
-    private function getShippingPrice(int $governorateId): float
+    private function getShippingPrice(int $GovernmentId): float
     {
-        return ShippingGovernorate::where('government_id', $governorateId)->value('price') ?? 0.0;
+        return ShippingGovernment::where('government_id', $GovernmentId)->value('price') ?? 0.0;
     }
 
     private function storeOrderItemsFromCart(Order $order, Cart $cart): void

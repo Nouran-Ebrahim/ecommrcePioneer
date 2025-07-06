@@ -27,10 +27,10 @@ class OrderShippingRequest extends FormRequest
             'user_email'=>'required|email',
             'user_phone'=>'required|string',
             'country_id'=>'required|exists:countries,id',
-            'government_id'=>'required|exists:governorates,id',
+            'government_id'=>'required|exists:governments,id',
             'city_id'=>'required|exists:cities,id',
             'street'=>'required|string',
-            'note'=>'required|string',
+            'note'=>'nullable|string',
             // 'payment_method'=>'required|string'
         ];
     }

@@ -12,20 +12,26 @@ return new class extends Migration {
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+               $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+
             $table->string('user_name');
             $table->string('user_phone');
             $table->string('user_email');
-            $table->string('country');
-            $table->string('government');
-            $table->string('city');
-            $table->string('street');
-            $table->text('note');
-            $table->enum('status', ['pending', 'completed', 'canceled','deliverd'])->default('pending');
+
             $table->decimal('price', 8, 2);
-            $table->decimal('shipping_price', 8, 2);
+            $table->decimal('shapping_price', 8, 2);
             $table->decimal('total_price', 8, 2);
 
+            $table->text('note')->nullable();
+            $table->enum('status' , ['pending','paid','cancelled' , 'delivered'])->default('pending');
+
+            $table->string('country');
+            $table->string('governorate');
+            $table->string('city');
+            $table->string('street');
+
+            $table->string('coupon')->nullable();
+            $table->integer('coupon_discount')->default(0);
             $table->timestamps();
         });
     }

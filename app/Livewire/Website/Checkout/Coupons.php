@@ -22,7 +22,7 @@ class Coupons extends Component
         if ($this->cart->coupon != null) {
             $couponObj = CouponModel::valid()->where('code', $this->cart->coupon)->first();
             if ($couponObj) {
-                $this->couponInfo = 'Coupon Will Applay With Discount ' . $couponObj->discount_precentage . '% During Payment Coupon Code: ' . $couponObj->code . ' Coupon Validity: ' . $couponObj->end_date;
+                $this->couponInfo = 'Coupon Will Applay With Discount ' . $couponObj->discount_percentage . '% During Payment Coupon Code: ' . $couponObj->code . ' Coupon Validity: ' . $couponObj->end_date;
             }
         }
     }
@@ -45,7 +45,7 @@ class Coupons extends Component
             'time_used' => $couponObj->time_used + 1,
         ]);
 
-        $this->couponInfo = 'Coupon will Applied With Discount ' . $couponObj->discount_precentage . '%  Coupon Code: ' . $couponObj->code . ' Coupon Validity: ' . $couponObj->end_date;
+        $this->couponInfo = 'Coupon will Applied With Discount ' . $couponObj->discount_percentage . '%  Coupon Code: ' . $couponObj->code . ' Coupon Validity: ' . $couponObj->end_date;
 
         $this->dispatch('couponApplied', $this->couponInfo);
     }

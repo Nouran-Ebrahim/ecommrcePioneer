@@ -9,4 +9,13 @@ class OrderItem extends Model
 {
     use HasFactory;
     protected $guarded = [];
+     public function getAttributesAttribute($value)
+    {
+        return json_decode($value);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

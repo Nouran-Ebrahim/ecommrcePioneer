@@ -54,7 +54,7 @@ class RegisterController extends Controller
             return redirect()->back()->withErrors(['please accept terms and conditions']); // will reterun the error with key errors as we use with errors
         }
         event(new Registered($user = $this->create($request->all())));
-
+        $user->cart()->create();
         $this->guard()->login($user);
 
         if ($response = $this->registered($request, $user)) {
