@@ -67,16 +67,7 @@
                             </div>
                         </div>
                         <div class="card-content collapse show">
-                            <div class="card-body card-dashboard">
-                                <p class="card-text">Example of a custom table
-                                    <em>header</em> styling. Table header supports default contextual
-                                    and custom background colors available in <a href="colors-primary-palette.html"
-                                        target="_blank">bootstrap brand colors</a>. To use bootstrap
-                                    brand color in the table header, add <code>.bg-*</code> class
-                                    to the header row. All border and text colors will be automatically
-                                    adjusted.
-                                </p>
-                            </div>
+                            
                             <div class="card-body">
                                 <h4 class="card-title">{{ __('dashboard.order_details') }}</h4>
                                 <div class="row">
@@ -188,7 +179,7 @@
     </div>
 @endsection
 
-@push('css')
+@push('style')
     <style>
         .glass-box {
             background: rgba(255, 255, 255, 0.1);
