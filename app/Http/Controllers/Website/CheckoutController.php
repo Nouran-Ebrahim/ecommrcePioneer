@@ -36,7 +36,6 @@ class CheckoutController extends Controller
             return redirect()->back()->with('error', 'Cart is empty');
         }
 
-
         $data = [
             'CustomerName' => $shipping['first_name'] . ' ' . $shipping['last_name'],
             'NotificationOption' => 'LNK',
@@ -85,13 +84,12 @@ class CheckoutController extends Controller
 
         if ($response['Data']['InvoiceStatus'] == 'Paid') {
             Order::where('id', $order_id)->where('user_id', $user_id)->update(['status' => 'paid']);
-            // $this->orderService->clearUserCart(auth('web')->user()->cart);
 
             $user = auth('web')->user();
             if ($user && $user->cart) {
                 $this->orderService->clearUserCart($user->cart);
             }
-            // // send notification to admin
+            // send notification to admin
             // $order = Order::where('id', $order_id)->where('user_id', $user_id)->first();
             // $admins = Admin::all();
             // foreach ($admins as $admin) {
@@ -99,7 +97,7 @@ class CheckoutController extends Controller
             // }
 
             Session::flash('success', 'تم الدفع بنجاح  راقب حاله الاوردر !');
-            return redirect()->route('website.checkout.get');
+            return redirect()->route('website.checkout.get'); //should return to order page in user profile
         }
         Session::flash('errro', 'فشلت عمليه الدفع حاول مره اخرى !!');
         return redirect()->route('website.checkout.get');

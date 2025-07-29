@@ -38,7 +38,7 @@ class MyFatoorahService
 
     public function checkout($data)
     {
-        return $this->createRequest('v2/SendPayment', 'POST', $data);
+        return $this->createRequest('v2/SendPayment', 'POST', $data);//create invoice with total amount and invoice id
     }
 
     public function getPaymentStatus($data)

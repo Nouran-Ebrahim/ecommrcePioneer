@@ -1,9 +1,11 @@
 <?php
 use App\Http\Controllers\Dashboard\ContactController;
 use App\Http\Controllers\Dashboard\FaqQuestionController;
+use App\Http\Controllers\Dashboard\OrderController;
 use App\Http\Controllers\Dashboard\PageController;
 use App\Http\Controllers\Dashboard\SliderController;
 use App\Http\Controllers\Dashboard\UserController;
+use App\Http\Middleware\MarkNotificationAsRead;
 use Livewire\Livewire;
 use App\Http\Controllers\Dashboard\AttributeController;
 use App\Http\Controllers\Dashboard\AdminController;
@@ -165,6 +167,15 @@ Route::group(
                     // Route::get('contacts-reply', [ContactController::class, 'getAll'])->name('users.all');
                 });
                 ############################### End Contacts ################################
+                ############################### orders Routes #############################
+                Route::group(['middleware' => 'can:orders'], function () {
+                    Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+                    Route::get('orders/{id}', [OrderController::class, 'show'])->name('orders.show')
+                        ->middleware(MarkNotificationAsRead::class);
+                    Route::delete('orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
+                    Route::get('orders/markDelivered/{id}', [OrderController::class, 'markDelivered'])->name('orders.markDelivered');
+                    Route::get('orders-get-all', [OrderController::class, 'getAll'])->name('orders.all');
+                });
             }
 
         );
