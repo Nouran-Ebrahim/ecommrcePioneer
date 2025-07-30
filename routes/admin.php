@@ -171,7 +171,7 @@ Route::group(
                 Route::group(['middleware' => 'can:orders'], function () {
                     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
                     Route::get('orders/{id}', [OrderController::class, 'show'])->name('orders.show')
-                        ->middleware(MarkNotificationAsRead::class);
+                        ->middleware('MarkNotificationAsRead');
                     Route::delete('orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
                     Route::get('orders/markDelivered/{id}', [OrderController::class, 'markDelivered'])->name('orders.markDelivered');
                     Route::get('orders-get-all', [OrderController::class, 'getAll'])->name('orders.all');

@@ -16,6 +16,16 @@
 
     <!-- ////////////////////////////////////////////////////////////////////////////-->
     @include('layouts.dashboard._footer')
+     @if (Auth::guard('admin')->check())
+       <script>
+            layout = "admin";
+            adminId= "{{ auth('admin')->user()->id }}";
+            showOrderRoute = "{{route('dashboard.orders.show',':id')}}";
+            contactIndexRoute= "{{ route('dashboard.contacts.index') }}"
+        </script>
+    @endif
+    <script src="{{ asset('build/assets/app-a95d7a31.js') }}"></script>
+
     @include('layouts.dashboard._scripts')
 </body>
 

@@ -27,4 +27,8 @@ class HomeController extends Controller
         return view('website.index', compact('sliders', 'newAriavals', 'flashProudctsTimer', 'flashProudcts', 'someCategories', 'someBrands', 'newAriavals'));
 
     }
+     public function showShopPage()
+    {
+        return view('website.shop');
+    }
 }

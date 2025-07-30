@@ -44,6 +44,10 @@ Route::group(
         Route::post('/login', [LoginController::class, 'login'])->name('login.post');
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout.post');
 
+        Route::get('/home', [HomeController::class, 'index'])->name('home');
+        Route::get('/faq', [FaqController::class, 'index'])->name('faq');
+        Route::get('page/{slug}', [DaynamicPageController::class, 'index'])->name('daynamic.page');
+        Route::get('shop', [HomeController::class, 'showShopPage'])->name('shop');
 
         Route::group(['middleware' => ['auth:web']], function () {
             Route::controller(ProfileController::class)->group(function () {
@@ -55,10 +59,6 @@ Route::group(
             Route::get('checkout', [CheckoutController::class, 'showCheckoutPage'])->name('checkout.get');
             Route::post('checkout', [CheckoutController::class, 'checkout'])->name('checkout.post');
         });
-
-        Route::get('/home', [HomeController::class, 'index'])->name('home');
-        Route::get('/faq', [FaqController::class, 'index'])->name('faq');
-        Route::get('page/{slug}', [DaynamicPageController::class, 'index'])->name('daynamic.page');
 
         Route::group(['prefix' => 'brands', 'as' => 'brands.'], function () {
             Route::get('/', [BrandController::class, 'index'])->name('index');
@@ -85,8 +85,8 @@ Route::group(
         });
     }
 );
-Route::get('checkout/callback',    [CheckoutController::class, 'callback']);
-Route::get('checkout/error',       [CheckoutController::class, 'error']);
+Route::get('checkout/callback', [CheckoutController::class, 'callback']);
+Route::get('checkout/error', [CheckoutController::class, 'error']);
 
 // Auth::routes();
 

@@ -39,7 +39,7 @@ class CreateOrderNotification extends Notification
     }
     public function databaseType(object $notifiable): string
     {
-        return 'CreateOrderNotification';
+        return 'CreateOrderNotification'; // The type of the notification that will be stored in the database
     }
 
 

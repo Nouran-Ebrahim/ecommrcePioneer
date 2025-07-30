@@ -43,5 +43,11 @@ class Admin extends Authenticatable
             //$config_permession == $permessionAdmin ?? false this condtion to countinue looping if the permession is not found
         }
     }
+    //If you would like to customize which channel that an entity's broadcast notifications are broadcast on
+    // in pusher the channel will be admins.(id of the admin that will resive the notification) so we now listen in echo to admins.id
+    public function receivesBroadcastNotificationsOn(): string
+    {
+        return 'admins.' . $this->id;
+    }
 
 }

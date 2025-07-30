@@ -90,11 +90,11 @@ class CheckoutController extends Controller
                 $this->orderService->clearUserCart($user->cart);
             }
             // send notification to admin
-            // $order = Order::where('id', $order_id)->where('user_id', $user_id)->first();
-            // $admins = Admin::all();
-            // foreach ($admins as $admin) {
-            //     $admin->notify(new CreateOrderNotification($order));
-            // }
+            $order = Order::where('id', $order_id)->where('user_id', $user_id)->first();
+            $admins = Admin::all();
+            foreach ($admins as $admin) {
+                $admin->notify(new CreateOrderNotification($order));
+            }
 
             Session::flash('success', 'تم الدفع بنجاح  راقب حاله الاوردر !');
             return redirect()->route('website.checkout.get'); //should return to order page in user profile

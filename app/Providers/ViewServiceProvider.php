@@ -88,12 +88,31 @@ class ViewServiceProvider extends ServiceProvider
             $homeService = app(HomeService::class);
             $allCategories = $homeService->getCategories();
             $pageService=app(PageService::class);
+            $catChildern = $this->getCategoriesChildrenNavbar();
             $pages=$pageService->getPages();
+          
             view()->share([
                 'allCategories' => $allCategories,
+                'categories_children' => $catChildern,
                 'pages'=> $pages
             ]);
         });
+    }
+     public function getCategoriesChildrenNavbar()
+    {
+        // children_count
+        $categories = Category::withCount('childern')
+            ->having('childern_count' ,'>' , 2)
+            ->active()
+            ->where('parent', null)
+            ->limit(4)
+            ->get();
+        // get 4 childern for every category
+        foreach ($categories as $category) {
+            $category->childern = $category->childern()->limit(4)->get();
+        }
+
+        return $categories;
     }
     public function firstOrCreateSetting()
     {
