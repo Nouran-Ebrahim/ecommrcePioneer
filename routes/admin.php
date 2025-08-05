@@ -163,7 +163,7 @@ Route::group(
                 });
                 ############################### Contact Routes ##############################
                 Route::group(['middleware' => 'can:contacts'], function () {
-                    Route::get('contacts', [ContactController::class, 'index'])->name('contacts.index');
+                    Route::get('contacts', [ContactController::class, 'index'])->name('contacts.index')->middleware('MarkNotificationAsRead');
                     // Route::get('contacts-reply', [ContactController::class, 'getAll'])->name('users.all');
                 });
                 ############################### End Contacts ################################

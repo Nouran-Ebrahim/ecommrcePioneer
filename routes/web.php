@@ -7,6 +7,7 @@ use App\Http\Controllers\Website\BrandController;
 use App\Http\Controllers\Website\CartController;
 use App\Http\Controllers\Website\CategoryController;
 use App\Http\Controllers\Website\CheckoutController;
+use App\Http\Controllers\Website\ContactController;
 use App\Http\Controllers\Website\DaynamicPageController;
 use App\Http\Controllers\Website\FaqController;
 use App\Http\Controllers\Website\HomeController;
@@ -58,6 +59,8 @@ Route::group(
             Route::get('cart', [CartController::class, 'showCartPage'])->name('cart');
             Route::get('checkout', [CheckoutController::class, 'showCheckoutPage'])->name('checkout.get');
             Route::post('checkout', [CheckoutController::class, 'checkout'])->name('checkout.post');
+             ################################ contacts Routes ##############################
+            Route::get('contacts', [ContactController::class, 'index'])->name('contacts.get');
         });
 
         Route::group(['prefix' => 'brands', 'as' => 'brands.'], function () {

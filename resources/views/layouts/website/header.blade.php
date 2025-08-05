@@ -415,11 +415,11 @@
                                 </a>
                             </li>
                         @endif
-                        {{-- <li>
+                        <li>
                             <a href="{{ route('website.contacts.get') }}">
                                 <span class="list-text">{{ __('website.contacts') }}</span>
                             </a>
-                        </li> --}}
+                        </li>
                     </ul>
                 </div>
                 {{-- language --}}
