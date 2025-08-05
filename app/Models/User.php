@@ -25,6 +25,7 @@ class User extends Authenticatable
         'government_id',
         'city_id',
         'is_active',
+        'phone'
     ];
 
     /**
@@ -72,6 +73,10 @@ class User extends Authenticatable
     public function wishlists()
     {
         return $this->hasMany(Wishlist::class, 'user_id');
+    }
+    public function reviews()
+    {
+        return $this->hasMany(ProductPreview::class , 'user_id');
     }
      // user & cart
     public function cart()

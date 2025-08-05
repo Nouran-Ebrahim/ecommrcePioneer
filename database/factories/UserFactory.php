@@ -45,6 +45,7 @@ class UserFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'is_active' => 1,
+            'phone'=>fake()->phoneNumber,
             'country_id' => $country->id,
             'government_id' => $governorate->id,
             'city_id' => $city->id,
