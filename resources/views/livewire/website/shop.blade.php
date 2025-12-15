@@ -76,7 +76,7 @@
                 <!-- Active Filters -->
                 <div class="sidebar-section">
                     <h5 class="fw-bold mb-3">Active Filters</h5>
-                    @if (count($categoryIds) > 0 || count($brandIds) > 0 || $minPrice > 0 || $maxPrice < 5000)
+                    @if (count($categoryIds) > 0 || count($brandIds) > 0 || $minPrice > 0 || $maxPrice < 10000)
                         <div class="active-filters">
                             @if (count($categoryIds) > 0)
                                 <div class="mb-2">
@@ -118,12 +118,12 @@
                                 </div>
                             @endif
 
-                            @if ($minPrice > 0 || $maxPrice < 5000)
+                            @if ($minPrice > 0 || $maxPrice < 10000)
                                 <div class="mb-2">
                                     <span class="fw-bold d-block mb-1">Price Range:</span>
                                     <span class="badge bg-info">
                                         {{ $minPrice }} - {{ $maxPrice }} EGP
-                                        <button wire:click="setPriceRange(0, 5000)"
+                                        <button wire:click="setPriceRange(0, 10000)"
                                             class="btn-close btn-close-white ms-2" style="font-size: 0.65rem;"></button>
                                     </span>
                                 </div>

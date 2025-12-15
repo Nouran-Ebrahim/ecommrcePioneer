@@ -29,7 +29,7 @@ class Shop extends Component
         'brandIds' => ['except' => []],
         'minPrice' => ['except' => 0],
         'maxPrice' => ['except' => 10000],
-    ];
+    ]; // show fillters values in url
 
     public function mount()
     {
