@@ -37,7 +37,7 @@ class ProductRepository
         if ($limit) {
             return $products->paginate($limit);
         }
-        return $products->paginate(30);
+        return $products->paginate(2);
     }
     public function getFlashProudcts($limit = null)
     {

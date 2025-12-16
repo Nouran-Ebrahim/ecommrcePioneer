@@ -16,8 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::group(['prefix' => 'user','middleware'=>'setLanguage'], function () {
+Route::group(['prefix' => 'user', 'middleware' => 'setLanguage'], function () {
     Route::post('/login', [LoginController::class, 'login']);
+    Route::get('/flash-products', [LoginController::class, 'getFlashProudcts']);
+
     Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::get('/test', function (Request $request) {
             return $request->user();
