@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::group(['prefix' => 'user'], function () {
+Route::group(['prefix' => 'user','middleware'=>'setLanguage'], function () {
     Route::post('/login', [LoginController::class, 'login']);
     Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::get('/test', function (Request $request) {

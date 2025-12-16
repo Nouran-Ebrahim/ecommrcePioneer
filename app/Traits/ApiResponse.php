@@ -4,11 +4,11 @@ namespace App\Traits;
 
 trait ApiResponse
 {
-    protected function apiResponse($data, $msg, $code)
+    protected function apiResponse($data, $msg,$status, $code)
     {
 
         $response = [
-            'status' => $code,
+            'status' => $status,
             'message' => $msg,
             'data' => $data,
 
