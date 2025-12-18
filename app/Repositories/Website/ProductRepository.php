@@ -33,7 +33,8 @@ class ProductRepository
             with(['category', 'brand', 'images'])
             ->active()
             ->latest()
-            ->select(['id', 'name', 'slug', 'price', 'has_variants', 'has_discount', 'discount', 'brand_id', 'category_id']);
+            ->select(['id', 'name', 'slug', 'price', 'has_variants', 'has_discount', 'discount', 'brand_id', 'category_id'])
+            ->withCount('images');
         if ($limit) {
             return $products->paginate($limit);
         }

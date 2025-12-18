@@ -43,30 +43,35 @@ class LoginController extends Controller
     public function getFlashProudcts()
     {
         $products = $this->productService->newAriavalsProducts();
-        // ProductCollection if i want to add extra custom data from the productresourse like products counts or custom pagination
-        // return $this->apiResponse(
-        //     new ProductCollection($products),
-        //     'Products retrieved successfully',
-        //     true,
-        //     200,
+        // dd($products);
+        // ProductCollection if i want to add extra custom data from the productresourse like products counts or custom pagination use toArray and ResourceCollection
+        return $this->apiResponse(
+            new ProductCollection($products),
+            [],
+            'Products retrieved successfully',
+            true,
+            200,
 
-        // );
+        );
         // ->response()->getData(true) for defult pagination used with collection only
         // return $this->apiResponse(
         //     (new ProductCollection($products))->response()->getData(true),
+        //     [],
         //     'Products retrieved successfully',
         //     true,
         //     200,
 
         // );
         // if i want to handle pagination in apiresponse trait
-        return $this->apiResponse(
-            ProductResource::collection($products),
-            'Products retrieved successfully',
-            true,
-            200,
-            $products
-        );
+        // return $this->apiResponse(
+        //     ProductResource::collection($products),
+        //     [],
+        //     'Products retrieved successfully',
+        //     true,
+        //     200,
+        //     $products
+        // );
+
 
     }
 }

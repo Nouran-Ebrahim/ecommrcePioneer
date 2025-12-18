@@ -7,8 +7,12 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
+use App\Traits\ApiResponse;
+
 class BaseRequest extends FormRequest
 {
+    use ApiResponse;
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -33,12 +37,14 @@ class BaseRequest extends FormRequest
         if ($this->expectsJson()) {
             //for api validation
             $errors = $validator->errors();
-            $response = response()->json([
-                'status'=>false,
-                'message' => 'Invalid data provided',
-                'errors' => $errors,
-            ], Response::HTTP_UNPROCESSABLE_ENTITY);
-
+            
+            $response = $this->apiResponse(
+                [],
+                $errors->messages(),
+                'Invalid data provided',
+                false,
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
             throw new HttpResponseException($response);
         }
 
